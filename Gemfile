@@ -1,19 +1,28 @@
-source 'https://rubygems.org'
-
+source 'http://rubygems.org'
 gem 'rails', '3.2.3'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'magic_encoding'
 
 gem 'sqlite3'
-
+#gem 'mysql2'
+gem 'haml-rails'
+gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'ckeditor', "3.7.0.rc3"
+gem 'gritter_notices'
+#gem 'permalink'
+gem 'friendly_id', "~> 4.0.1"
+gem 'awesome_nested_set'
+gem 'russian'
+gem 'json'
+#gem 'rails_admin'
+#gem 'devise'
+gem 'yaml_db', git: 'git://github.com/lostapathy/yaml_db.git'
+gem 'execjs'
+gem 'therubyracer'
 
 # Gems used only for assets and not required
 # in production environments by default.
-gem "twitter-bootstrap-rails"
-gem 'less-rails-bootstrap'
-gem 'therubyracer'
-gem 'haml-rails'
+#gem "twitter-bootstrap-rails"
+#gem 'less-rails-bootstrap'
 
 group :assets do
   gem 'bootstrap-sass'
