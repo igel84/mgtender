@@ -15,6 +15,12 @@ input[type="submit"]:active {border:none;font-weight:bold;}
 	}
 #header-left { background:url(top_left_bg.png) top left no-repeat;  }
 #header-right { background:url(top_right_bg.png) top right no-repeat;  }
+
+#header input[type="text"], input[type="password"] { margin-top:18px; margin-right:3px; }
+#header input[type="submit"] { margin:16px; }
+.sign { float:right; }
+a.sign { text-decoration:none; margin-top:25px; color:#000; font-size:11px; font-weight:bold; margin-right:5px; }
+
 #menu { 
 	background:url(menu_bg.png) top left repeat-x; 
 	margin-left:37px;
@@ -29,7 +35,7 @@ input[type="submit"]:active {border:none;font-weight:bold;}
 #menu-list ul { margin-left: 0; padding-left: 0;	display: inline; }
 #menu-list ul li {
 	margin-left: 0;
-	padding: 5px 20px;
+	padding: 5px 24px;
 	list-style: none;
 	display: inline;
 	white-space:nowrap;
@@ -39,11 +45,6 @@ input[type="submit"]:active {border:none;font-weight:bold;}
 //a#tenders { margin-left: 38px;}
 //a#user { margin-left: 40px;}
 a#about { padding-right:0;}
-
-#header input[type="text"], input[type="password"] { margin-top:18px; margin-right:3px; }
-#header input[type="submit"] { margin:16px; }
-.sign { float:right; }
-a.sign { text-decoration:none; margin-top:23px; color:#000; font-size:11px; font-weight:bold; margin-right:5px; }
 
 #content-left { background:url(content_left_bg.png) top left repeat-y;  }
 #content-right { background:url(content_right_bg.png) top right repeat-y;  }
