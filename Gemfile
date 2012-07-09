@@ -13,7 +13,7 @@ gem 'sqlite3'
 gem "twitter-bootstrap-rails"
 gem 'less-rails-bootstrap'
 gem 'therubyracer'
-gem 'haml'
+gem 'haml-rails'
 
 group :assets do
   gem 'bootstrap-sass'
