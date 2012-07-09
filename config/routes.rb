@@ -1,5 +1,8 @@
 InitialRelease::Application.routes.draw do
-  root :to => "home#index"
+  devise_for :users, :path_names => { :sign_up => "register" }
+  resources :news
+
+  root :to => "news#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

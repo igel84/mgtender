@@ -13,3 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function() {
+	var docHeight = $(document).height();
+	$('div#content').height(docHeight - 250);
+});

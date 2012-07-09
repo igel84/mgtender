@@ -7,16 +7,21 @@
 <%= javascript_include_tag "application" %>
 <%= csrf_meta_tags %>
 </head>
-
 <body>
+<div>
 <div id="header-left">
 <div id="header-right">
 <div id="header">
-<a href="#" id="logo"><%= image_tag "logo.png" %></a>
-<a href="#" class="sign">РЕГИСТРАЦИЯ</a>
-<input type="submit" value="Вход" class="sign" />
-<input type="password" placeholder="Пароль" class="sign" />
-<input type="text" placeholder="Логин" class="sign" />
+<%= link_to( image_tag("logo.png"), root_path,  id: "logo") %>
+<%= link_to("РЕГИСТРАЦИЯ", new_user_registration_path, class: "sign") %>
+<%= form_for(:user, :url => user_session_path) do |f| %>
+<%-#<input type="submit" value="Вход" class="sign" /> %>
+<%-#<input type="password" placeholder="Пароль" class="sign" /> %>
+<%= f.submit "Вход", class: "sign" %>
+<%= f.password_field :password, placeholder: "Пароль", class: "sign" %>
+<%= f.email_field :email, placeholder: "Логин", class: "sign" %>
+<%-#<input type="text" placeholder="Логин" class="sign" /> %>
+<% end %>
 </div>
 </div>
 </div>
@@ -67,6 +72,7 @@
 <a href="#">>></a>
 </li>
 </ul>
+</div>
 </div>
 </div>
 </div>
