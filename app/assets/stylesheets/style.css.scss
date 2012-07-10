@@ -1,8 +1,8 @@
 @import 'bootstrap';
 @import 'compass/reset';
 @import 'compass/css3/border-radius';
-* { margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; }
-body { background-color:#eaf9ff }
+* { margin:0; padding:0; font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; }
+body { background-color:#eaf9ff; font-family:"Helvetica Neue", Helvetica, Arial, sans-serif; }
 #header { 
 	background:url(top_bg.png) top left repeat-x; 
 	margin-left:15px;
@@ -77,15 +77,16 @@ a.sign { text-decoration:none; margin-top:25px; color:#000; font-size:11px; font
 #menu-right { background:url(menu_right_bg.png) top right no-repeat;  }
 #menu-list { background:url(menu.png) top left no-repeat; width:644px; height:33px; margin:0 auto; padding:0; line-height:30px; }
 #menu-list a { text-decoration:none; color:#fff; }
-#menu-list a:hover { text-decoration:underline; color:#fff; }
+#menu-list a:hover { color:#c8e8ff; }
 #menu-list ul { margin-left: 0; padding-left: 0;	display: inline; }
 #menu-list ul li {
 	margin-left: 0;
-	padding: 5px 24px;
+	padding: 5px 23px;
 	list-style: none;
 	display: inline;
 	white-space:nowrap;
 	overflow:hidden;
+	font-size: 15px;
 	}
 //a#new_tender { margin-left: 20px;}
 //a#tenders { margin-left: 38px;}
@@ -99,8 +100,27 @@ a#about { padding-right:0;}
 	margin-left:49px;
 	margin-right:25px;
 	min-height:500px;   
-	padding-top: 20px;
+	padding-top: 10px;
 	padding-bottom: 10px;
+
+	#content_body {
+		margin: 0 auto;
+		width: 966px;
+		//margin-left: -10px;
+		//margin-right: 13px;
+		h1 {
+			background:url(title_bg.png) top left repeat; 
+			display: block;
+			@include border-radius(7px, 7px); 
+			padding: 8px 20px;
+			color: #e0e1e2;
+			font-size: 16px;
+			border-bottom: solid #707980 1px;
+			border-right: solid #707980 1px;
+			margin-bottom: 9px;
+		}		
+	}
+	
 }
 
 #footer-left { background:url(footer_left_bg.png) top left no-repeat;  }
@@ -156,75 +176,159 @@ a#about { padding-right:0;}
 	h2 { font-size: 16px; color: #4d6477; font-weight: bold; }
 }
 
-$color_error: lighten(#6b8da6, 20%);
+$color_error: darken(#6b8da6, 40%);
+$bg_error: lighten(#6b8da6, 30%);
 $color_light: #49525b;
 
 #register {
 	form {
-		fieldset {
-			width: 444px;
-			.title { 
+		color: #e6edeb;
+		font-size: 14px;
+
+		span.big { font-size: 16px; padding: 0 5px; }
+
+		fieldset.left_side {
+			width: 470px;
+			float: left;			
+		}
+
+		fieldset.right_side {
+			width: 470px;	
+			//margin-left: 72px; 
+			float: right;		
+		}
+
+		legend {
+			color: #fff;
+			background:url(title_bg.png) top left repeat; 
+			display: block;
+			width: 430px;
+			@include border-radius(7px, 7px); 
+			padding: 8px 20px;
+			font-size: 16px;
+			border-bottom: solid #707980 1px;
+			border-right: solid #707980 1px;
+		}
+		label {
+			width: 150px;
+			display: inline-block;
+			text-align: right;
+			padding: 0 10px;
+			font-weight: 20%;
+			line-height:  16px;
+		}
+		input {
+			width: 224px;
+			border: none;
+			background: #fff;
+			height: 19px;
+			margin: 0 0 8px 2px;
+			padding: 0 10px;
+			@include border-radius(0);
+
+			&:focus {
+				border:none;
+				outline-offset:0;
+				outline-color:-webkit-focus-ring-color;
+				outline-style:auto;outline-width:0;
+			}
+		}
+
+		#signup {
+			background:url(signup_btn.png) top left no-repeat; 
+			width: 154px;
+			height: 23px;
+			border: none; 
+			cursor: pointer;
+			color: #000;
+			text-align: center;
+			font-size: 12px;
+			margin-left: 20px;
+			&:hover { color: #fff; }
+		}
+		
+		input[type="checkbox"] { 
+			width: 20px; 
+			margin-top: 2px;
+			background: none;
+		}
+
+		.user_photo {
+			margin-top: 20px;
+			img {
 				display: block;
-				background: $color_light;
-				@include opacity(0.5);
-				@include border-radius(6px, 6px);
-				padding: 7px 20px; 
-				margin-bottom: 15px;
-			}
-			legend {
-				color: #fff; 
-				font-weight: bold;
-			}
-			label {
-				width: 150px;
-				display: inline-block;
-				text-align: right;
-				color: #fff;
-				font-size: 14px;
-				padding: 0 10px;
-				font-weight: 20%;
-			}
-			input {
-				border: none;
-				background: #fff;
-				height: 19px;
-				margin: 0 0 8px 2px;
-				padding: 0 10px;
-				@include border-radius(0);
-
-				&:focus {
-					border:none;
-					outline-offset:0;
-					outline-color:-webkit-focus-ring-color;
-					outline-style:auto;outline-width:0;
-				}
-			}
-
-			input[type="file"] {
+				float: left;
 				width: 100px;
-				line-height: 19px;
-				background: url(btn_photo_bg.png) top left repeat-x;
-				border: none;
-
-				//position: relative;
-				//text-align: right;
-				//-moz-opacity:0 ;
-				//filter:alpha(opacity: 0);
-				//opacity: 0;
-				//z-index: 2;
+				height: 100px;
 			}
-			
-			input:-webkit-autofill { background-color: #fff !important; }
 
-			.field_with_errors {
-				display: inline-block;
-				margin: 0;
-				input { 
-					border: solid $color_error 2px; 
-					margin-left: 0;
+			.user_photo_info {
+				
+				margin-left: 115px;
+				
+				strong {
+					display: block;				
+					font-weight: bold;
+					font-size: 14px;
+					margin-bottom: 10px;
+				}				
+				
+				span {font-size: 12px;}
+				
+				span#file_name {
+					float: left;
+					display: block;
+					background: #fff;
+					color: #000;
+					padding: 3px 10px;
+					width: 210px;
+					height: 14px;
+					overflow: hidden;
+				}
+
+				#photo_btn {
+					margin-left: 240px;
+					background:url(photo_btn.png) top left no-repeat; 
+					width: 87px;
+					height: 23px;
+					border: none; 
+					cursor: pointer;
+					color: #000;
+					padding-top: 5px;
+					text-align: center;
+					font-size: 12px;
+					&:hover { color: #fff; }
 				}
 			}
 		}
+
+		p.accept {
+			@include border-radius(7px, 7px); 
+			background: #fff;
+			color: #000;
+			font-size: 13px;
+			line-height: 18px;
+			padding: 10px;
+			margin-top: 20px;			
+		}
+
+		.signup_accept {
+			float: right;
+			margin-top: 30px;
+		}
+		
+		input:-webkit-autofill { background-color: #fff !important; }
+
+		.field_with_errors {
+			display: inline-block;
+			margin: 0;
+			input { 
+				border: solid $color_error 2px; 
+				margin-left: 0;
+				background: $bg_error;
+			}
+		}
+
 		#error_explanation {
 			width: 444px;
 			padding-left: 60px;

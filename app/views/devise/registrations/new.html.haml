@@ -1,10 +1,12 @@
 %script
   function getFile(){ document.getElementById("upfile").click(); }
+  $(document).ready(function() { $('#upfile').change(function() { $('#file_name').text($(this).val()); }); });
+%h1 Регистрация нового пользователя
 #register
   = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {autocomplete: "off"}) do |f|
-    %fieldset
-      .title
-        %legend Введите информацию о пользователе
+    %fieldset.left_side
+      %legend Введите информацию о пользователе
+      %br/
       %label Имя Отчество:
       = f.text_field :fname
       %label Фамилия:
@@ -13,14 +15,52 @@
       = f.email_field :email
       %label Телефон:
       = f.text_field :phone
+      %label Название компании:
+      = f.text_field :company_id
+      %span.big *
+      %label Интересы:
+      = f.text_field :company_id
       %label Логин:
       = f.text_field :name
       %label Введите пароль:
       = f.password_field :password
       %label Повторите пароль:
       = f.password_field :password_confirmation
-      = image_tag "user_photo_blank.png"
-      #photoBtn{style:"height: 50px; width: 100px;border: 1px dashed #BBB; cursor:pointer;", onclick:"getFile()"} Обзор
-      %div{style:'height: 0px;width:0px; overflow:hidden;'}= f.file_field :photo, id: "upfile"
-    = devise_error_messages!
-    = f.submit "Зарегистрироваться"
+      %br/
+      %br/
+      %span.big *
+      %span Если вы не нашли название вашей компании, зарегистрируйте ее в форме слева
+      .user_photo
+        = image_tag "user_photo_blank.png"
+        .user_photo_info
+          %strong Изменить юзерпик  
+          %span#file_name
+          #photo_btn{onclick:"getFile()"} Обзор
+          %div{style:'height: 0px;width:0px; overflow:hidden;'}= f.file_field :photo, id: "upfile"
+          %span Условия загрузки: Размер 100х100 пикселей, jpg, jpeg, png.
+          %span Максимальный размер файла: 100 Кб.
+    %fieldset.right_side
+      = f.fields_for :company do |company|
+        %legend Введите информацию о НОВОЙ компании
+        %br/
+        %label Название компании:
+        = company.text_field :full_name
+        %label ИНН:
+        = company.text_field :inn
+        %label Налогооблажение:
+        = company.text_field :email
+        %label Телефон:
+        = company.text_field :general_phone
+        %label Сфера деятельности:
+        = company.text_field :sphere_id
+        %p.accept
+          Соглашение
+          %br/
+          Использование материалов и сервисов Сайта регулируется нормами действующего законодательства Российской Федерации.
+          Настоящее Соглашение является публичной офертой. Получая доступ к материалам Сайта Пользователь считается присоединившимся к настоящему Соглашению.
+          Администрация Сайта вправе в любое время в одностороннем порядке изменять условия настоящего Соглашения. Такие изменения вступают в силу по истечении 3 (Трех) дней с момента размещения новой версии Соглашения на сайте. При несогласии Пользователя с внесенными изменениями он обязан отказаться от доступа к Сайту, прекратить использование материалов и сервисов Сайта.
+    =# devise_error_messages!
+    .signup_accept
+      = check_box_tag 'accept', false
+      %span Я принимаю соглашение
+      = f.submit "Зарегистрироваться", id: 'signup'

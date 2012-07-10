@@ -1,0 +1,49 @@
+!!!
+%html
+  %head
+    %meta{:'http-equiv'=>"Content-Type", content:"text/html; charset=utf-8"}
+    %title MGTender
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    #main
+      #header-left
+        #header-right
+          #header
+            = link_to( image_tag("logo.png"), root_path,  id: "logo")
+            = link_to("РЕГИСТРАЦИЯ", new_user_registration_path, class: "sign")
+            = form_for(:user, :url => user_session_path) do |f|
+              = f.submit "Вход", class: "sign"
+              = f.password_field :password, placeholder: "Пароль", class: "sign"
+              = f.email_field :email, placeholder: "Логин", class: "sign"
+      #menu-left
+        #menu-right
+          #menu
+            #menu-list
+              %ul
+                %li
+                  = link_to "Объявить тендер", "#", id: "new_tender"
+                %li
+                  = link_to "Текущие тендеры", "#", id: "new_tender"
+                %li
+                  = link_to "Личный кабинет", "#", id: "new_tender"
+                %li
+                  = link_to "О компании", "#", id: "new_tender"
+      #content-left
+        #content-right
+          #content
+            #content_body
+              = yield
+      #footer-left
+        #footer-right
+          #footer
+          -#  #text
+          -#    #footer-menu
+          -#      %ul
+          -#        %li= link_to '<<', "#"
+          -#        - 1.upto(5) do |n|
+          -#          %li= link_to n.to_s, "#"
+          -#        %li ...
+          -#        %li= link_to '87', "#"
+          -#        %li= link_to '>>', "#"

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  full_name: MyString
+  inn: MyString
+  owner_form_id: 1
+  sphere_id: 1
+  general_phone: MyString
+  logo_content_type: MyString
+  logo_file_size: 1
+  is_nds: false
+
+two:
+  full_name: MyString
+  inn: MyString
+  owner_form_id: 1
+  sphere_id: 1
+  general_phone: MyString
+  logo_content_type: MyString
+  logo_file_size: 1
+  is_nds: false
