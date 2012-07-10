@@ -1,0 +1,23 @@
+#register
+  = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {autocomplete: "off"}) do |f|
+    %fieldset
+      .title
+        %legend Введите информацию о пользователе
+      %label Имя Отчество:
+      = f.text_field :fname
+      %label Фамилия:
+      = f.text_field :fname
+      %label Электронная почта:
+      = f.email_field :email
+      %label Телефон:
+      = f.text_field :phone
+      %label Логин:
+      = f.text_field :name
+      %label Введите пароль:
+      = f.password_field :password
+      %label Повторите пароль:
+      = f.password_field :password_confirmation
+      = image_tag "user_photo_blank.png"
+      = f.file_field :photo, value: 'обзор'
+    = devise_error_messages!
+    = f.submit "Зарегистрироваться"

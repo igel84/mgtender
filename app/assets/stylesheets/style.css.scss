@@ -1,3 +1,6 @@
+@import 'bootstrap';
+@import 'compass/reset';
+@import 'compass/css3/border-radius';
 * { margin:0; padding:0; font-family:Arial, Helvetica, sans-serif; }
 body { background-color:#eaf9ff }
 #header { 
@@ -46,6 +49,11 @@ body { background-color:#eaf9ff }
 			border: none;
 			font-weight:bold;
 		}
+	}
+
+	.field_with_errors {
+		display: inline;
+		margin: 0;
 	}
 
 }
@@ -104,10 +112,7 @@ a#about { padding-right:0;}
 	min-height:123px;   }
 #footer #text { padding-top:13px; margin: 0; width: 100%; } 
 #footer #text #footer-menu { 
-	-webkit-border-radius: 7px;
-    -moz-border-radius: 7px;
-	border-radius: 7px; 
-	behavior: url(border-radius.htc);
+	@include border-radius(7px, 7px); 
 	width: 100%;
 	height:14px;
 	background-color:#c5d0d9;
@@ -143,10 +148,91 @@ a#about { padding-right:0;}
 .block_content { 
 	margin-left: -10px;
 	margin-right: 13px;
-	border-radius: 6px;
+	@include border-radius(6px, 6px);
 	border: solid #fff 2px;
 	background: url(news_bg.png);
 	text-align: center;
 
 	h2 { font-size: 16px; color: #4d6477; font-weight: bold; }
+}
+
+$color_error: lighten(#6b8da6, 20%);
+$color_light: #49525b;
+
+#register {
+	form {
+		fieldset {
+			width: 444px;
+			.title { 
+				display: block;
+				background: $color_light;
+				@include opacity(0.5);
+				@include border-radius(6px, 6px);
+				padding: 7px 20px; 
+				margin-bottom: 15px;
+			}
+			legend {
+				color: #fff; 
+				font-weight: bold;
+			}
+			label {
+				width: 150px;
+				display: inline-block;
+				text-align: right;
+				color: #fff;
+				font-size: 14px;
+				padding: 0 10px;
+				font-weight: 20%;
+			}
+			input {
+				border: none;
+				background: #fff;
+				height: 19px;
+				margin: 0 0 8px 2px;
+				padding: 0 10px;
+				@include border-radius(0);
+
+				&:focus {
+					border:none;
+					outline-offset:0;
+					outline-color:-webkit-focus-ring-color;
+					outline-style:auto;outline-width:0;
+				}
+			}
+
+			input[type="file"] {
+				width: 100px;
+				line-height: 19px;
+				background: url(btn_photo_bg.png) top left repeat-x;
+				border: none;
+
+				//position: relative;
+				//text-align: right;
+				//-moz-opacity:0 ;
+				//filter:alpha(opacity: 0);
+				//opacity: 0;
+				//z-index: 2;
+			}
+			
+			input:-webkit-autofill { background-color: #fff !important; }
+
+			.field_with_errors {
+				display: inline-block;
+				margin: 0;
+				input { 
+					border: solid $color_error 2px; 
+					margin-left: 0;
+				}
+			}
+		}
+		#error_explanation {
+			width: 444px;
+			padding-left: 60px;
+			text-align: left;
+			color: $color_error;
+			
+			h2 { font-size: 16px; font-weight: bold; }
+			ul { list-style: disc; }
+		}
+	}
 }
