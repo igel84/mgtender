@@ -1,0 +1,41 @@
+%h1
+  Вы находитесь:
+  %span Личный кабинет
+%ul#tabs
+  %li.active= link_to 'ЛИЧНЫЕ ДАННЫЕ', profile_homes_path
+  %li= link_to 'МОИ ТЕНДЕРЫ', profile_homes_path
+  %li= link_to 'УЧАСТИЕ', profile_homes_path
+.tab-content
+  .tab-content-menu
+    = link_to(image_tag('person_btn.png'), profile_homes_path)
+    = link_to(image_tag('person_btn.png'), profile_homes_path, class: 'active')
+  .tab-content-panel
+    = form_for User.new, html: {autocomplete: "off"} do |f|
+      .person-info
+        %label Имя Отчество:
+        = f.text_field :fname
+        %label Фамилия:
+        = f.text_field :fname
+        %label Электронная почта:
+        = f.email_field :email
+        %label Телефон:
+        = f.text_field :phone
+        %label Название компании:
+        = f.text_field :company_id
+        %label Интересы:
+        = f.text_field :company_id
+        %label Логин:
+        = f.text_field :name
+        %label Введите пароль:
+        = f.password_field :password
+        %label Повторите пароль:
+        = f.password_field :password_confirmation
+      .user_photo
+        = image_tag "user_photo_blank.png"
+        .user_photo_info
+          %strong Изменить юзерпик  
+          %span#file_name
+          #photo_btn{onclick:"getFile()"} Обзор
+          %div{style:'height: 0px;width:0px; overflow:hidden;'}= f.file_field :photo, id: "upfile"
+          %span Условия загрузки: Размер 100х100 пикселей, jpg, jpeg, png.
+          %span Максимальный размер файла: 100 Кб.

@@ -1,6 +1,12 @@
 InitialRelease::Application.routes.draw do
   devise_for :users, :path_names => { :sign_up => "register" }
   resources :news
+  
+  resources :homes do
+    get 'profile', :on => :collection
+  end
+
+  resources :users
 
   root :to => "news#index"
 

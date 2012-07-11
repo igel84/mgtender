@@ -1,0 +1,32 @@
+%label Имя Отчество:
+= f.text_field :fname
+%label Фамилия:
+= f.text_field :fname
+%label Электронная почта:
+= f.email_field :email
+%label Телефон:
+= f.text_field :phone
+%label Название компании:
+= f.text_field :company_id
+%span.big *
+%label Интересы:
+= f.text_field :company_id
+%label Логин:
+= f.text_field :name
+%label Введите пароль:
+= f.password_field :password
+%label Повторите пароль:
+= f.password_field :password_confirmation
+%br/
+%br/
+%span.big *
+%span Если вы не нашли название вашей компании, зарегистрируйте ее в форме слева
+.user_photo
+  = image_tag "user_photo_blank.png"
+  .user_photo_info
+    %strong Изменить юзерпик  
+    %span#file_name
+    #photo_btn{onclick:"getFile()"} Обзор
+    %div{style:'height: 0px;width:0px; overflow:hidden;'}= f.file_field :photo, id: "upfile"
+    %span Условия загрузки: Размер 100х100 пикселей, jpg, jpeg, png.
+    %span Максимальный размер файла: 100 Кб.
