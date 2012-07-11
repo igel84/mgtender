@@ -1,0 +1,28 @@
+%h1
+  Вы находитесь:
+  %span Личный кабинет
+%ul#tabs
+  %li= link_to 'ЛИЧНЫЕ ДАННЫЕ', profile_homes_path
+  %li.active= link_to 'МОИ ТЕНДЕРЫ', my_tenders_homes_path
+  %li= link_to 'УЧАСТИЕ', parts_homes_path
+.tab-content
+  .tab-content-menu
+    = link_to(image_tag('add_tender_btn.png'), my_tenders_homes_path)
+    = link_to(image_tag('remove_tender_btn.png'), my_tenders_homes_path, class: 'active')
+  .tab-content-panel
+    = link_to 'Текущие тендеры', '#', id: 'actual-tender'
+    - 1.upto(6) do
+      .my_tenders
+        %p
+          %span Дата начала:
+          %span.bold.blue 21.08.2012
+          %span.offset-type Тип:
+          %span.bold Аукцион
+          %span.bold.offset-name Название тендера:
+          %span Микрохирургия глаза в Воронеже. 10.10.2011. Здоровье Воронеж.
+        %p
+          %span Дата окончания:
+          %span.bold.red 22.08.2012
+          %span.offset-status Статус:
+          %span.bold Активен
+          %span.offset-info Микрохирургия глаза в Воронеже. 10.10.2011. Здоровье Воронеж...

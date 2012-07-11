@@ -97,6 +97,7 @@ a#about { padding-right:0;}
 #content-right { background:url(content_right_bg.png) top right repeat-y;  }
 
 $content_width: 966px;
+$color-link-hover: darken(#c8e8ff, 60%);
 
 #content { 
 	background:url(content_bg.png); 
@@ -120,7 +121,153 @@ $content_width: 966px;
 			border-right: solid #707980 1px;
 			margin-bottom: 9px;
 			span { color: #fff; }
-		}		
+		}	
+
+		.tenders {
+			background:url(tenders_bg.png) top left no-repeat; 
+			width: 964px;
+			height: 115px;
+			margin-bottom: 5px;
+
+			.assign {
+				float: right;
+				width: 350px;
+				height: 34px;
+				margin-right: 10px;
+				margin-top: -5px;
+				.parts {
+					margin-top: 6px;
+					display: inline-block;
+					float: right;
+					background: #f6f7f9;
+					padding: 2px 20px;
+					@include border-left-radius(7px); 
+					border-left: solid #c0c1c3 1px;
+					border-top: solid #c0c1c3 1px;
+					border-bottom: solid #c0c1c3 1px;
+
+					span {
+						font-size: 13px;
+						color: #3c3f42;
+						font-weight: bold;
+						&.count { 
+							font-size: 16px; 
+							
+						}
+					}
+				}
+
+				a {
+					background:url(assign_tender_btn.png) top left no-repeat; 
+					width: 150px;
+					height: 34px;
+					display: block;
+					float: right;
+					text-align: center;
+					color: #3c3f42;
+					text-decoration: none;
+					font-size: 15px;
+					padding-top: 10px;
+
+					&:hover { color: #fff; }
+				}
+			}
+
+			p {
+				padding: 7px 0 0 10px;
+				&.title {
+					padding: 10px 0 0 20px;
+				}
+
+				&.main-info {
+					line-height: 18px;
+				}
+
+				&.info {
+					line-height: 18px;
+					width: 50%;
+					float: left;
+				}
+
+				span {
+					font-size: 13px;
+					color: #d6d6d6;
+					display: inline-block;
+
+					&.white { color: #fff; }
+					&.type-sale { width: 100px; }
+					&.start { width: 60px; }
+					&.start-date { padding-left: 10px; width: 110px; }
+					&.end { width: 75px; }
+					&.end-date { padding-left: 10px; width: 100px; }
+					//&.info { width: 50px; }
+					&.type-tn { 
+						float: right; 
+						margin-right: 9px;
+						margin-top: -2px;
+						height: 22px;
+						padding: 0 15px;
+						@include border-right-radius(6px); 
+						line-height: 22px;
+
+						&.blue-bg { background: #5a8895; }
+						&.green-bg { background: #64a73f; }
+						&.red-bg { background: #632d12; }
+					}
+
+					&.bold { font-weight: bold; }
+					&.name {
+						color: #000;
+						padding-left: 22px;
+						background:url(info_tender_bg.png) top left no-repeat !important;  
+					}
+					&.name-content { 
+						color: #305362; 
+						text-decoration: underline;
+					}
+					&.important {
+						color: #000;
+						padding-left: 22px;
+						background:url(important_tender_bg.png) top left no-repeat !important;  
+					}
+					&.important-content { 
+						color: #305362; 
+						font-size: 18px;
+					}
+					&.person {
+						color: #000;
+						padding-left: 22px;
+						background:url(person_tender_bg.png) top left no-repeat !important;  
+					}
+					&.person-content { 
+						color: #305362; 
+						text-decoration: underline;
+					}
+
+					a {
+						color: #fff;
+						text-decoration: underline;
+
+						&:hover {
+							color: #d6d6d6;
+						}
+					}						
+				}
+			}			
+		}
+
+		.content-text {
+			@include border-radius(7px, 7px); 
+			background: #fff;
+			color: #272727;
+			padding: 10px;
+
+			p { 
+				font-size: 14px; 
+				line-height: 20px;
+			}
+		}
+		
 	}
 
 	ul#tabs { 
@@ -165,6 +312,81 @@ $content_width: 966px;
 	$tab-content-panel-width: ($tab-content-width - $tab-content-menu-width - 4px);
 
 	.tab-content {
+		
+		#actual-tender {
+			background: url(ok_bg.png) top left no-repeat;
+			padding-left: 20px;
+			padding-top: 1px;
+			display: inline-block;
+			width: 150px;
+			height: 20px;
+			color: #040404;
+			font-size: 13px;
+			font-weight: bold;
+			margin: 6px 0 2px 6px;
+			&:hover {
+				text-decoration: none;
+				color: $color-link-hover;
+			}
+		}
+		
+		strong.title {
+			padding-left: 20px;
+			display: inline-block;
+			width: 400px;
+			height: 20px;
+			color: #040404;
+			font-size: 13px;
+			font-weight: bold;
+			margin: 6px 0 2px 6px;
+		}
+
+		.my_tenders {
+			padding-left: 6px;
+			margin-left: 5px;
+			width: 834px;
+			height: 53px;
+			background: url(my_tenders_bg.png) top left no-repeat;	
+			p {
+				padding-top: 3px;
+				span {
+					display: inline-block;
+					font-size: 13px;
+					color: #404040;
+					&.blue { color: #638dac; }
+					&.red { color: #8a0e0e; }
+					&.bold { font-weight: bold; }
+					&.offset-type { margin-left: 25px; }
+					&.offset-status { margin-left: 6px; }
+					&.offset-name { margin-left: 29px; }
+					&.offset-info { margin-left: 10px; }
+				}						
+			}
+		}
+
+		.parts {
+			padding-left: 6px;
+			margin-left: 5px;
+			width: 834px;
+			height: 73px;
+			background: url(parts_bg.png) top left no-repeat;	
+			p {
+				padding-top: 3px;
+				span {
+					display: inline-block;
+					font-size: 13px;
+					color: #404040;
+					&.blue { color: #638dac; }
+					&.red { color: #8a0e0e; }
+					&.bold { font-weight: bold; }
+					&.offset-type { margin-left: 40px; }
+					&.offset-status { margin-left: 21px; }
+					&.offset-name { margin-left: 41px; }
+					&.offset-info { margin-left: 22px; }
+				}						
+			}
+		}
+
 		@include border-bottom-radius(7px); 
 		@include border-top-right-radius(7px); 
 		width: $tab-content-width;
@@ -191,6 +413,24 @@ $content_width: 966px;
 			}
 		}
 		.tab-content-panel {
+			#save-btn {
+				margin-left: 290px;
+				margin-top: 110px;
+				background:url(save_btn_bg.png) top left no-repeat;
+				width: 155px;
+				height: 24px;
+				display: block;
+				color: #000;
+				font-size: 12px;
+				padding-top: 5px;
+				text-align: center;
+
+				&:hover {
+					text-decoration:none;
+					color: #fff;
+				}
+			}
+
 			//float: left;
 			//@include border-right-radius(7px);
 			//@include border-bottom-left-radius(7px);
@@ -201,7 +441,7 @@ $content_width: 966px;
 			@include box-shadow(#bebebe 2px 2px 1px);
 
 			.person-info {
-			    width: 400px;
+			    width: 380px;
 			    height: 250px;
 			    float: left;
 			}
@@ -226,55 +466,82 @@ $content_width: 966px;
 				border: solid #000 1px;
 			}
 
-			.user_photo {
-				//margin-top: 50px;
+			.person-photo {
 				padding-top: 5px;
-				margin-left: 410px;
-				width: 400px;
+				margin-left: 380px;
+				width: 450px;
 				height: 250px;
+			}
+
+			.user_photo {
+				width: 100px;
+				float: left;
+				text-align: center;
 				img {
 					display: block;
 					float: left;
 					width: 100px;
 					height: 100px;
+					margin-bottom: 5px;
 				}
 
-				.user_photo_info {
-					
-					margin-left: 115px;
-					
-					strong {
-						display: block;				
-						font-weight: bold;
-						font-size: 14px;
-						margin-bottom: 10px;
-					}				
-					
-					span {font-size: 12px;}
-					
-					span#file_name {
-						float: left;
-						display: block;
-						background: #fff;
-						color: #000;
-						padding: 3px 10px;
-						width: 210px;
-						height: 14px;
-						overflow: hidden;
-					}
+				strong.big {
+					font-size: 12px;
+					color: #040404;					
+				}
+			}
+			.user_photo_info {					
+				margin-left: 115px;
+				
+				strong {
+					display: block;				
+					font-weight: bold;
+					font-size: 14px;
+					margin-bottom: 5px;
+				}				
+				
+				span {font-size: 11px; margin: 0;}
+				
+				span#file_name {
+					border: solid #000 1px; 
+					float: left;
+					display: block;
+					background: #fff;
+					color: #000;
+					padding: 3px 10px;
+					width: 210px;
+					height: 14px;
+					overflow: hidden;
+				}
 
-					#photo_btn {
-						margin-left: 240px;
-						background:url(photo_btn.png) top left no-repeat; 
-						width: 87px;
-						height: 23px;
-						border: none; 
-						cursor: pointer;
-						color: #000;
-						padding-top: 5px;
-						text-align: center;
-						font-size: 12px;
-						&:hover { color: #fff; }
+				#photo_btn {
+					margin-left: 240px;
+					background:url(photo_btn.png) top left no-repeat; 
+					width: 87px;
+					height: 23px;
+					border: none; 
+					cursor: pointer;
+					color: #000;
+					padding-top: 5px;
+					text-align: center;
+					font-size: 12px;
+					&:hover { color: #fff; }
+				}
+
+				#del-photo-btn {
+					margin-top: 8px;
+					display: block;
+					font-size: 12px;
+					color: #000;
+					width: 100px;
+					height: 15px;
+					padding-left: 20px;
+					line-height: 15px;
+					background:url(del_btn.png) center left no-repeat;
+
+					&:hover { 
+						text-decoration: none; 
+						color: $color-link-hover;
 					}
 				}
 			}

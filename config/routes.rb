@@ -4,6 +4,11 @@ InitialRelease::Application.routes.draw do
   
   resources :homes do
     get 'profile', :on => :collection
+    get 'company', :on => :collection
+    get 'about', :on => :collection
+    get 'my_tenders', :on => :collection
+    get 'parts', :on => :collection
+    get 'tenders', :on => :collection
   end
 
   resources :users

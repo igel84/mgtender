@@ -1,0 +1,7 @@
+%h1
+  Вы находитесь:
+  %span Личный кабинет
+%ul#tabs
+  %li{class: "#{active}"}= link_to 'ЛИЧНЫЕ ДАННЫЕ', profile_homes_path
+  %li= link_to 'МОИ ТЕНДЕРЫ', tenders_homes_path
+  %li= link_to 'УЧАСТИЕ', profile_homes_path

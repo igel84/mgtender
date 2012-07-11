@@ -1,14 +1,24 @@
+:javascript
+  function getFile(){ document.getElementById("upfile").click(); }
+
+  $(document).ready(function() { 
+
+    $('#upfile').change(function() { 
+      $('#file_name').text($(this).val()); 
+    });
+
+  });
 %h1
   Вы находитесь:
   %span Личный кабинет
 %ul#tabs
   %li.active= link_to 'ЛИЧНЫЕ ДАННЫЕ', profile_homes_path
-  %li= link_to 'МОИ ТЕНДЕРЫ', profile_homes_path
-  %li= link_to 'УЧАСТИЕ', profile_homes_path
+  %li= link_to 'МОИ ТЕНДЕРЫ', my_tenders_homes_path
+  %li= link_to 'УЧАСТИЕ', parts_homes_path
 .tab-content
   .tab-content-menu
-    = link_to(image_tag('person_btn.png'), profile_homes_path)
-    = link_to(image_tag('person_btn.png'), profile_homes_path, class: 'active')
+    = link_to(image_tag('person.png'), profile_homes_path, class: 'active')
+    = link_to(image_tag('company.png'), company_homes_path)
   .tab-content-panel
     = form_for User.new, html: {autocomplete: "off"} do |f|
       .person-info
@@ -30,8 +40,10 @@
         = f.password_field :password
         %label Повторите пароль:
         = f.password_field :password_confirmation
-      .user_photo
-        = image_tag "user_photo_blank.png"
+      .person-photo
+        .user_photo
+          = image_tag "user_photo_blank.png"
+          %strong.big МОЙ ЮЗЕРПИК
         .user_photo_info
           %strong Изменить юзерпик  
           %span#file_name
@@ -39,3 +51,6 @@
           %div{style:'height: 0px;width:0px; overflow:hidden;'}= f.file_field :photo, id: "upfile"
           %span Условия загрузки: Размер 100х100 пикселей, jpg, jpeg, png.
           %span Максимальный размер файла: 100 Кб.
+          = link_to 'Удалить юзерпик', profile_homes_path, id: 'del-photo-btn'
+        = link_to 'Сохранить изменения', profile_homes_path, id: 'save-btn'
+            

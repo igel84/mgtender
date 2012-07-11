@@ -1,0 +1,23 @@
+:javascript
+  function getFile(){ document.getElementById("upfile").click(); }
+
+  $(document).ready(function() { 
+
+    $('#upfile').change(function() { 
+      $('#file_name').text($(this).val()); 
+    });
+
+  });
+%h1
+  Вы находитесь:
+  %span Личный кабинет
+%ul#tabs
+  %li.active= link_to 'ЛИЧНЫЕ ДАННЫЕ', profile_homes_path
+  %li= link_to 'МОИ ТЕНДЕРЫ', my_tenders_homes_path
+  %li= link_to 'УЧАСТИЕ', parts_homes_path
+.tab-content
+  .tab-content-menu
+    = link_to(image_tag('person.png'), profile_homes_path)
+    = link_to(image_tag('company.png'), company_homes_path, class: 'active')
+  .tab-content-panel
+    информация о фирме
