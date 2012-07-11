@@ -1,6 +1,34 @@
-%script
+:javascript
   function getFile(){ document.getElementById("upfile").click(); }
-  $(document).ready(function() { $('#upfile').change(function() { $('#file_name').text($(this).val()); }); });
+
+  $(document).ready(function() { 
+
+    $('#upfile').change(function() { 
+      $('#file_name').text($(this).val()); 
+    });
+
+    $('#check_accept').click(function() {
+      if (!$(this).hasClass('ok'))
+      {
+        $(this).addClass('ok');
+        $(this).css("background-image", "url(/assets/check_true_bg.png)");
+      }
+      else
+      {
+        $(this).removeClass('ok');
+        $(this).css("background-image", "url(/assets/check_false_bg.png)");
+      }
+    });
+
+    $('#signup').click(function(){
+      if (!$('#check_accept').hasClass('ok'))
+      {
+        alert('необходимо принять пользовательское соглашение!');
+        return false;
+      }
+    });
+
+  });
 %h1 Регистрация нового пользователя
 #register
   = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {autocomplete: "off"}) do |f|
@@ -61,6 +89,6 @@
           Администрация Сайта вправе в любое время в одностороннем порядке изменять условия настоящего Соглашения. Такие изменения вступают в силу по истечении 3 (Трех) дней с момента размещения новой версии Соглашения на сайте. При несогласии Пользователя с внесенными изменениями он обязан отказаться от доступа к Сайту, прекратить использование материалов и сервисов Сайта.
     =# devise_error_messages!
     .signup_accept
-      = check_box_tag 'accept', false
-      %span Я принимаю соглашение
+      =# check_box_tag 'accept', false
+      %span#check_accept Я принимаю соглашение
       = f.submit "Зарегистрироваться", id: 'signup'

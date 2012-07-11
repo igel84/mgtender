@@ -112,9 +112,9 @@ a#about { padding-right:0;}
 			background:url(title_bg.png) top left repeat; 
 			display: block;
 			@include border-radius(7px, 7px); 
-			padding: 8px 20px;
+			padding: 6px 20px;
 			color: #e0e1e2;
-			font-size: 16px;
+			font-size: 13px;
 			border-bottom: solid #707980 1px;
 			border-right: solid #707980 1px;
 			margin-bottom: 9px;
@@ -204,8 +204,8 @@ $color_light: #49525b;
 			display: block;
 			width: 430px;
 			@include border-radius(7px, 7px); 
-			padding: 8px 20px;
-			font-size: 16px;
+			padding: 6px 20px;
+			font-size: 13px;
 			border-bottom: solid #707980 1px;
 			border-right: solid #707980 1px;
 		}
@@ -315,6 +315,11 @@ $color_light: #49525b;
 		.signup_accept {
 			float: right;
 			margin-top: 30px;
+			span#check_accept {
+				padding-left: 20px;
+				cursor: pointer;
+				background:url(check_false_bg.png) center left no-repeat; 
+			}
 		}
 		
 		input:-webkit-autofill { background-color: #fff !important; }
