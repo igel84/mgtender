@@ -13,7 +13,7 @@ InitialRelease::Application.routes.draw do
 
   resources :users
 
-  root :to => "news#index"
+  root :to => "homes#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

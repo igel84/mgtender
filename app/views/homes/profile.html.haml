@@ -17,9 +17,9 @@
   %li= link_to 'УЧАСТИЕ', parts_homes_path
 .tab-content
   .tab-content-menu
-    = link_to(image_tag('person.png'), profile_homes_path, class: 'active')
+    = link_to(image_tag('person.png'), profile_homes_path, class: 'active white')
     = link_to(image_tag('company.png'), company_homes_path)
-  .tab-content-panel
+  .tab-content-panel.white
     = form_for User.new, html: {autocomplete: "off"} do |f|
       .person-info
         %label Имя Отчество:

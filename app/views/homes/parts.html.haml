@@ -10,22 +10,63 @@
     = link_to(image_tag('parts_actual_btn.png'), parts_homes_path, class: 'active')
     = link_to(image_tag('parts_notactual_btn.png'), parts_homes_path)
   .tab-content-panel
-    %strong.title Сейчас вы участвуете в следующих тендерах:
-    - 1.upto(6) do
-      .parts
-        %p
-          %span Дата начала:
-          %span.bold.blue 21.08.2012
-          %span.offset-type Тип:
-          %span.bold Аукцион
-          %span.bold.offset-name Название тендера:
-          %span Микрохирургия глаза в Воронеже. 10.10.2011.
-        %p
-          %span Дата окончания:
-          %span.bold.red 22.08.2012
-          %span.offset-status Статус:
-          %span.bold Активен
-          %span.offset-info Микрохирургия глаза в Воронеже. 10.10.2011. Здоровье Воронеж...
-        %p
-          %span Предложение:
-          %span.bold Не отправлено
+    = link_to 'Проведенные тендеры', '#', id: 'actual-tender'    
+    .my_tenders
+      %p.title
+        %span.start Открыт с:
+        %span.start-date.white.bold 21.06.2012
+        %span.end Активен до:
+        %span.end-date.white.bold 14.09.2013
+        %span.info.white Заявок подано:
+        %span.info-content.white.bold 45
+        %span.type-tn.blue-bg Тендер
+      %p.main-info
+        %span.name.bold Название:
+        %span.name-content.bold Микрохирургия глаза в Воронеже. 10.10.2011. Здоровье
+      %p.info
+        %span.important.bold Максимальная стоимость:
+        %span.important-content.bold 158 000 руб.
+      .edit
+        = link_to 'Редактировать', '#'
+    .my_tenders
+      %p.title
+        %span.start Открыт с:
+        %span.start-date.white.bold 21.06.2012
+        %span.end Активен до:
+        %span.end-date.white.bold 14.09.2013
+        %span.info.white Ставок сделано:
+        %span.info-content.white.bold 45
+        %span.type-tn.green-bg Аукцион
+      %p.main-info
+        %span.name.bold Название:
+        %span.name-content.bold Микрохирургия глаза в Воронеже. 10.10.2011. Здоровье
+      %p.info
+        %span.important.bold Максимальная стоимость:
+        %span.important-content.bold 158 000 руб.
+      .edit
+        = link_to 'Редактировать', '#'
+    .my_tenders
+      %p.title
+        %span.start Открыт с:
+        %span.start-date.white.bold 21.06.2012
+        %span.end Активен до:
+        %span.end-date.white.bold 14.09.2013
+        %span.info.white Предложений принято:
+        %span.info-content.white.bold 45
+        %span.type-tn.red-bg Предварительного сбора предложений
+      %p.main-info
+        %span.name.bold Название:
+        %span.name-content.bold Микрохирургия глаза в Воронеже. 10.10.2011. Здоровье
+      %p.info
+        %span.important.bold Максимальная стоимость:
+        %span.important-content.bold 158 000 руб.
+      .edit
+        = link_to 'Редактировать', '#'
+    %ul#pagination
+      %li <<
+      %li 1
+      %li 2
+      %li 3
+      %li ...
+      %li 4
+      %li >>

@@ -123,6 +123,41 @@ $color-link-hover: darken(#c8e8ff, 60%);
 			span { color: #fff; }
 		}	
 
+		.news {
+			margin-bottom: 10px;
+			padding: 7px;
+			@include border-radius(7px, 7px); 
+			background: #ddd;
+			border: solid #fff 3px;
+			h2 {
+				color: #4d6477;
+				font-size: 15px;
+				font-weight: bold;
+				padding-bottom: 5px;
+			}
+			p {
+				color: #404040;
+				font-size: 15px;
+			}
+			a {
+				margin-left: 845px;
+				margin-top: -5px;
+				display: block;
+				width: 98px;
+				height: 16px;
+				color: #364e61;
+				font-size: 11px;
+				padding: 2px 0 0 10px;
+				font-weight: bold;
+				background:url(more_btn.png) top left no-repeat; 
+
+				&:hover {
+					text-decoration: none;
+					color: darken(#ddd, 40%);
+				}
+			}
+		}
+
 		.tenders {
 			background:url(tenders_bg.png) top left no-repeat; 
 			width: 964px;
@@ -314,16 +349,16 @@ $color-link-hover: darken(#c8e8ff, 60%);
 	.tab-content {
 		
 		#actual-tender {
-			background: url(ok_bg.png) top left no-repeat;
-			padding-left: 20px;
-			padding-top: 1px;
+			background: url(point_bg.png) center left no-repeat;
+			padding-left: 10px;
+			padding-top: 3px;
 			display: inline-block;
 			width: 150px;
 			height: 20px;
-			color: #040404;
+			color: #fff;
 			font-size: 13px;
-			font-weight: bold;
-			margin: 6px 0 2px 6px;
+			//font-weight: bold;
+			margin: 4px 0 2px 8px;
 			&:hover {
 				text-decoration: none;
 				color: $color-link-hover;
@@ -341,27 +376,133 @@ $color-link-hover: darken(#c8e8ff, 60%);
 			margin: 6px 0 2px 6px;
 		}
 
+		ul#pagination {
+			display: block;
+			height: 20px;
+			background: #c6cbd0;
+			@include border-radius(7px);
+			margin: 30px 5px 0;
+			text-align: center;
+			li {
+				list-style: none;
+				display: inline;
+				color: #3c3f42;
+				font-size: 12px;
+				font-weight: bold;
+			}
+		}
+
 		.my_tenders {
 			padding-left: 6px;
 			margin-left: 5px;
-			width: 834px;
-			height: 53px;
-			background: url(my_tenders_bg.png) top left no-repeat;	
+			width: 833px;
+			height: 87px;
+			margin-bottom: 5px;
+			background: url(my_tenders_bg2.png) top left no-repeat;	
+			
 			p {
-				padding-top: 3px;
+				padding: 7px 0 0 10px;
+				&.title {
+					padding: 9px 0 0 20px;
+				}
+
+				&.main-info {
+					line-height: 18px;
+				}
+
+				&.info {
+					line-height: 18px;
+					width: 50%;
+					float: left;
+				}
+
 				span {
-					display: inline-block;
 					font-size: 13px;
-					color: #404040;
-					&.blue { color: #638dac; }
-					&.red { color: #8a0e0e; }
+					color: #d6d6d6;
+					display: inline-block;
+
+					&.white { color: #fff; }
+					&.type-sale { width: 100px; }
+					&.start { width: 60px; }
+					&.start-date { padding-left: 10px; width: 100px; }
+					&.end { width: 75px; }
+					&.end-date { padding-left: 10px; width: 100px; }
 					&.bold { font-weight: bold; }
-					&.offset-type { margin-left: 25px; }
-					&.offset-status { margin-left: 6px; }
-					&.offset-name { margin-left: 29px; }
-					&.offset-info { margin-left: 10px; }
-				}						
+					&.type-tn { 
+						float: right; 
+						margin-right: 11px;
+						margin-top: -1px;
+						height: 21px;
+						padding: 0 5px;
+						@include border-right-radius(6px); 
+						line-height: 22px;
+
+						&.blue-bg { background: #5a8895; }
+						&.green-bg { background: #64a73f; }
+						&.red-bg { background: #632d12; }
+					}
+
+					&.bold { font-weight: bold; }
+					&.name {
+						color: #000;
+						padding-left: 22px;
+						background:url(info_tender_bg.png) top left no-repeat !important;  
+					}
+					&.name-content { 
+						color: #305362; 
+						text-decoration: underline;
+					}
+					&.important {
+						color: #000;
+						padding-left: 22px;
+						background:url(important_tender_bg.png) top left no-repeat !important;  
+					}
+					&.important-content { 
+						color: #305362; 
+						font-size: 18px;
+					}
+					&.person {
+						color: #000;
+						padding-left: 22px;
+						background:url(person_tender_bg.png) top left no-repeat !important;  
+					}
+					&.person-content { 
+						color: #305362; 
+						text-decoration: underline;
+					}
+
+					a {
+						color: #fff;
+						text-decoration: underline;
+
+						&:hover {
+							color: #d6d6d6;
+						}
+					}						
+				}
 			}
+			.edit {
+				float: right;
+				width: 212px;
+				height: 21px;
+				margin-right: 12px;
+				margin-top: 10px;
+				a {
+					background:url(edit_tender_btn.png) top left no-repeat; 
+					width: 212px;
+					height: 21px;
+					display: block;
+					float: right;
+					text-align: center;
+					color: #3c3f42;
+					text-decoration: none;
+					font-size: 11px;
+					padding-top: 5px;
+					font-weight: bold;
+
+					&:hover { color: #fff; }
+				}
+			}	
 		}
 
 		.parts {
@@ -406,7 +547,8 @@ $color-link-hover: darken(#c8e8ff, 60%);
 				padding-top: 15px;
 				&.active {
 					//background:url(tab_content_menu_bg.png) top left no-repeat !important;
-					background: #fff;
+					background: #555f68;
+					&.white { background: #fff; }
 					@include box-shadow(#bebebe 0 2px 0);
 					@include border-left-radius(4px); 
 				}
@@ -415,7 +557,7 @@ $color-link-hover: darken(#c8e8ff, 60%);
 		.tab-content-panel {
 			#save-btn {
 				margin-left: 290px;
-				margin-top: 110px;
+				margin-top: 125px;
 				background:url(save_btn_bg.png) top left no-repeat;
 				width: 155px;
 				height: 24px;
@@ -431,13 +573,16 @@ $color-link-hover: darken(#c8e8ff, 60%);
 				}
 			}
 
+			padding-bottom: 8px;
+
 			//float: left;
 			//@include border-right-radius(7px);
 			//@include border-bottom-left-radius(7px);
 			margin-left: $tab-content-menu-width;
 			width: $tab-content-panel-width;
 			min-height: 200px;
-			background: #fff;
+			background: #555f68;
+			&.white { background: #fff; }
 			@include box-shadow(#bebebe 2px 2px 1px);
 
 			.person-info {
