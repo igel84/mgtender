@@ -1,0 +1,65 @@
+:javascript
+  function getFile(){ document.getElementById("upfile").click(); }
+
+  $(document).ready(function() { 
+
+    $('#upfile').change(function() { 
+      $('#file_name').text($(this).val()); 
+    });
+  });
+%h1
+  Вы находитесь:
+  %span Объявить тендер / Тендер
+%p.info Описание раздела тендеры, по категориям тендеров пользователь может как при регистрации, так и в профиле. При выборе соответствующих категорий, данному пользователю категорий будут приходить уведомления на почтовый ящик.
+%h1
+  Пожалуйста, заполните поля
+#tender_form
+  = form_for(User.new, html: {autocomplete: "off"}) do |f|
+    %fieldset.left_side
+      %label Дата создания тендера
+      %input{type:'text', class: 'date-picker'}
+      %label Дата запуска тендера
+      %input{type:'text', class: 'date-picker'}
+      %label Дата окончания тендера
+      %input{type:'text', class: 'date-picker'}
+      %label Категория
+      %input{type:'text'}
+      %label Количество итераций
+      %input{type:'text'}
+      %label Название тендера
+      %input{type:'text'}
+      %label Статус тендера
+      %input{type:'text'}
+      %label Приватность
+      %input{type:'text'}
+      %label Максимальная стоимость
+      %input{type:'text'}
+    %fieldset.right_side
+      .news
+        %p.multi 
+          Тип тендера:
+          %span.blue Тендер
+        %p.multi 
+          Пользователь:
+          %span.blue Дмитрий Мельников
+      %p.description << Краткое описание к пункту тендера
+      %p.description << Краткое описание к пункту тендера
+    .more
+      %label Комментарии к тендеру
+      %textarea &nbsp;
+    .clear
+    .more
+      %label.file Приложение к тендеру
+      .user_photo
+        .user_photo_info
+          %span#file_name
+          #photo_btn{onclick:"getFile()"} Обзор
+          = link_to '#', id: 'add_file_btn' do
+            &nbsp;
+          %div{style:'height: 0px;width:0px; overflow:hidden;'}= f.file_field :photo, id: "upfile"
+          %span Условия загрузки: Размер 100х100 пикселей, jpg, jpeg, png.
+          %br/
+          %span Максимальный размер файла: 100 Кб.
+    .controlls
+      = link_to 'Назад', '#', id: 'button-back'
+      %button.next Далее

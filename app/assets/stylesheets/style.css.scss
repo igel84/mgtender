@@ -123,6 +123,13 @@ $color-link-hover: darken(#c8e8ff, 60%);
 			span { color: #fff; }
 		}	
 
+		p.info {
+			padding: 0 4px 10px;
+			color: #fff;
+			font-size: 13px;
+			line-height: 18px;
+		}
+
 		.news {
 			margin-bottom: 10px;
 			padding: 7px;
@@ -138,6 +145,13 @@ $color-link-hover: darken(#c8e8ff, 60%);
 			p {
 				color: #404040;
 				font-size: 15px;
+
+				&.multi { 
+					font-size: 14px;
+					padding: 5px 10px 5px; 
+				}
+
+				span.blue { color: #658fad; }
 			}
 			a {
 				margin-left: 845px;
@@ -916,3 +930,245 @@ $color_light: #49525b;
 		}
 	}
 }
+
+#tender_form {
+	form {
+		color: #e6edeb;
+		font-size: 14px;
+
+		span.big { font-size: 16px; padding: 0 5px; }
+
+		fieldset.left_side {
+			width: 470px;
+			float: left;			
+		}
+
+		fieldset.right_side {
+			width: 470px;	
+			//margin-left: 72px; 
+			float: right;		
+		}
+
+		p.description {
+			margin-top: 40px;
+			color: #d2d2d2;
+			font-size: 12px;
+		}
+
+		.more {
+			float:left;
+			width: 800px;
+		}
+
+		legend {
+			color: #fff;
+			background:url(title_bg.png) top left repeat; 
+			display: block;
+			width: 430px;
+			@include border-radius(7px, 7px); 
+			padding: 6px 20px;
+			font-size: 13px;
+			border-bottom: solid #707980 1px;
+			border-right: solid #707980 1px;
+		}
+		label {
+			width: 200px;
+			display: inline-block;
+			text-align: right;
+			padding: 0 10px;
+			font-weight: 20%;
+			line-height:  16px;
+
+			&.file {
+				text-align: right;
+			}
+		}
+		input {
+			width: 224px;
+			border: none;
+			background: #fff;
+			height: 19px;
+			margin: 0 0 8px 2px;
+			padding: 0 10px;
+			@include border-radius(0);
+
+			&:focus {
+				border:none;
+				outline-offset:0;
+				outline-color:-webkit-focus-ring-color;
+				outline-style:auto;outline-width:0;
+			}
+
+			&.date-picker {
+				width: 110px;
+				padding-right: 30px;
+				background: #fff url(date_picker_bg.png) center right no-repeat;
+			}
+		}
+		
+		textarea {
+			width: 358px;
+			border: none;
+			background: #fff;
+			height: 66px;
+			margin: 0 0 8px 2px;
+			padding: 0 10px;
+			@include border-radius(0);
+
+			&:focus {
+				border:none;
+				outline-offset:0;
+				outline-color:-webkit-focus-ring-color;
+				outline-style:auto;outline-width:0;
+			}
+		}
+
+		#signup {
+			background:url(signup_btn.png) top left no-repeat; 
+			width: 154px;
+			height: 23px;
+			border: none; 
+			cursor: pointer;
+			color: #000;
+			text-align: center;
+			font-size: 12px;
+			margin-left: 20px;
+			&:hover { color: #fff; }
+		}
+		
+		input[type="checkbox"] { 
+			width: 20px; 
+			margin-top: 2px;
+			background: none;
+		}
+
+		.user_photo {
+			margin-top: 8px;
+			img {
+				display: block;
+				float: left;
+				width: 100px;
+				height: 100px;
+			}
+
+			.user_photo_info {
+				
+				margin-left: 70px;
+				
+				strong {
+					display: block;				
+					font-weight: bold;
+					font-size: 14px;
+					margin-bottom: 10px;
+				}				
+				
+				span {font-size: 10px;}
+				
+				span#file_name {
+					float: left;
+					display: block;
+					background: #fff;
+					color: #000;
+					padding: 3px 10px;
+					width: 210px;
+					height: 14px;
+					overflow: hidden;
+				}
+
+				#photo_btn {
+					display: inline-block;
+					margin-left: 8px;
+					margin-right: 8px;
+					padding: 0;
+					background:url(photo_btn.png) top left no-repeat; 
+					width: 87px;
+					height: 23px;
+					border: none; 
+					cursor: pointer;
+					color: #000;
+					padding-top: 5px;
+					text-align: center;
+					font-size: 12px;
+					&:hover { color: #fff; }
+				}
+				#add_file_btn {
+					display: inline-block;
+					background:url(add_file_btn.png) top left no-repeat; 
+					width: 23px;
+					height: 23px;
+					border: none; 
+					cursor: pointer;
+					color: #000;
+					padding-top: 5px;
+					text-align: center;
+					font-size: 12px;
+					&:hover { color: #fff; }
+				}
+			}
+		}
+
+		.controlls {
+			width: 330px;
+			float: right;
+			button, #button-back {
+				background:url(tender_form_btn.png) top left no-repeat; 
+				color: #3c3f42;
+				line-height: 26px;
+				text-decoration: none;
+				text-align: center;
+				display: inline-block;
+				width: 152px;
+				height: 27px;
+				border: none;
+				float: left;
+				margin: 10px 5px 0;
+				&:hover {
+					color: #fff;
+				}
+			}
+		}
+
+		p.accept {
+			@include border-radius(7px, 7px); 
+			background: #fff;
+			color: #000;
+			font-size: 13px;
+			line-height: 18px;
+			padding: 10px;
+			margin-top: 20px;			
+		}
+
+		.signup_accept {
+			float: right;
+			margin-top: 30px;
+			span#check_accept {
+				padding-left: 20px;
+				cursor: pointer;
+				background:url(check_false_bg.png) center left no-repeat; 
+			}
+		}
+		
+		input:-webkit-autofill { background-color: #fff !important; }
+
+		.field_with_errors {
+			display: inline-block;
+			margin: 0;
+			input { 
+				border: solid $color_error 2px; 
+				margin-left: 0;
+				background: $bg_error;
+			}
+		}
+
+		#error_explanation {
+			width: 444px;
+			padding-left: 60px;
+			text-align: left;
+			color: $color_error;
+			
+			h2 { font-size: 16px; font-weight: bold; }
+			ul { list-style: disc; }
+		}
+	}
+}
+.clear { clear:both; }

@@ -9,6 +9,7 @@ InitialRelease::Application.routes.draw do
     get 'my_tenders', :on => :collection
     get 'parts', :on => :collection
     get 'tenders', :on => :collection
+    get 'new_tender', :on => :collection
   end
 
   resources :users
