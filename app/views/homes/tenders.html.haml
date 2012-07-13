@@ -1,3 +1,11 @@
+:javascript
+  $(document).ready(function() { 
+
+    //$('.tenders').click(function() { 
+    //  alert('sdf');
+    //});
+
+  });
 %h1
   Вы находитесь:
   %span Текущие тендеры
@@ -13,7 +21,7 @@
     %span.type-tn.blue-bg Тендер
   %p.main-info
     %span.name.bold Название:
-    %span.name-content.bold Микрохирургия глаза в Воронеже. 10.10.2011. Здоровье
+    %span.name-content.bold= link_to 'Микрохирургия глаза в Воронеже. 10.10.2011. Здоровье', tender_homes_path
   %p.info
     %span.important.bold Минимальная стоимость:
     %span.important-content.bold 158 000 руб.
@@ -36,7 +44,7 @@
     %span.type-tn.blue-bg Тендер
   %p.main-info
     %span.name.bold Название:
-    %span.name-content.bold Микрохирургия глаза в Воронеже. 10.10.2011. Здоровье
+    %span.name-content.bold= link_to 'Микрохирургия глаза в Воронеже. 10.10.2011. Здоровье', tender_homes_path
   %p.info
     %span.important.bold Минимальная стоимость:
     %span.important-content.bold 158 000 руб.
@@ -59,7 +67,7 @@
     %span.type-tn.green-bg Аукцион
   %p.main-info
     %span.name.bold Название:
-    %span.name-content.bold Микрохирургия глаза в Воронеже. 10.10.2011. Здоровье
+    %span.name-content.bold= link_to 'Микрохирургия глаза в Воронеже. 10.10.2011. Здоровье', tender_homes_path
   %p.info
     %span.important.bold Минимальная стоимость:
     %span.important-content.bold 158 000 руб.
@@ -82,7 +90,7 @@
     %span.type-tn.red-bg Предварительного сбора предложений
   %p.main-info
     %span.name.bold Название:
-    %span.name-content.bold Микрохирургия глаза в Воронеже. 10.10.2011. Здоровье
+    %span.name-content.bold= link_to 'Микрохирургия глаза в Воронеже. 10.10.2011. Здоровье', tender_homes_path
   %p.info
     %span.person.bold Тендер проводит:
     %span.person-content.bold Рыжков Николай

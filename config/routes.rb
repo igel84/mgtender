@@ -3,13 +3,16 @@ InitialRelease::Application.routes.draw do
   resources :news
   
   resources :homes do
-    get 'profile', :on => :collection
-    get 'company', :on => :collection
-    get 'about', :on => :collection
-    get 'my_tenders', :on => :collection
-    get 'parts', :on => :collection
-    get 'tenders', :on => :collection
-    get 'new_tender', :on => :collection
+    collection do
+      get 'profile'
+      get 'company'
+      get 'about'
+      get 'my_tenders'
+      get 'parts'
+      get 'tenders'
+      get 'new_tender'
+      get 'tender'
+    end
   end
 
   resources :users
