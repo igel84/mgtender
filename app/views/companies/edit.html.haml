@@ -1,0 +1,94 @@
+:javascript
+  function getFile(){ document.getElementById("upfile").click(); }
+
+  $(document).ready(function() { 
+
+    $('#upfile').change(function() { 
+      $('.file-name span').text($(this).val()); 
+    });
+    $('.chzn-select').chosen();
+    $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+
+  });
+%h1
+  Вы находитесь:
+  %span Личный кабинет
+= render partial: 'layouts/navtabs'
+.tab-content
+  .tab-content-menu
+    = link_to(image_tag('person.png'), profile_path)
+    = link_to(image_tag('company.png'), company_path, class: 'active white')
+  .tab-content-panel.white
+    = form_for(@company, url: {action: 'update', controller: 'companies', id: @company.id}, html: {autocomplete: "off"}) do |f|
+      %div{style:'height: 0px;width:0px; overflow:hidden;'}= f.file_field :logo, id: "upfile"
+      - if @company.master && @company.master == current_user
+        %table.person
+          %tr
+            %td.label-text Название компании:
+            %td.input-text= f.text_field :name
+            %td.space-center{rowspan: 9} &nbsp;
+            %td.photo-text{rowspan: 6}
+              = image_tag(@company.logo? == true ? @company.logo(:thumb) : "user_photo_blank.png")
+              %br/
+              ЛОГОТИП
+            %td.more-text{colspan: 2} Изменить логотип
+            %td.space-clear{rowspan: 7} &nbsp;
+          %tr
+            %td.label-text ИНН:
+            %td.input-text= f.text_field :inn
+            %td.file-name
+              %span &nbsp;
+            %td.file-btn{onclick:"getFile()"} Обзор
+          %tr
+            %td.label-text Форма собственности:
+            %td.input-text= f.collection_select :owner_form_id, OwnerForm.all, :id, :full_name, {}, html_options = {class: 'chzn-select-deselect', :'data-placeholder' => 'выберите форму собственности', size: 3, style: 'width:202px;height: 21px;'}
+            %td.help-text{colspan: 2}
+              Условия загрузки: Размер 100х100 пикселей, jpg, jpeg, png.
+              %br/
+              Максимальный размер файла: 100 Кб.
+          %tr
+            %td.label-text Телефон:
+            %td.input-text= f.text_field :general_phone
+            %td{rowspan: 3, colspan: 2}= link_to 'Удалить логотип', logo_delete_company_path(@company), id: 'del-photo-btn'
+          %tr
+            %td.label-text Сфера деятельности:
+            %td.input-text= f.select :sphere_id, nested_set_options(Sphere, @sphere) {|i| "#{'-' * i.level} #{i.name}" }, {}, html_options = {class: 'chzn-select-deselect', :'data-placeholder' => 'выберите сферу деятельности', size: 3, style: 'width:202px;height: 21px;'}       
+          %tr
+            %td.label-text Налогооблажение:
+            %td.input-text
+              = f.check_box :is_nds
+              %span.text-checkbox общая система налогооблажения
+          %tr
+            %td.save-info{colspan:6}= f.submit 'Сохранить изменения'
+      - else
+        %table.person
+          %tr
+            %td.label-text Название компании:
+            %td.input-text= f.text_field :name, readonly: true
+            %td.space-center{rowspan: 9} &nbsp;
+            %td.photo-text{rowspan: 6}
+              = image_tag(@company.logo? == true ? @company.logo(:thumb) : "user_photo_blank.png")
+              %br/
+              ЛОГОТИП
+            %td.more-text{colspan: 2} &nbsp;
+            %td.space-clear{rowspan: 7} &nbsp;
+          %tr
+            %td.label-text ИНН:
+            %td.input-text= f.text_field :inn, readonly: true
+            %td{colspan: 2, style: 'width:200px;'} &nbsp;
+          %tr
+            %td.label-text Форма собственности:
+            %td.input-text= text_field_tag 'company[owner_form_id]', @company.owner_form.full_name, readonly: true
+            %td.help-text{colspan: 2} &nbsp;
+          %tr
+            %td.label-text Телефон:
+            %td.input-text= f.text_field :general_phone, readonly: true
+            %td{rowspan: 3, colspan: 2} &nbsp;
+          %tr
+            %td.label-text Сфера деятельности:
+            %td.input-text= text_field_tag 'company[sphere_id]', @company.sphere.name, readonly: true
+          %tr
+            %td.label-text Налогооблажение:
+            %td.input-text= text_field_tag 'company[is_nds]', "#{@company.is_nds == true ? 'по ОСН' : 'не по ОСН'}", readonly: true
+          %tr
+            %td.save-info{colspan:6} &nbsp;

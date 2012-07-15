@@ -1,0 +1,22 @@
+%legend Введите информацию о НОВОЙ компании
+%br/
+%label Название компании:
+= company.text_field :name
+%label ИНН:
+= company.text_field :inn
+%label Форма собственности:
+= company.collection_select :owner_form_id, OwnerForm.all, :id, :full_name, {}, html_options = {class: 'chzn-select-deselect', :'data-placeholder' => 'выберите форму собственности', size: 3, style: 'width:244px;height: 19px;'}
+=# company.text_field :owner_form_id
+%label Телефон:
+= company.text_field :general_phone
+%label Сфера деятельности:
+= company.select :sphere_id, nested_set_options(Sphere, @sphere) {|i| "#{'-' * i.level} #{i.name}" }, {}, html_options = {class: 'chzn-select-deselect', :'data-placeholder' => 'выберите сферу деятельности', size: 3, style: 'width:244px;height: 19px;'}
+=# company.text_field :sphere_id
+%label.nds.check-field.check-false.check-right Общая система налогооблажения:
+.check-value= company.check_box :is_nds
+%p.accept
+  Соглашение
+  %br/
+  Использование материалов и сервисов Сайта регулируется нормами действующего законодательства Российской Федерации.
+  Настоящее Соглашение является публичной офертой. Получая доступ к материалам Сайта Пользователь считается присоединившимся к настоящему Соглашению.
+  Администрация Сайта вправе в любое время в одностороннем порядке изменять условия настоящего Соглашения. Такие изменения вступают в силу по истечении 3 (Трех) дней с момента размещения новой версии Соглашения на сайте. При несогласии Пользователя с внесенными изменениями он обязан отказаться от доступа к Сайту, прекратить использование материалов и сервисов Сайта.

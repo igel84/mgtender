@@ -1,0 +1,34 @@
+%label Имя Отчество:
+= form.text_field :fname
+%label Фамилия:
+= form.text_field :nname
+%label Электронная почта:
+= form.email_field :email
+%label Телефон:
+= form.text_field :phone
+%label Название компании:
+= form.collection_select :company_id, Company.all, :id, :name, {}, html_options = {class: 'chzn-select-deselect', :'data-placeholder' => 'выберите компанию', size: 3, style: 'width:244px;height: 19px;'}
+=# form.text_field :company_id
+%span.big *
+%label.interests Интересы:
+= form.collection_select :category_ids, Category.all, :id, :name, {}, html_options = {multiple: 'multiple', class: 'chzn-select', :'data-placeholder' => 'выберите интересы', size: 3, style: 'width:244px;height: 19px;'}
+=# form.text_field :category_tokens
+%label Логин:
+= form.text_field :name
+%label Введите пароль:
+= form.password_field :password
+%label Повторите пароль:
+= form.password_field :password_confirmation
+%br/
+%br/
+%span.big *
+%span Если вы не нашли название вашей компании, зарегистрируйте ее в форме слева
+.user_photo
+  = image_tag "user_photo_blank.png"
+  .user_photo_info
+    %strong Изменить юзерпик  
+    %span#file_name
+    #photo_btn{onclick:"getFile()"} Обзор
+    %div{style:'height: 0px;width:0px; overflow:hidden;'}= form.file_field :photo, id: "upfile"
+    %span Условия загрузки: Размер 100х100 пикселей, jpg, jpeg, png.
+    %span Максимальный размер файла: 100 Кб.

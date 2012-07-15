@@ -1,0 +1,22 @@
+%h1
+  Вы находитесь:
+  %span вход
+#register
+  = form_tag sessions_path do
+    %fieldset.center
+      %br/
+      %br/
+      = label_tag 'Электронная почта'
+      = text_field_tag :email, params[:email]
+      %br/
+      %br/
+      = label_tag 'Пароль:'
+      = password_field_tag :password
+      =# check_box_tag :remember_me, 1, params[:remember_me]
+      =# label_tag :remember_me %>
+      %br/
+      %br/
+      %br/
+      = submit_tag "Вход", class: 'signup'
+      = link_to "Регистрация", signup_path, class: 'signup'
+      =# link_to 'Forgot Password?', new_password_reset_path %>

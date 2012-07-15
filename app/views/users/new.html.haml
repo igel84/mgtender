@@ -1,0 +1,70 @@
+:javascript
+  function getFile(){ document.getElementById("upfile").click(); }
+
+  $(document).ready(function() { 
+
+    $('.chzn-select').chosen();
+    $(".chzn-select-deselect").chosen({allow_single_deselect:true});
+
+    $('#upfile').change(function() { 
+      $('#file_name').text($(this).val()); 
+    });
+
+    $('.check-field').click(function() {
+      var $checkbox = $(this).parent().find('.check-value input[type="checkbox"]');
+      if ($checkbox.is(':checked')) { $checkbox.attr('checked', false); }
+      else { $checkbox.attr('checked', true); }
+
+      if ($(this).hasClass('check-true'))
+      {
+        $(this).removeClass('check-true');
+        $(this).addClass('check-false');        
+      }
+      else
+      {
+        $(this).removeClass('check-false');
+        $(this).addClass('check-true');
+      }
+    });
+
+    $('#check_accept').click(function() {
+      if (!$(this).hasClass('ok'))
+      {
+        $(this).addClass('ok');
+        $(this).css("background-image", "url(/assets/check_true_bg.png)");
+      }
+      else
+      {
+        $(this).removeClass('ok');
+        $(this).css("background-image", "url(/assets/check_false_bg.png)");
+      }
+    });
+
+    $('.signup').click(function(){
+      if (!$('#check_accept').hasClass('ok'))
+      {
+        alert('необходимо принять пользовательское соглашение!');
+        return false;
+      }
+    });
+
+  });
+%h1 Регистрация нового пользователя
+#register
+  = form_for(@user, html: {autocomplete: "off"}) do |form|
+    .text-fields
+      %fieldset.left_side
+        %legend Введите информацию о пользователе
+        -# if form.error_messages
+        -#  = form.error_messages :header_message => "Ошибка регистрации!", :message => "Вы должны исправить следующие ошибки:"
+        %br/
+        = render form
+      %fieldset.right_side
+        = form.fields_for :company, @company do |company|
+          -# if company.error_messages
+          -#  = company.error_messages :header_message => "Ошибка регистрации!", :message => "Вы должны исправить следующие ошибки:"
+          = render partial: 'company', locals: {company: company}
+    .signup_accept
+      =# check_box_tag 'accept', false
+      %span#check_accept Я принимаю соглашение
+      = form.submit "Зарегистрироваться", class: 'signup'

@@ -1,0 +1,5 @@
+#navtabs.clearfix
+  %ul
+    %li= link_to 'ЛИЧНЫЕ ДАННЫЕ', profile_path, class: "#{controller_name == 'users' || 'companies' ? 'active' : ''}"
+    %li= link_to 'МОИ ТЕНДЕРЫ', my_tenders_homes_path, class: "#{controller_name == 'homes' ? 'active' : ''}"
+    %li= link_to 'УЧАСТИЕ', parts_homes_path, class: "#{controller_name == 'homes' ? 'active' : ''}"
