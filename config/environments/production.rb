@@ -20,8 +20,8 @@ InitialRelease::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
-  config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => 'http://www.mgtender.ru' }
+  #config.action_mailer.raise_delivery_errors = false
+  #config.action_mailer.default_url_options = { :host => 'http://www.mgtender.ru' }
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
@@ -67,4 +67,19 @@ InitialRelease::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+  
+  config.action_mailer.delivery_method = :smtp
+
+  config.action_mailer.smtp_settings = {
+        :openssl_verify_mode  => 'none',
+        :enable_starttls_auto => true, #works in ruby 1.8.7 and above
+        :address => 'smtp.locum.ru',
+        :port => 2525,
+        #:domain => 'smtp.locum.ru',
+        :authentication => :plain,
+        :user_name => 'sender@mlip.ru',
+        :password => 'qwer1234vcxz'#,
+        #:enable_starttls_auto => true
+    }
+
 end
