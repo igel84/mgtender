@@ -58,12 +58,12 @@ module InitialRelease
 
     ActionMailer::Base.smtp_settings = {
         :enable_starttls_auto => true, #works in ruby 1.8.7 and above
-        :address => 'smtp.gmail.com',
-        :port => 587,
+        :address => 'smtp.locum.ru',
+        :port => 25,
         #:domain => 'example.com',
         :authentication => :plain,
-        :user_name => 'igel.yulian',
-        :password => 'Yfcntymrf1984'
+        :user_name => 'sender@mlip.ru',
+        :password => 'qwer1234vcxz'
     }
     
   end
