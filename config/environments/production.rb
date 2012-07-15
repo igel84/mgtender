@@ -20,6 +20,9 @@ InitialRelease::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default_url_options = { :host => 'http://www.mgtender.ru' }
+
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 

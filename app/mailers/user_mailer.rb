@@ -1,6 +1,6 @@
 #encoding: utf-8
 class UserMailer < ActionMailer::Base
-  default from: "from@example.com"
+  default from: "sender@mlip.ru"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -9,7 +9,7 @@ class UserMailer < ActionMailer::Base
   #
   def activation_needed_email(user)
     @user = user
-    @url  = "http://0.0.0.0:http://www.mgtender.ru/users/#{user.activation_token}/activate"
+    @url  = "http://www.mgtender.ru/users/#{user.activation_token}/activate"
     mail(:to => user.email,
          :subject => "Добро пожаловать на сайт www.mgtender.ru")
   end

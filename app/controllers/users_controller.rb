@@ -26,7 +26,8 @@ class UsersController < ApplicationController
       nname: params[:user][:nname], 
       phone: params[:user][:phone],
       company_id: params[:user][:company_id],
-      category_ids: params[:user][:category_ids]) #, :photo #params[:user])
+      category_ids: params[:user][:category_ids],
+      photo: params[:user][:photo]) #, :photo #params[:user])
     
     @company = Company.new(params[:user][:company])
 
