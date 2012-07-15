@@ -88,6 +88,9 @@ task :set_current_release, :roles => :app do
     set :current_release, latest_release
 end
 
+before "deploy:assets:precompile" do
+  run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+end
 
 #set :unicorn_start_cmd, "(cd #{deploy_to}/current; rvm use #{rvm_ruby_string} do bundle exec unicorn_rails -Dc #{unicorn_conf})"
 set :unicorn_start_cmd, "(cd #{deploy_to}/current; rvm use #{rvm_ruby_string};bundle install --path ../../shared/gems;bundle exec unicorn_rails -Dc #{unicorn_conf})"

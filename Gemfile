@@ -1,9 +1,10 @@
 source 'http://rubygems.org'
-gem 'rails', '3.2.3'
+gem "rails", "~> 3.2.6"
 gem 'magic_encoding'
 
-gem 'sqlite3'
-#gem 'mysql2'
+#gem 'sqlite3'
+gem 'mysql2'
+
 gem 'haml-rails'
 gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
 gem 'ckeditor', "3.7.0.rc3"
@@ -11,10 +12,13 @@ gem 'gritter_notices'
 #gem 'permalink'
 gem 'friendly_id', "~> 4.0.1"
 gem 'awesome_nested_set'
-gem 'russian'
+gem 'russian', '~> 0.6.0'
 gem 'json'
 #gem 'rails_admin'
-gem 'devise'
+#gem 'devise'
+
+gem 'sorcery'
+
 gem 'yaml_db', git: 'git://github.com/lostapathy/yaml_db.git'
 gem 'execjs'
 gem 'therubyracer'
@@ -30,10 +34,17 @@ group :assets do
   gem 'compass-rails'
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier', '>= 1.0.3'
+  #gem 'chosen-rails'
 end
 
-gem 'jquery-rails'
+#group :development do
+#  gem 'rails-erd'
+#  gem 'rnotify'
+#  gem 'letter_opener'
+#end
 
+gem 'jquery-rails'
+gem "dynamic_form"
 
 gem 'unicorn'
 

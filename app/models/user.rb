@@ -1,20 +1,31 @@
+#encoding: utf-8
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  authenticates_with_sorcery!
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :fname, :nname, :phone, :company_id
+  belongs_to :company #, :inverse_of => :users #, class_name: 'Company', foreign_key: "company_id"  
+  #attr_accessible  #:company, :company_attributes, 
+  #attr_writer :company, :company_id
+  #has_one :company
+  #accepts_nested_attributes_for :company
+  
+  has_and_belongs_to_many :categories
+  attr_accessible :category_ids
+  has_attached_file :photo, :styles => { :thumb=> ["100x100", :jpg] }
 
-  has_attached_file :photo, :styles => {
-  	:thumb=> ["180x120", :jpg], :normal => ["600x600>", :jpg]
-  }
 
-  # attr_accessible :title, :body
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :fname, :nname, :phone, :photo, :company_id
+  
+  #validates_presence_of :company_id, message: "необходимо выбрать компанию, либо зарегистрировать новую"  
+  #validates_associated :company
+  #validates_associated :category_ids
 
-  belongs_to :company
-  attr_accessible :company
-  attr_writer :company
+  validates_presence_of :email, :name, :phone, :fname, :nname, :category_ids
+  validates :password, presence: { on: :create }, confirmation: true
+  
+  #def category_ids=(ids)
+  #  self.categories = []
+  #  self.
+  #  self.category_ids = ids.split(",")
+  #end
+
 end

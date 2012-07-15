@@ -1,8 +1,33 @@
 InitialRelease::Application.routes.draw do
-  devise_for :users, :path_names => { :sign_up => "register" }
-  resources :news
-  
-  resources :homes do
+    resources :news
+
+    resources :password_resets
+
+    get "logout" => "sessions#destroy", :as => "logout"
+    get "login" => "sessions#new", :as => "login"
+    get "signup" => "users#new", :as => "signup"
+
+    get "profile" => "users#edit", as: 'profile'
+    get "company" => "companies#edit", as: 'company'
+
+    resources :sessions
+
+    get "secret" => "home#secret", :as => "secret"
+        
+    resources :users do
+      member do
+        get :activate
+        get :photo_delete
+      end
+    end
+
+    resources :companies do
+      member do
+        get :logo_delete
+      end
+    end    
+
+    resources :homes do
     collection do
       get 'profile'
       get 'company'
@@ -13,11 +38,9 @@ InitialRelease::Application.routes.draw do
       get 'new_tender'
       get 'tender'
     end
-  end
+    end
 
-  resources :users
-
-  root :to => "homes#index"
+    root :to => "homes#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

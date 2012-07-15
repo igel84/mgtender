@@ -5,6 +5,8 @@
     %title MGTender
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
+    = javascript_include_tag "chosen/chosen.jquery.js"
+    = stylesheet_link_tag "chosen/chosen.css"
     = csrf_meta_tags
   %body
     #main
@@ -12,11 +14,16 @@
         #header-right
           #header
             = link_to( image_tag("logo.png"), root_path,  id: "logo")
-            = link_to("РЕГИСТРАЦИЯ", new_user_registration_path, class: "sign")
-            = form_for(:user, :url => user_session_path) do |f|
-              = f.submit "Вход", class: "sign"
-              = f.password_field :password, placeholder: "Пароль", class: "sign"
-              = f.email_field :email, placeholder: "Логин", class: "sign"
+            - if current_user
+              .login.sign
+                = link_to(image_tag('logout_btn.png'), logout_path, class: 'sign')
+                %span{class: 'sign user_name'}= current_user.fname              
+            - else
+              = link_to("РЕГИСТРАЦИЯ", signup_path, class: "sign")
+              = form_tag(sessions_path, autocomplete: "off") do
+                = submit_tag "Вход", class: "sign", tabindex: 3
+                = password_field_tag :password, '', placeholder: "Пароль", class: "sign", tabindex: 2
+                = email_field_tag :email, '', placeholder: "Логин", class: "sign", tabindex: 1
       #menu-left
         #menu-right
           #menu
@@ -27,13 +34,15 @@
                 %li
                   = link_to "Текущие тендеры", tenders_homes_path, id: "new_tender"
                 %li
-                  = link_to "Личный кабинет", profile_homes_path, id: "new_tender"
+                  = link_to "Личный кабинет", profile_path, id: "new_tender"
                 %li
                   = link_to "О компании", about_homes_path, id: "new_tender"
       #content-left
         #content-right
           #content
             #content_body
+              - flash.each do |name, msg|
+                %h1.notice= content_tag :div, msg, :id => "flash_#{name}"
               = yield
       #footer-left
         #footer-right

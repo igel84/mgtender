@@ -12,9 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
 
 $(document).ready(function() {
+	$.ajaxSetup({
+    	beforeSend: function(xhr) {
+      		xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+    	}
+  	});
+
 	var docHeight = $(document).height();
 	$('div#content').height(docHeight - 250);
 });
