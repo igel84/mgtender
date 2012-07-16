@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     
     @company = Company.new(params[:user][:company])
 
-    flash.now[:user_error] = 'Необходимо корректно заполнить все поля (необязательное лишь "юзерпик")' unless @user.valid?
+    flash.now[:user_error] = 'Необходимо корректно заполнить все поля (необязательное лишь "аватар")' unless @user.valid?
     flash.now[:company_error] = 'Выберите компанию из списка, либо зарегистрируйте новую (необходимо будет заполнить все поля компании)' unless (@company.valid? || params[:user][:company_id])
 
     if @user.valid? && (@company.valid? || params[:user][:company_id])
@@ -49,6 +49,8 @@ class UsersController < ApplicationController
       end
       redirect_to root_url, :notice => "Пользователь успешно зарегистрирован! Для активации учетной записи перейдите по ссылке в письме, отправленном на ваш email"        
     else
+      flash.now[:company_inn_error] = @company.errors[:inn].join(",") if @company.errors[:inn].any?
+
       @user.company_id = params[:user][:company_id] if params[:user][:company_id]
       render :new
     end
@@ -68,6 +70,7 @@ class UsersController < ApplicationController
     if @user.update_attributes(params[:user])
       redirect_to profile_path, notice: "Изменения успешно сохранены!"
     else
+      flash.now[:user_error] = 'Необходимо корректно заполнить все поля, необязательные поля: "аватар", "пароль и его подтврерждение"' unless @user.valid?
       render :edit
     end
   end

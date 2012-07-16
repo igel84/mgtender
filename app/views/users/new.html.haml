@@ -3,45 +3,35 @@
 
   $(document).ready(function() { 
 
+    $('.scrollspy-text').scrollspy();
     $('.chzn-select').chosen();
     $(".chzn-select-deselect").chosen({allow_single_deselect:true});
 
     $('#upfile').change(function() { 
-      $('#file_name').text($(this).val()); 
+      $('.image-name').text($(this).val()); 
     });
 
-    $('.check-field').click(function() {
+    $('.osn-nalog').click(function() {
       var $checkbox = $(this).parent().find('.check-value input[type="checkbox"]');
       if ($checkbox.is(':checked')) { $checkbox.attr('checked', false); }
       else { $checkbox.attr('checked', true); }
+    });
 
-      if ($(this).hasClass('check-true'))
+    $('.check-edit').click(function() {
+      if ($(this).hasClass('checked'))
       {
-        $(this).removeClass('check-true');
-        $(this).addClass('check-false');        
+          $(this).removeClass('checked');
+          $(this).addClass('unchecked');          
       }
       else
       {
-        $(this).removeClass('check-false');
-        $(this).addClass('check-true');
+        $(this).removeClass('unchecked');
+        $(this).addClass('checked');
       }
     });
 
-    $('#check_accept').click(function() {
-      if (!$(this).hasClass('ok'))
-      {
-        $(this).addClass('ok');
-        $(this).css("background-image", "url(/assets/check_true_bg.png)");
-      }
-      else
-      {
-        $(this).removeClass('ok');
-        $(this).css("background-image", "url(/assets/check_false_bg.png)");
-      }
-    });
-
-    $('.signup').click(function(){
-      if (!$('#check_accept').hasClass('ok'))
+    $('.submit-btn input').click(function(){
+      if ($('.accept-form').hasClass('unchecked'))
       {
         alert('необходимо принять пользовательское соглашение!');
         return false;
@@ -50,21 +40,139 @@
 
   });
 %h1 Регистрация нового пользователя
-#register
-  = form_for(@user, html: {autocomplete: "off"}) do |form|
-    .text-fields
-      %fieldset.left_side
-        %legend Введите информацию о пользователе
-        -# if form.error_messages
-        -#  = form.error_messages :header_message => "Ошибка регистрации!", :message => "Вы должны исправить следующие ошибки:"
-        %br/
-        = render form
-      %fieldset.right_side
+= form_for(@user, html: {autocomplete: "off"}) do |form|
+  %table.form-edit
+    %tr
+      %td.left
+        %table
+          %tr
+            %th{colspan:3}
+              %strong Введите информацию о пользователе
+          %tr
+            %td.text-label Фамилия:
+            %td
+              .text-field= form.text_field :fname
+            %td &nbsp;
+          %tr
+            %td.text-label Имя Отчество:
+            %td
+              .text-field= form.text_field :nname
+            %td &nbsp;
+          %tr
+            %td.text-label Электронная почта:
+            %td
+              .text-field= form.text_field :email
+            %td &nbsp;
+          %tr
+            %td.text-label Телефон:
+            %td
+              .text-field= form.text_field :phone
+            %td &nbsp;
+          %tr
+            %td.text-label Название компании:
+            %td
+              .text-field= form.collection_select :company_id, Company.all, :id, :name, {}, html_options = {class: 'chzn-select-deselect', :'data-placeholder' => 'выберите компанию', size: 3, style: 'width:244px;height: 19px;'}
+              .pointer *
+            %td &nbsp;
+          %tr
+            %td.text-label Интересы:
+            %td
+              .text-field= form.collection_select :category_ids, Category.all, :id, :name, {}, html_options = {multiple: 'multiple', class: 'chzn-select', :'data-placeholder' => 'выберите интересы', size: 3, style: 'width:244px;height: 19px;'}
+            %td &nbsp;
+          %tr
+            %td.text-label Пароль:
+            %td
+              .text-field= form.password_field :password
+            %td &nbsp;
+          %tr
+            %td.text-label Повторите пароль:
+            %td
+              .text-field= form.password_field :password_confirmation
+            %td &nbsp;
+          %tr
+            %td.more-info{colspan:3} * Если вы не нашли название вашей компании, зарегистрируйте ее в форме слева
+          %tr
+            %td{colspan:3}
+              .image-cell
+                .image-content
+                .image-input
+                  .image-text Изменить аватар
+                  .image-action
+                    .image-name
+                    .image-btn{onclick:"getFile()"} Обзор             
+                  .image-info
+                    Условия загрузки: Размер 100х100 пикселей, jpg, jpeg, png
+                    %br/
+                    Максимальный размер файла: 100Кб.
+                  .hidden-value= form.file_field :photo, id: "upfile"
+      %td &nbsp
+      %td.right
         = form.fields_for :company, @company do |company|
-          -# if company.error_messages
-          -#  = company.error_messages :header_message => "Ошибка регистрации!", :message => "Вы должны исправить следующие ошибки:"
-          = render partial: 'company', locals: {company: company}
-    .signup_accept
-      =# check_box_tag 'accept', false
-      %span#check_accept Я принимаю соглашение
-      = form.submit "Зарегистрироваться", class: 'signup'
+          %table
+            %tr
+              %th{colspan:3}
+                %strong Введите информацию о НОВОЙ компании
+            %tr
+              %td.text-label Название компании:
+              %td
+                .text-field= company.text_field :name
+              %td &nbsp;
+            %tr
+              %td.text-label ИНН:
+              %td
+                .text-field= company.text_field :inn
+              %td &nbsp;
+            %tr
+              %td.text-label Форма собственности:
+              %td
+                .text-field= company.collection_select :owner_form_id, OwnerForm.all, :id, :full_name, {}, html_options = {class: 'chzn-select-deselect', :'data-placeholder' => 'выберите форму собственности', size: 3, style: 'width:244px;height: 19px;'}
+              %td &nbsp;
+            %tr
+              %td.text-label Телефон:
+              %td
+                .text-field= company.text_field :general_phone
+              %td &nbsp;
+            %tr
+              %td.text-label Сфера деятельности:
+              %td
+                .text-field= company.select :sphere_id, nested_set_options(Sphere, @sphere) {|i| "#{'-' * i.level} #{i.name}" }, {}, html_options = {class: 'chzn-select-deselect', :'data-placeholder' => 'выберите сферу деятельности', size: 3, style: 'width:244px;height: 19px;'}
+              %td &nbsp;
+            %tr
+              %td{colspan:2}
+                %table
+                  %tr
+                    %td.osn-nalog.check-edit.unchecked.right Общая система налогооблажения
+                    %td
+                      .hidden-value= company.check_box :is_nds
+            %tr
+              %td.scrollspy-cell{colspan:3}
+                .scrollspy-text{:'data-spy' => 'scroll', :'data-offset' => 50}
+                  %h4 Соглашение
+                  %p
+                    Использование материалов и сервисов Сайта регулируется нормами действующего законодательства Российской Федерации. Настоящее Соглашение является публичной офертой. Получая доступ к материалам Сайта Пользователь считается присоединившимся к настоящему Соглашению. Администрация Сайта вправе в любое время в одностороннем порядке изменять условия настоящего Соглашения. Такие изменения вступают в силу по истечении 3 (Трех) дней с момента размещения новой версии Соглашения на сайте. При несогласии Пользователя с внесенными изменениями он обязан отказаться от доступа к Сайту, прекратить использование материалов и сервисов Сайта.
+    %tr
+      %td{colspan:3}
+        %table
+          %tr
+            %td &nbsp;
+            %td.accept-form.check-edit.unchecked.left Я принимаю соглашение
+            %td.submit-btn= form.submit "Зарегистрироваться"                  
+/ 
+  #register
+    = form_for(@user, html: {autocomplete: "off"}) do |form|
+      .text-fields
+        %fieldset.left_side
+          %legend Введите информацию о пользователе
+          -# if form.error_messages
+          -#  = form.error_messages :header_message => "Ошибка регистрации!", :message => "Вы должны исправить следующие ошибки:"
+          %br/
+          = render form
+        %fieldset.right_side
+          = form.fields_for :company, @company do |company|
+            -# if company.error_messages
+            -#  = company.error_messages :header_message => "Ошибка регистрации!", :message => "Вы должны исправить следующие ошибки:"
+            = render partial: 'company', locals: {company: company}
+      .signup_accept
+        =# check_box_tag 'accept', false
+        %span#check_accept Я принимаю соглашение
+        = form.submit "Зарегистрироваться", class: 'signup'

@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   #validates_associated :company
   #validates_associated :category_ids
 
-  validates_presence_of :email, :name, :phone, :fname, :nname, :category_ids
+  validates_presence_of :email, :phone, :fname, :nname, :category_ids
   validates :password, presence: { on: :create }, confirmation: true
   
   #def category_ids=(ids)

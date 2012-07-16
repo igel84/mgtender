@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-scrollspy
 
 $(document).ready(function() {
 	$.ajaxSetup({

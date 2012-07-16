@@ -28,8 +28,8 @@
           %td.photo-text{rowspan: 9}
             = image_tag(@user.photo? == true ? @user.photo(:thumb) : "user_photo_blank.png")
             %br/
-            МОЙ ЮЗЕРПИК
-          %td.more-text{colspan: 2} Изменить юзерпик
+            МОЙ АВАТАР
+          %td.more-text{colspan: 2} Изменить аватар
           %td.space-clear{rowspan: 10} &nbsp;
         %tr
           %td.label-text Фамилия:
@@ -47,16 +47,13 @@
         %tr
           %td.label-text Телефон:
           %td.input-text= f.text_field :phone
-          %td{rowspan: 6, colspan: 2}= link_to 'Удалить юзерпик', photo_delete_user_path(@user), id: 'del-photo-btn'
+          %td{rowspan: 6, colspan: 2}= link_to 'Удалить аватар', photo_delete_user_path(@user), id: 'del-photo-btn'
         %tr
           %td.label-text Название компании:
           %td.input-text= text_field_tag 'company', @user.company.try(:name) || '', readonly: true         
         %tr
           %td.label-text Интересы:
           %td.input-text= f.collection_select :category_ids, Category.all, :id, :name, {}, {multiple: true, class: 'chzn-select', :'data-placeholder' => 'выберите интересы', size: 3, style: 'width:202px;height: 21px;'}
-        %tr
-          %td.label-text Логин:
-          %td.input-text= f.text_field :name
         %tr
           %td.label-text Введите пароль:
           %td.input-text= f.password_field :password

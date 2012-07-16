@@ -976,16 +976,21 @@ $color_light: #49525b;
 		}
 		label {
 			width: 150px;
+			height: 20px !important;
 			display: inline-block;
 			text-align: right;
 			padding: 0 10px;
 			font-weight: 20%;
-			line-height:  16px;
+			line-height:  15px;
 
 			&.interests {
 				vertical-align: top;
 				padding-top: 4px;
 			}
+		}
+		#user_company_id_chzn {
+			height: 22px !important;
+			margin-bottom: 5px !important;
 		}
 
 		.chzn-container {
@@ -1691,8 +1696,402 @@ $unspace-menu: ($space-menu + $border-size);
 		}		
 
 }
+
 * html .clearfix { height: 1%; }
 *:first-child+html .clearfix { min-height: 1px; }
+
+
+$color-light: #e6ebed;
+$color-dark: #2f2f2f;
+$color-white: #fff;
+$color-black: #000;
+
+$image-block-width: 470px;
+$image-content-width: 100px;
+$image-content-margin: 10px;
+$image-btn-width: 90px;
+$image-btn-height: 23px;
+
+.image-cell {
+	.image-content {
+		float: left;
+		margin-right: $image-content-margin;
+		width: $image-content-width;
+		height: 100px;
+		background: url(user_photo_blank.png) top left no-repeat;
+	}
+	.image-input {
+		float: right;
+		width: ($image-block-width - $image-content-width - $image-content-margin);
+		
+		.image-text {
+			font-size: 14px;
+			color: $color-white;
+			font-weight: bold;
+			padding: 0 0 10px 0;
+			text-align: left;
+		}	
+
+		.image-action {
+			float: left;
+			.image-name {
+				float: left;
+				margin-right: $image-content-margin;
+				display: block;
+				text-align: left;
+				color: $color-dark;
+				padding: 0 5px;				
+				line-height: $image-btn-height;
+				height: $image-btn-height;
+				width: ($image-block-width - $image-content-width - $image-content-margin*4 - $image-btn-width);
+				background: $color-white;
+				border: solid #6488a2 1px;
+				border-bottom: solid #464e55 1px;	
+				@include box-shadow(#464e55 0 1px 0);			
+				overflow: hidden;
+			}
+			.image-btn {
+				margin-left: ($image-block-width - $image-content-width - $image-content-margin*2 - $image-btn-width);
+				
+				width: $image-btn-width;
+				height: $image-btn-height;
+				border: solid #6488a2 1px;
+				border-bottom: solid #464e55 1px;
+				background: #6488a2;
+				@include background-image(linear-gradient(#d2dbe0, #6488a2));
+				//@include background-image(radial-gradient(color-stops(#6488a2, #ced7dd), bottom  center));
+				@include box-shadow(#464e55 0 1px 1px);
+				
+				text-align: center;
+				vertical-align: middle;
+				line-height: 23px;
+				cursor: pointer;
+				color: $color-black;
+				&:hover { color:$color-light; }
+			}
+		}
+	}
+	.image-info {
+		display: inline-block;
+		height: 100%;
+		text-align: left;
+		font-size: 11px;
+		margin-top: 15px;
+		float: left;
+	}
+}
+
+table {
+	width: 100%;
+	&.form-edit {
+		th strong{
+			color: $color-white;
+			background:url(title_bg.png) top left repeat; 
+			display: block;
+			@include border-radius(7px); 
+			padding: 6px 20px;
+			font-size: 13px;
+			border-bottom: solid #707980 1px;
+			border-right: solid #707980 1px;
+			margin-bottom: 15px;
+		}
+
+		td {			
+			vertical-align: top !important;
+			background: none;
+			border: none;
+			text-align: right;
+			color:$color-light;
+			font-size: 12px;
+
+			&.left, &.right {
+				width: $image-block-width;
+			}
+
+			&.text-label {
+				height: 28px !important;
+				vertical-align: top;
+				text-align: right;
+				width: 150px;
+				padding-right: 20px;
+				padding-top: 5px;
+				font-size: 14px;
+				color: $color-light;
+			}
+			.pointer {
+				text-align: right;
+				width: 20px;
+				height: 20px;
+				vertical-align: top;
+				position: relative;
+				margin-left: 250px;
+				margin-top: 5px;
+			}	
+			&.more-info {
+				text-align: left;
+				height: 80px !important;
+				vertical-align: top;
+				padding-top: 20px;
+				font-size: 14px;
+				color: $color-light;
+			}
+			.text-field {
+				width: 260px;
+				text-align: left;
+				vertical-align: top !important;
+				//height: 24px !important;
+				input[type="text"], input[type="password"] {
+					width: 240px !important;
+					margin: 0 !important;
+					padding: 2px 5px !important;
+					@include border-radius(0);
+					border: none !important;
+				}
+				.chzn-container {
+					background: #fff !important;
+					padding: 0 !important;
+					//margin: 0 0 5px 0 !important;
+					&.chzn-container-single {
+						float: left;
+						//height: 20px !important;
+						//margin: 0 0 5px 0 !important;
+						@include background-image(linear-gradient(#fff, #fff));
+						a { 
+							line-height: 20px;
+							height: 18px !important;
+							//margin: 0 0 5px 0 !important;
+							background: #fff !important;
+							@include background-image(linear-gradient(#fff, #fff));
+							border: none !important;
+							width: 240px !important;
+							padding: 0 5px 4px 5px !important; 
+							@include border-radius(0);
+						}
+					}
+
+					ul { 
+						//height: 18px !important;
+						margin: 0 !important;
+						@include background-image(linear-gradient(#fff, #fff));
+						border: none !important;
+						width: 240px !important;
+						padding: 2px 5px !important; 
+						@include border-radius(0);
+						li.search-field { 
+							line-height: 12px;
+							padding-bottom: 2px;
+						}
+					}
+
+					input[type="text"] {
+						padding: 0 !important;
+						margin: 0 !important;
+					}
+
+					.chzn-drop {
+						color: $color-dark !important;
+					}
+				}				
+			}
+			&.scrollspy-cell {
+				padding-top: 20px;
+				padding-bottom: 20px;
+
+				.scrollspy-text {
+					display: block;
+					line-height: 18px;
+					@include border-radius(7px);
+					padding: 20px;
+					background: $color-white;
+					height: 200px !important;
+					text-align: left;
+					font-size: 12px;
+					font-weight: normal;
+					color: $color-black;
+					overflow: auto;
+				}
+			}
+			&.submit-btn {
+				width: ($image-btn-width * 2) !important;				
+				input {
+					width: ($image-btn-width * 2) !important;
+					height: $image-btn-height;
+					border: solid #6488a2 1px;
+					border-bottom: solid #464e55 1px;
+					background: #6488a2;
+					@include background-image(linear-gradient(#d2dbe0, #6488a2));
+					//@include background-image(radial-gradient(color-stops(#6488a2, #ced7dd), bottom  center));
+					@include box-shadow(#464e55 0 1px 1px);
+					
+					text-align: center;
+					vertical-align: middle;
+					line-height: $image-btn-height;
+					cursor: pointer;
+					color: $color-black;
+					&:hover { color:$color-light; }
+				}
+			}
+			.hidden-value { visibility: hidden; }
+			&.osn-nalog { 
+				width: 250px !important; 
+				color: $color-light !important;
+			}
+
+			&.check-edit {
+				width: 170px;
+				padding-left: 20px;
+				padding-right: 20px;
+				cursor: pointer;
+				font-size: 14px;
+				line-height: $image-btn-height;
+				background-repeat: no-repeat;
+				color: $color-white;
+				
+				//background:url(check_false_bg.png) center left no-repeat; 
+				&.left { background-position: left center;}
+				&.right { background-position: right center;}
+				&.checked { background-image:url(/assets/check_true_bg.png); }
+				&.unchecked { background-image:url(/assets/check_false_bg.png); }
+			}
+		}
+	}
+
+	&.sdfsdf{
+		td {
+			padding: 7px 0 0 0;
+			font-size: 12px;
+			vertical-align: top;
+			font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+
+			#del-photo-btn {
+				display: block;
+				font-size: 12px;
+				color: #000;
+				width: 100px;
+				height: 15px;
+				padding-left: 20px;
+				line-height: 15px;
+				background:url(del_btn.png) center left no-repeat;
+
+				&:hover { 
+					text-decoration: none; 
+					color: $color-link-hover;
+				}
+			}
+		}				
+		td.label-text { 
+			background: none;
+			width: 150px;
+			text-align: right;
+			color:#404040;
+			font-size: 12px;
+			padding: 10px 10px 0 0;
+		}
+
+		width: 100%;				
+
+		td.input-text { 
+			width: 200px;	
+			border-width: #fff;
+		}
+		.chzn-container-multi .chzn-choices {
+			input {
+				height: 19px;
+			}
+			background-color: white;
+			border: 1px solid #000;
+			@include border-radius(0);
+			@include background-image(linear-gradient(#fff, #fff));
+		}
+
+		.chzn-container .chzn-single {
+			line-height: 18px;
+			height: 18px;
+			background-color: white;
+			border: 1px solid #000;
+			@include border-radius(0);
+			@include background-image(linear-gradient(#fff, #fff));
+		}
+
+		td.photo-text { 
+			width: 130px;
+			vertical-align: top;
+			text-align: center;
+			img { margin-bottom: 5px; }
+		}
+		td.more-text { 
+			font-size: 14px;
+			font-weight: bold;
+		}
+		td.help-text {
+			font-size: 10px;
+		}
+		td.file-name {
+			width: 230px;
+			padding: 0;
+			text-align: left;
+			vertical-align: middle;
+
+			span {
+				border: solid #000 1px;
+				width: 215px;
+				height: 20px;
+				line-height: 20px;
+				display: inline-block;	
+				padding-left: 5px; 
+				overflow: hidden;				
+			}
+		}
+		td.file-btn { 
+			//margin: 0 10px;					
+			background:url(photo_btn.png) center center no-repeat; 
+			width: 87px;
+			height: 23px;
+			border: none; 
+			cursor: pointer;
+			color: #000;
+			padding: 0;
+			text-align: center;
+			vertical-align: middle;
+			font-size: 12px;
+			&:hover { color: #fff; }
+		}
+
+		td.save-info { text-align: right; }
+		td.space-clear { width: 20px; }
+
+		input {
+			float: none;
+			margin: 0;
+			padding: 0;
+		}
+
+		input[type="checkbox"] {
+			width: 15px;
+			float: left;
+		}
+		.text-checkbox {
+			margin-left: 10px;
+			font-size: 10px;
+		}
+		input[type="submit"] {
+			float: none;
+			background:url(save_btn_bg.png) top left no-repeat;
+			width: 155px;
+			height: 24px;
+			display: inline;
+			color: #000;
+			font-size: 12px;
+			text-align: center;
+			border: none;
+			line-height: 22px;
+			&:hover {
+				text-decoration:none;
+				color: #fff;
+			}
+		}
+	}
+}
 
 .check-field { background-repeat: no-repeat; }
 .check-false { background-image: url(check_false_bg.png);  }
