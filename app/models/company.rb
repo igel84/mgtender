@@ -17,7 +17,7 @@ class Company < ActiveRecord::Base
   has_attached_file :logo, :styles => { :thumb=> ["100x100", :jpg] }
 
   validates_presence_of :name, :general_phone, :owner_form_id, :sphere_id
-  validates_presence_of :inn, :message => "укажите ИНН"
+  validates_presence_of :inn, :message => "укажите ИННы"
   validates_uniqueness_of :inn, :message => "компания с данным ИНН уже зарегистрирована"
 
 end

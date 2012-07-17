@@ -1,4 +1,8 @@
 InitialRelease::Application.routes.draw do
+  get "tenders/new"
+
+  get "tenders/index"
+
     resources :news
 
     resources :password_resets
@@ -39,6 +43,9 @@ InitialRelease::Application.routes.draw do
       get 'tender'
     end
     end
+
+    resources :tenders
+    resources :tender_steps
 
     root :to => "homes#index"
 

@@ -1,0 +1,58 @@
+@import "compass"
+td
+  .check-box
+    width: 10px
+  &.text-label
+    width: 200px !important
+    font-size: 13px !important
+    color: #fff !important
+  .btn-step a, .btn-step input
+    font-size: 14px !important
+    display: block !important
+    margin: 0 0 0 10px !important
+    float: right !important
+    width: 180px !important
+    height: 30px !important
+    border: solid #6488a2 1px !important
+    border-bottom: solid #464e55 1px !important
+    background: #6488a2
+    @include background-image(linear-gradient(#d2dbe0, #6488a2))
+    @include box-shadow(#464e55 0 1px 1px)
+    @include border-radius(7px)
+    text-align: center !important
+    vertical-align: middle !important
+    line-height: 30px !important
+    cursor: pointer !important
+    color: #000 !important
+    &:hover
+      color: #fff !important
+      text-decoration: none
+tr
+  .check-type
+    @include background-image(linear-gradient(#f8f8f8, #c5c7c8))
+    @include border-radius(7px)
+    border: solid #adadad 1px !important
+    overflow: hidden !important
+    margin-bottom: 10px !important
+    h4
+      background: #49525b !important
+      margin: 7px !important
+      padding: 5px 5px 5px 30px !important
+      @include border-radius(7px)
+      text-align: left !important
+      font-size: 14px !important
+      color: #fff !important
+      background-position: 10px center !important
+      background-repeat: no-repeat !important
+      &.unchecked
+        background-image: url(/assets/check_false_bg.png) !important
+      &.checked
+        background-image: url(/assets/check_true_bg.png) !important
+    p
+      padding: 7px 7px 14px 7px !important
+      text-align: left !important
+      font-size: 14px !important
+      color: #000 !important
+p.info
+  font-size: 14px !important
+  margin-top: 20px !important

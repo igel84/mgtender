@@ -189,6 +189,9 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    wicked (0.1.6)
+      activesupport (>= 3.0.7)
+      rails (>= 3.0.7)
 
 PLATFORMS
   ruby
@@ -218,4 +221,5 @@ DEPENDENCIES
   thin
   uglifier (>= 1.0.3)
   unicorn
+  wicked
   yaml_db!

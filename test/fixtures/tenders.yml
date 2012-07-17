@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  user_id: 1
+  category_id: MyString
+  start_at: 2012-07-17
+  end_at: 2012-07-17
+  name: MyString
+  status: 1
+  note: MyText
+  tender_type_id: 1
+  step: 9.99
+  closed: false
+  summ: 9.99
+
+two:
+  user_id: 1
+  category_id: MyString
+  start_at: 2012-07-17
+  end_at: 2012-07-17
+  name: MyString
+  status: 1
+  note: MyText
+  tender_type_id: 1
+  step: 9.99
+  closed: false
+  summ: 9.99

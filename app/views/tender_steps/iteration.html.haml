@@ -1,0 +1,9 @@
+%h1
+  Вы находитесь:
+  %span Объявить тендер
+%p.info Данный аукцион с фиксированным шагом?
+%ul.select-list
+  = form_for @tender, url: wizard_path, :method => :put do |form|
+    =#
+    = link_to 'Назад', new_tender_path
+    = form.submit 'Далее'

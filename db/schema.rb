@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120715050431) do
+ActiveRecord::Schema.define(:version => 20120717182911) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -63,6 +63,32 @@ ActiveRecord::Schema.define(:version => 20120715050431) do
     t.integer  "depth"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "tender_types", :force => true do |t|
+    t.string   "name"
+    t.text     "info"
+    t.boolean  "is_iteration", :default => false
+    t.boolean  "is_selling",   :default => true
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+  end
+
+  create_table "tenders", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "category_id"
+    t.datetime "start_at"
+    t.datetime "end_at"
+    t.string   "name"
+    t.integer  "status",                                         :default => 0
+    t.integer  "iteration_count",                                :default => 1
+    t.text     "note"
+    t.integer  "tender_type_id"
+    t.decimal  "step",            :precision => 10, :scale => 2
+    t.boolean  "closed",                                         :default => false
+    t.decimal  "summ",            :precision => 10, :scale => 2
+    t.datetime "created_at",                                                        :null => false
+    t.datetime "updated_at",                                                        :null => false
   end
 
   create_table "users", :force => true do |t|

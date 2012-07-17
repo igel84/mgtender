@@ -2,6 +2,7 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
+  has_many :tenders
   belongs_to :company #, :inverse_of => :users #, class_name: 'Company', foreign_key: "company_id"  
   #attr_accessible  #:company, :company_attributes, 
   #attr_writer :company, :company_id

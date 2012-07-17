@@ -1,0 +1,40 @@
+:javascript
+  $(document).ready(function() { 
+    $('.check-type').click(function() {
+      var id = $(this).attr('id').substring(5);
+      
+      $('#tender_tender_type_id option').each(function(){
+        $(this).attr('selected', false);
+      });
+
+      $('.check-type h4').each(function(){
+        $(this).removeClass('checked');
+        $(this).addClass('unchecked');
+      });
+      
+      $('.check-type#type_'+id+' h4').each(function(){
+        $(this).addClass('checked');
+      });      
+
+      $('#tender_tender_type_id option[value='+id+']').attr("selected", "selected");
+    });
+  });
+%h1
+  Вы находитесь:
+  %span Объявить тендер
+%p.info Пожалуйста, выберите нужный тип:
+= form_for @tender do |form|
+  %table.form-edit
+    - @tender_types.each do |tender_type|
+      %tr
+        %td
+          .check-type{id: "type_#{tender_type.id}"}
+            %h4{class: "#{@tender.tender_type_id == tender_type.id ? 'checked' : 'unchecked'}"}= tender_type.name
+            %p= tender_type.info
+    %tr
+      %td
+        .btn-step= form.submit 'далее'
+    %tr
+      %td
+        .hidden-value= form.collection_select :tender_type_id, @tender_types, :id, :name, {} #, html_options = { :user_id, 
+        %br/

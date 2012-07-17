@@ -18,6 +18,7 @@ gem 'json'
 #gem 'devise'
 
 gem 'sorcery'
+gem 'wicked'		
 
 gem 'yaml_db', git: 'git://github.com/lostapathy/yaml_db.git'
 gem 'execjs'

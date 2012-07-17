@@ -1,0 +1,57 @@
+:javascript
+  function getFile(){ document.getElementById("upfile").click(); }
+
+  $(document).ready(function() { 
+
+    $('.scrollspy-text').scrollspy();
+    $('.chzn-select').chosen();
+    $(".chzn-select-deselect").chosen({allow_single_deselect:true}); 
+  });   
+%h1
+  Вы находитесь:
+  %span Объявить тендер
+%h1 Пожалуйста, заполните поля
+= @tender.tender_type.name
+= form_for @tender, url: wizard_path do |form|
+  %table.form-edit
+    %tr  
+      %td.text-label Название
+      %td
+        .text-field= form.text_field :name
+      %td{rowspan:7} &nbsp;
+    %tr
+      %td.text-label Дата запуска
+      %td
+        .text-field= form.text_field :start_at
+    %tr  
+      %td.text-label Дата окончания
+      %td
+        .text-field= form.text_field :end_at
+    %tr
+      %td.text-label Категория    
+      %td
+        .text-field= form.collection_select :category_id, Category.all, :id, :name, {}, html_options = {class: 'chzn-select', :'data-placeholder' => 'выберите категорию', size: 3, style: 'width:244px;height: 19px;'}
+    %tr  
+      %td.text-label Количество итераций
+      %td
+        .text-field= form.text_field :iteration_count
+    %tr
+      %td.text-label Закрытый
+      %td
+        .check-box= form.check_box :closed
+    %tr 
+      %td.text-label
+        = @tender.tender_type.is_selling == true ? 'Минимальная' : 'Максимальная'
+        = ' стоимость' if @tender.tender_type.is_name? :tender
+        = ' стоимость' if @tender.tender_type.is_name? :auction
+        = ' стоимость' if @tender.tender_type.is_name? :review
+      %td.text-field
+        .text-field= form.text_field :summ
+    %tr  
+      %td.text-label Комментарии
+      %td{colspan:2}
+        .text-field= form.text_area :note
+    %tr
+      %td{colspan: 3}
+        .btn-step= form.submit 'Далее'
+        .btn-step= link_to 'Назад', new_tender_path        

@@ -8,8 +8,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+User.destroy_all
+Company.destroy_all
+TenderType.destroy_all
+Tender.destroy_all
 Category.destroy_all
-Category.create(name: 'Техника')
+OwnerForm.destroy_all
+Sphere.roots.destroy_all
+
+category = Category.create(name: 'Техника')
 Category.create(name: 'Видео')
 Category.create(name: 'Музыка')
 Category.create(name: 'Информационные технологии')
@@ -18,15 +25,10 @@ Category.create(name: 'Книги')
 Category.create(name: 'Услуги')
 Category.create(name: 'Программы')
 
-Company.destroy_all
-Company.create(name:'Автолитмаш')
-
-OwnerForm.destroy_all
-OwnerForm.create(name: 'ООО', is_nds: 'true')
+owner_form = OwnerForm.create(name: 'ООО', is_nds: 'true')
 OwnerForm.create(name: 'ООО', is_nds: 'false')
 OwnerForm.create(name: 'ОАО', is_nds: 'true')
 
-Sphere.destroy_all
 s1 = Sphere.create(name: 'Информационные технологии')
 s2 = Sphere.create(name: 'Бизнес')
 s1.reload
@@ -35,5 +37,91 @@ s3 = Sphere.create(name: 'Веб-технологии', parent_id: s1.id)
 Sphere.create(name: 'Продажа товаров', parent_id: s2.id)
 s3.reload
 Sphere.create(name: 'Создание сайтов', parent_id: s3.id)
-
 Sphere.rebuild!
+sphere = Sphere.last
+
+company = Company.new(
+	name:'Автолитмаш',
+	general_phone:'111',
+	inn:'4234234')
+
+company.owner_form = owner_form
+company.sphere = sphere
+p 'компания создана успешно' if company.save
+
+user = User.new(
+	email:'admin@mlip.ru', 
+	password:'111111',
+	password_confirmation:'111111',
+	name:'name',
+	phone:'1',
+	fname:'f',
+	nname:'n')
+
+user.categories << category
+user.company = company
+p 'пользователь создан успешно' if user.save
+
+user.activate!
+
+tender_type = TenderType.create(
+	name:'Тендер (продажа)',
+	info:'Объявление тендера на продажу товара',
+	is_iteration:false,
+	is_selling:true)
+
+TenderType.create(
+	name:'Итерационный тендер (продажа)',
+	info:'Объявление итерационного тендера на продажу товара',
+	is_iteration:true,
+	is_selling:true)
+
+TenderType.create(
+	name:'Аукцион (продажа)',
+	info:'Объявление аукциона на продажу товара',
+	is_iteration:false,
+	is_selling:true)
+
+TenderType.create(
+	name:'Аукцион с фиксированным шагом (продажа)',
+	info:'Объявление аукциона с фиксированным шагом на продажу товара',
+	is_iteration:true,
+	is_selling:true)
+
+TenderType.create(
+	name:'Предварительный сбор предложений (продажа)',
+	info:'Предварительный сбор предложений',
+	is_iteration:false,
+	is_selling:true)
+
+TenderType.create(
+	name:'Тендер (покупка)',
+	info:'Объявление тендера на покупку товара',
+	is_iteration:false,
+	is_selling:false)
+
+TenderType.create(
+	name:'Итерационный тендер (покупка)',
+	info:'Объявление итерационного тендера на покупку товара',
+	is_iteration:true,
+	is_selling:false)
+
+TenderType.create(
+	name:'Аукцион (покупка)',
+	info:'Объявление аукциона на покупку товара',
+	is_iteration:false,
+	is_selling:false)
+
+TenderType.create(
+	name:'Аукцион с фиксированным шагом (покупка)',
+	info:'Объявление аукциона с фиксированным шагом на покупку товара',
+	is_iteration:true,
+	is_selling:false)
+
+TenderType.create(
+	name:'Предварительный сбор предложений (покупка)',
+	info:'Предварительный сбор предложений',
+	is_iteration:false,
+	is_selling:false)
+
+p "Типы тендеров успешно созданы" if TenderType.all.size > 0
