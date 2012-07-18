@@ -6,10 +6,10 @@ class TenderStepsController < ApplicationController
   steps :iteration, :info
   
   def show
-    case step
-      when :iteration
-        skip_step      
-    end
+    #case step
+    #  when :iteration
+    #    skip_step      
+    #end
     render_wizard
   end
 
@@ -20,6 +20,7 @@ class TenderStepsController < ApplicationController
 
   private
     def redirect_to_finish_wizard
+      session[:tender_id] = nil
       redirect_to tenders_url, notice: "Тендер успешно создан!"
     end
 

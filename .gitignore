@@ -1,6 +1,8 @@
 # Ignore bundler config
 /config/database.yml
+/public
 /shared
 /.bundle
 /log/*.log
 /tmp
+/.Gemfile.lock

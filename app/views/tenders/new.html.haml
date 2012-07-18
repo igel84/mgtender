@@ -22,7 +22,7 @@
 %h1
   Вы находитесь:
   %span Объявить тендер
-%p.info Пожалуйста, выберите нужный тип:
+%p.form-info Пожалуйста, выберите нужный тип:
 = form_for @tender do |form|
   %table.form-edit
     - @tender_types.each do |tender_type|

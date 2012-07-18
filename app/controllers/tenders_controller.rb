@@ -9,7 +9,7 @@ class TendersController < ApplicationController
     if @tender.save
       session[:tender_id] = @tender.id
       #if @tender.tender_type.name == 'Аукцион (продажа)' 
-      redirect_to tender_steps_path
+      redirect_to tender_steps_path(:info)
     else
       render :new
     end

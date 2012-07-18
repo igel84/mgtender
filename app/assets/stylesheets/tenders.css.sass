@@ -1,4 +1,5 @@
 @import "compass"
+$color-light: #d6d6d6
 td
   .check-box
     width: 10px
@@ -29,6 +30,7 @@ td
       text-decoration: none
 tr
   .check-type
+    cursor: pointer
     @include background-image(linear-gradient(#f8f8f8, #c5c7c8))
     @include border-radius(7px)
     border: solid #adadad 1px !important
@@ -53,6 +55,9 @@ tr
       text-align: left !important
       font-size: 14px !important
       color: #000 !important
-p.info
+p.form-info
   font-size: 14px !important
-  margin-top: 20px !important
+  color: $color-light !important
+  //line-height: 40px
+  margin: 0 !important
+  padding: 10px 0 10px 0 !important
