@@ -5,6 +5,14 @@ GIT
     yaml_db (0.2.2)
 
 GIT
+  remote: git://github.com/schneems/wicked.git
+  revision: 3838041501fdffd935f7e1619335066538952ee4
+  specs:
+    wicked (0.1.6)
+      activesupport (>= 3.0.7)
+      rails (>= 3.0.7)
+
+GIT
   remote: git://github.com/thoughtbot/paperclip.git
   revision: 1ebe84023767a7f23dd3962690147904002c8fd4
   specs:
@@ -189,9 +197,6 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
-    wicked (0.1.6)
-      activesupport (>= 3.0.7)
-      rails (>= 3.0.7)
 
 PLATFORMS
   ruby
@@ -221,5 +226,5 @@ DEPENDENCIES
   thin
   uglifier (>= 1.0.3)
   unicorn
-  wicked
+  wicked!
   yaml_db!
