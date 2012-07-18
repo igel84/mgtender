@@ -44,7 +44,10 @@ InitialRelease::Application.routes.draw do
     end
     end
 
-    resources :tenders
+    resources :tenders do
+      resources :tender_attachments
+    end
+
     resources :tender_steps
 
     root :to => "homes#index"

@@ -1,9 +1,39 @@
+:javascript
+  $(document).ready(function() { 
+    $('.check-type').click(function() {
+      var id = $(this).attr('id').substring(5);
+      
+      $('.check-type h4').each(function(){
+        $(this).removeClass('checked');
+        $(this).addClass('unchecked');
+      });
+      
+      $('.check-type#type_'+id+' h4').addClass('checked');
+
+      if (id == '1') { $('#is_iteration').val('true'); }
+      else { $('#is_iteration').val('false'); }      
+      
+    });
+  });
 %h1
   Вы находитесь:
   %span Объявить тендер
-%p.info Данный аукцион с фиксированным шагом?
+%p.form-info Данный аукцион с фиксированным шагом?
 %ul.select-list
   = form_for @tender, url: wizard_path, :method => :put do |form|
-    =#
-    = link_to 'Назад', new_tender_path
-    = form.submit 'Далее'
+    %table.form-edit
+      %tr
+        %td
+          .check-type#type_1
+            %h4.checked Да
+      %tr
+        %td
+          .check-type#type_2
+            %h4.unchecked Нет
+      %tr
+        %td
+          .hidden-value= hidden_field_tag 'is_iteration', 'true'
+      %tr
+        %td
+          .btn-step= form.submit 'Далее'
+          .btn-step= link_to 'Назад', new_tender_path    

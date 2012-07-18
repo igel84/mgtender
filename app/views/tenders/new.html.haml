@@ -24,13 +24,15 @@
   %span Объявить тендер
 %p.form-info Пожалуйста, выберите нужный тип:
 = form_for @tender do |form|
+  = form.hidden_field :id if @tender.id
   %table.form-edit
     - @tender_types.each do |tender_type|
-      %tr
-        %td
-          .check-type{id: "type_#{tender_type.id}"}
-            %h4{class: "#{@tender.tender_type_id == tender_type.id ? 'checked' : 'unchecked'}"}= tender_type.name
-            %p= tender_type.info
+      - if tender_type.is_iteration == false
+        %tr
+          %td
+            .check-type{id: "type_#{tender_type.id}"}
+              %h4{class: "#{@tender.tender_type && @tender.tender_type.near?(tender_type) ? 'checked' : 'unchecked'}"}= tender_type.name_ru
+              %p= tender_type.info
     %tr
       %td
         .btn-step= form.submit 'далее'

@@ -16,7 +16,7 @@
   %span Объявить тендер
 %p.form-info= @tender.tender_type.name_ru
 %h1 Пожалуйста, заполните поля
-= form_for @tender, url: wizard_path do |form|
+= form_for @tender, html: {multipart:true} do |form|
   %table.form-edit
     %tr  
       %td.text-label Название
@@ -81,13 +81,18 @@
             .image-action
               .image-name
               .image-btn{onclick:"getFile()"} Обзор
-              .image-btn{onclick:"getFile()"}Добавить             
+              .image-btn= form.submit 'Добавить'
             .image-info
               Условия загрузки: Принимаются только форматы rar zip doc xls pdf
               %br/
               Максимальный размер файла: 10 Мб.
-            .hidden-value= file_field_tag :photo, id: "upfile"
-      %td &nbsp;
+            .hidden-value= file_field_tag 'attach', id: "upfile"
+      %td.tender_attachments
+        %ul
+          - @tender.tender_attachments.each do |attach|
+            %li
+              = attach.attach_file_name
+              = link_to '[ удалить ]', [@tender, attach], method:'delete'
     %tr
       %td{colspan: 3}
         .btn-step= form.submit 'Далее'

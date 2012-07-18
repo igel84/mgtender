@@ -3,4 +3,6 @@ class Tender < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :tender_type
+
+  has_many :tender_attachments
 end

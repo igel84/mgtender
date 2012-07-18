@@ -1755,6 +1755,7 @@ $image-btn-height: 23px;
 				
 				width: $image-btn-width;
 				height: $image-btn-height;
+
 				border: solid #6488a2 1px;
 				border-bottom: solid #464e55 1px;
 				background: #6488a2;
@@ -1768,6 +1769,19 @@ $image-btn-height: 23px;
 				cursor: pointer;
 				color: $color-black;
 				&:hover { color:$color-light; }
+				input {
+					margin: 0 !important;
+					border: none !important;
+					width: $image-btn-width;
+					height: $image-btn-height;
+					background: none !important;
+					text-align: center;
+					vertical-align: middle;
+					line-height: 23px;
+					cursor: pointer;
+					color: $color-black;
+					&:hover { color:$color-light; }
+				}				
 			}
 		}
 	}

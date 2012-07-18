@@ -65,61 +65,61 @@ p 'пользователь создан успешно' if user.save
 user.activate!
 
 tender_type = TenderType.create(
-	name:'Тендер (продажа)',
+	name:'tender',
 	info:'Объявление тендера на продажу товара',
 	is_iteration:false,
 	is_selling:true)
 
 TenderType.create(
-	name:'Итерационный тендер (продажа)',
+	name:'tender',
 	info:'Объявление итерационного тендера на продажу товара',
 	is_iteration:true,
 	is_selling:true)
 
 TenderType.create(
-	name:'Аукцион (продажа)',
+	name:'auction',
 	info:'Объявление аукциона на продажу товара',
 	is_iteration:false,
 	is_selling:true)
 
 TenderType.create(
-	name:'Аукцион с фиксированным шагом (продажа)',
+	name:'auction',
 	info:'Объявление аукциона с фиксированным шагом на продажу товара',
 	is_iteration:true,
 	is_selling:true)
 
 TenderType.create(
-	name:'Предварительный сбор предложений (продажа)',
+	name:'review',
 	info:'Предварительный сбор предложений',
 	is_iteration:false,
 	is_selling:true)
 
 TenderType.create(
-	name:'Тендер (покупка)',
+	name:'tender',
 	info:'Объявление тендера на покупку товара',
 	is_iteration:false,
 	is_selling:false)
 
 TenderType.create(
-	name:'Итерационный тендер (покупка)',
+	name:'tender',
 	info:'Объявление итерационного тендера на покупку товара',
 	is_iteration:true,
 	is_selling:false)
 
 TenderType.create(
-	name:'Аукцион (покупка)',
+	name:'auction',
 	info:'Объявление аукциона на покупку товара',
 	is_iteration:false,
 	is_selling:false)
 
 TenderType.create(
-	name:'Аукцион с фиксированным шагом (покупка)',
+	name:'auction',
 	info:'Объявление аукциона с фиксированным шагом на покупку товара',
 	is_iteration:true,
 	is_selling:false)
 
 TenderType.create(
-	name:'Предварительный сбор предложений (покупка)',
+	name:'review',
 	info:'Предварительный сбор предложений',
 	is_iteration:false,
 	is_selling:false)

@@ -7,6 +7,30 @@ td
     width: 200px !important
     font-size: 13px !important
     color: #fff !important
+  &.text-info
+    text-align: left !important
+    font-size: 13px !important
+    color: $color-light !important
+    padding-top: 5px
+  &.tender_attachments
+    text-align: left
+    ul
+      padding: 10px 0 10px 50px !important
+      text-align: left
+      li
+        list-style-type: circle
+        color: #fffdd2
+        font-size: 13px
+        line-height: 20px
+        a
+          color: #000
+          padding-left: 10px
+          //&:hover { tex }
+  .text-field
+    textarea
+      width: 400px !important
+      height: 80px !important
+      @include border-radius(0)
   .btn-step a, .btn-step input
     font-size: 14px !important
     display: block !important
@@ -28,6 +52,13 @@ td
     &:hover
       color: #fff !important
       text-decoration: none
+  .image-cell
+    .image-action
+      width: 500px
+    float: left !important
+    .image-btn, .image-btn input
+      float: left !important
+      margin-left: 10px !important      
 tr
   .check-type
     cursor: pointer
@@ -60,4 +91,4 @@ p.form-info
   color: $color-light !important
   //line-height: 40px
   margin: 0 !important
-  padding: 10px 0 10px 0 !important
+  padding: 10px 0 20px 0 !important

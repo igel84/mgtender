@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  tender_id: 1
+  attach_file_name: MyString
+  attach_content_type: MyString
+  attach_updated_at: 2012-07-19 02:35:11
+  attach_file_size: 1
+
+two:
+  tender_id: 1
+  attach_file_name: MyString
+  attach_content_type: MyString
+  attach_updated_at: 2012-07-19 02:35:11
+  attach_file_size: 1
