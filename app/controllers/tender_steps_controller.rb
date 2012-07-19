@@ -1,6 +1,6 @@
 #encoding: utf-8
-class TenderStepsController < ApplicationController
-  include Wicked::Wizard
+class TenderStepsController < Wicked::WizardController
+  #include Wicked::Wizard
   before_filter :current_tender
   
   steps :iteration #, :info
