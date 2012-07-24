@@ -1,27 +1,31 @@
 :javascript
   $(document).ready(function() { 
+    var tenderCheck = false;
     $('.check-type').click(function() {
+      tenderCheck = true;
       var id = $(this).attr('id').substring(5);
       
-      $('#tender_tender_type_id option').each(function(){
+      $('#tender_tender_type_id option').each(function() {
         $(this).attr('selected', false);
       });
 
-      $('.check-type h4').each(function(){
+      $('.check-type h4').each(function() {
         $(this).removeClass('checked');
         $(this).addClass('unchecked');
       });
       
-      $('.check-type#type_'+id+' h4').each(function(){
+      $('.check-type#type_'+id+' h4').each(function() {
         $(this).addClass('checked');
       });      
 
-      $('#tender_tender_type_id option[value='+id+']').attr("selected", "selected");
-
-      $('.btn-step input[type="submit"]').click(function(){
-
-        retutn false;
-      });
+      $('#tender_tender_type_id option[value='+id+']').attr("selected", "selected");      
+    });
+    $('.btn-step input[type="submit"]').click(function() {
+        if (tenderCheck == false)
+        {
+          alert('Необходимо указать тип тендера!');
+          return false;
+        }
     });
   });
 %h1

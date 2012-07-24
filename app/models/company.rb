@@ -20,4 +20,11 @@ class Company < ActiveRecord::Base
   validates_presence_of :inn, :message => "укажите ИННы"
   validates_uniqueness_of :inn, :message => "компания с данным ИНН уже зарегистрирована"
 
+  def personal
+    users_return = []
+    #users_return << User.first
+    users_return += self.users
+    users_return << self.master if self.master
+    return users_return
+  end
 end

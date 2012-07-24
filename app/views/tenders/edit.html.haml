@@ -7,7 +7,7 @@
       $('.image-name').text($(this).val()); 
     });
 
-    $('.scrollspy-text').scrollspy();
+    //$('.scrollspy-text').scrollspy();
     $('.chzn-select').chosen();
     $(".chzn-select-deselect").chosen({allow_single_deselect:true}); 
   });   
@@ -95,5 +95,5 @@
               = link_to '[ удалить ]', [@tender, attach], method:'delete'
     %tr
       %td{colspan: 3}
-        .btn-step= form.submit 'Далее'
+        .btn-step= form.submit 'Далее', name: 'next_button'
         .btn-step= link_to 'Назад', new_tender_path(id:@tender)

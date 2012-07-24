@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  tender_id: 1
+  user_id: 1
+  accepted_t: false
+  accepted_p: false
+
+two:
+  tender_id: 1
+  user_id: 1
+  accepted_t: false
+  accepted_p: false

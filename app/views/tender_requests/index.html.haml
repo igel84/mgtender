@@ -1,0 +1,61 @@
+%h1
+  Вы находитесь:
+  %span Объявить тендер
+%p.form-info Выбор пользователей
+%table.tender
+  %tr
+    %th
+      .head Добавление пользователей или компаний
+    %th.separate{rowspan: 2} &nbsp;
+    %th
+      .head Список приглашенных пользователей
+  %tr
+    %td
+      %h4.check-type{class: "#{@user_interest == nil ? 'unchecked' : 'checked'}"}= link_to 'Фильтр по категории тендера', users_interest_tender_tender_requests_path(tender_id: @tender.id, on: @user_interest == nil ? true : false)
+      - if @user_interest
+        %ul.user
+          - @user_interest.each do |user|
+            %li
+              = user.fname
+              = link_to '[ добавить ]', tender_tender_requests_path(user_id: user.id), method: 'post'
+      - else
+        %ul.company
+          - Company.all.each do |company|
+            %li
+              = company.name
+              = link_to '[ добавить ]', tender_tender_requests_path(company_id: company.id), method: 'post'
+            %ul.user
+              - company.personal.each do |user|
+                %li
+                  = user.fname
+                  = link_to '[ добавить ]', tender_tender_requests_path(user_id: user.id), method: 'post'
+    %td
+      %ul.user
+        - @tender.tender_requests.all.each do |tender_request|
+          - if tender_request.user
+            %li
+              = tender_request.user.fname
+              = link_to '[ удалить ]', [@tender,tender_request], method: 'delete'
+          - else
+            %li
+              = tender_request.company_name
+              = link_to '[ удалить ]', [@tender,tender_request], method: 'delete'
+  %tr
+    %th{colspan: 3}
+      .head
+        Пригласить незарегистрированную компанию
+  %tr
+    %td{colspan: 3}
+      = form_for [@tender, TenderRequest.new] do |form|
+        %table.form-edit.first
+          %tr
+            %td.text-label Название фирмы
+            %td{colspan: 3}
+              .text-field= form.text_field :company_name
+          %tr
+            %td.text-label Email
+            %td
+              .text-field= form.text_field :company_email
+            %td.action
+              .submit-btn= form.submit 'Пригласить'
+            %td.right-offset &nbsp;

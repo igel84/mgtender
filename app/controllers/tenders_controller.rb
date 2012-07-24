@@ -36,7 +36,11 @@ class TendersController < ApplicationController
       session[:tender_id] = @tender.id
       redirect_to tender_steps_path
     else
-      render :edit
+      if params[:next_button]
+        redirect_to tender_tender_requests_path(tender_id: @tender.id)
+      else
+        render :edit
+      end
     end
     #redirect_to tender_steps_path
   end  

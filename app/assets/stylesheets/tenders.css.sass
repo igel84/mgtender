@@ -1,6 +1,99 @@
 @import "compass"
 //@import "compass/css3/gradient"
 $color-light: #d6d6d6
+table.first
+  margin-top: 20px
+table.tender
+  th
+    &.separate
+      width: 20px
+    .head
+      background: url(title_bg.png)
+      @include border-radius(7px)
+      padding: 7px 20px
+      color: #e0e1e2
+      font-size: 13px
+      border-bottom: solid #707980 1px
+      border-right: solid #707980 1px
+  td
+    vertical-align: top
+    h4.check-type
+      border: none !important
+      cursor: pointer
+      overflow: hidden !important
+      //margin-bottom: 10px !important    
+      margin: 7px 0 !important
+      padding: 5px 5px 5px 30px !important
+      text-align: left !important
+      font-size: 14px !important
+      color: #fff !important
+      background-position: 10px center !important
+      background-repeat: no-repeat !important
+      &.unchecked
+        background-image: url(/assets/check_false_bg.png) !important
+      &.checked
+        background-image: url(/assets/check_true_bg.png) !important
+      a
+        color: #fff
+    ul.company
+      li
+        @include background-image(linear-gradient(#eff0f2, #d1d6da))  
+        @include border-radius(3px)
+        padding: 5px 20px
+        margin-bottom: 10px
+        color: #545d65
+        border: solid #fff 1px !important
+        font-size: 13px      
+        a
+          float: right  
+          color: #2d2d2d       
+    ul.user
+      li
+        background: none !important
+        border: none !important
+        color: #fffdd2
+        padding: 5px 21px 5px 1px
+        list-style: disc
+        margin-left: 40px
+        font-size: 13px   
+        //font-weight: bold 
+        a
+          float: right    
+          color: #2d2d2d  
+    &.action
+      width: 120px
+      text-align: left
+    &.right-offset
+      width: 400px
+    .submit-btn
+      margin-left: 20px
+      width: 100px
+      height: 23px
+      border: solid #6488a2 1px
+      border-bottom: solid #464e55 1px
+      background: #6488a2
+      @include background-image(linear-gradient(#d2dbe0, #6488a2))
+      @include box-shadow(#464e55 0 1px 1px)     
+      text-align: center
+      vertical-align: middle
+      line-height: 23px
+      cursor: pointer
+      color: #000
+      &:hover
+        color: #fff
+      input
+        margin: 0 !important
+        border: none !important
+        width: 80px
+        height: 23px
+        background: none !important
+        text-align: center
+        vertical-align: middle
+        line-height: 23px
+        cursor: pointer
+        color: #000
+        &:hover
+          color: #fff
 td
   .check-box
     width: 10px

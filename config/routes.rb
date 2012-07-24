@@ -46,6 +46,9 @@ InitialRelease::Application.routes.draw do
 
     resources :tenders do
       resources :tender_attachments
+      resources :tender_requests do
+        get 'users_interest', on: :collection
+      end
     end
 
     resources :tender_steps
