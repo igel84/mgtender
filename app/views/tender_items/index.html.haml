@@ -1,0 +1,44 @@
+%h1
+  Вы находитесь:
+  %span Объявить тендер
+%p.form-info Список наименований тендера
+%table.tender
+  %tr
+    %th
+      .head Добавление товаров к тендеру
+    %th.separate{rowspan: 2} &nbsp;
+    %th
+      .head Список товаров
+  %tr
+    %td
+      = form_for [@tender, TenderItem.new] do |form|    
+        %table.form-edit.first
+          %tr
+            %td.text-label.small Название товара
+            %td
+              .text-field= form.text_field :name
+          %tr
+            %td.text-label Цена
+            %td
+              .text-field= form.text_field :price
+          %tr
+            %td.text-label Количество
+            %td
+              .text-field= form.text_field :count
+          %tr
+            %td.add_btn_only{colspan: 2}
+              .submit-btn= form.submit 'Добавить'
+      %td
+        %ul.company.first
+          - @tender.tender_items.each do |item|
+            %li
+              %span.name= item.name
+              %span.count= item.count
+              %span.price= item.price
+              = link_to '[ удалить ]', [@tender,item], method: 'delete'
+  %tr
+    %td{colspan: 3} &nbsp;
+  %tr
+    %td{colspan: 3}
+      .btn-step= link_to 'Завершить', self_tenders_path
+      .btn-step= link_to 'Назад', tender_tender_requests_path(tender_id: @tender.id)

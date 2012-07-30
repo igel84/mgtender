@@ -1,10 +1,7 @@
 %h1
   Вы находитесь:
   %span Личный кабинет
-%ul#tabs
-  %li= link_to 'ЛИЧНЫЕ ДАННЫЕ', profile_homes_path
-  %li.active= link_to 'МОИ ТЕНДЕРЫ', my_tenders_homes_path
-  %li= link_to 'УЧАСТИЕ', parts_homes_path
+= render partial: 'layouts/navtabs'
 .tab-content
   .tab-content-menu
     = link_to(image_tag('last_tender_btn.png', style: 'margin-top:5px;'), my_tenders_homes_path)

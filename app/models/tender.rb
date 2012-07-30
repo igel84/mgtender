@@ -7,4 +7,8 @@ class Tender < ActiveRecord::Base
 
   has_many :tender_attachments
   has_many :tender_requests
+  has_many :tender_items
+
+  scope :visibles, where(:visible => true)
+    
 end

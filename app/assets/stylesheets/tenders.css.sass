@@ -1,12 +1,15 @@
 @import "compass"
 //@import "compass/css3/gradient"
 $color-light: #d6d6d6
-table.first
+.first
   margin-top: 20px
+//table.form-edit
+//  width: 300px !important
 table.tender
   th
+    width: 49%
     &.separate
-      width: 20px
+      width: 20px !important
     .head
       background: url(title_bg.png)
       @include border-radius(7px)
@@ -16,6 +19,8 @@ table.tender
       border-bottom: solid #707980 1px
       border-right: solid #707980 1px
   td
+    &.add_btn_only
+      padding-left: 300px !important
     vertical-align: top
     h4.check-type
       border: none !important
@@ -43,7 +48,21 @@ table.tender
         margin-bottom: 10px
         color: #545d65
         border: solid #fff 1px !important
-        font-size: 13px      
+        font-size: 13px   
+        span.name
+          width: 200px
+          display: inline-block
+          border-right: solid #adadad 1px  
+        span.count
+          text-align: center
+          width: 40px
+          display: inline-block
+          border-right: solid #adadad 1px  
+        span.price
+          text-align: center
+          width: 80px
+          display: inline-block
+          border-right: solid #adadad 1px  
         a
           float: right  
           color: #2d2d2d       
@@ -64,7 +83,7 @@ table.tender
       width: 120px
       text-align: left
     &.right-offset
-      width: 400px
+      width: 510px
     .submit-btn
       margin-left: 20px
       width: 100px
@@ -98,7 +117,7 @@ td
   .check-box
     width: 10px
   &.text-label
-    width: 200px !important
+    width: 150px !important
     font-size: 13px !important
     color: #fff !important
   &.text-info
@@ -121,6 +140,9 @@ td
           padding-left: 10px
           //&:hover { tex }
   .text-field
+    //width: 200px !important
+    //input
+    //  width: 200px !important
     textarea
       width: 400px !important
       height: 80px !important
@@ -186,3 +208,38 @@ p.form-info
   //line-height: 40px
   margin: 0 !important
   padding: 10px 0 20px 0 !important
+p.minimum_offset
+  margin-bottom: 5px !important
+ul.tender_items
+  margin: 5px 20px
+  li
+    @include background-image(linear-gradient(#eff0f2, #d1d6da))  
+    @include border-radius(3px)
+    padding: 5px 20px
+    //margin-bottom: 10px
+    margin: 5px 10px
+    color: #545d65
+    border: solid #fff 1px !important
+    font-size: 13px   
+    span
+      overflow: hidden
+    span.bold
+      font-weight: bold
+    span.name
+      width: 500px
+      display: inline-block
+      border-right: solid #adadad 1px  
+    span.count
+      text-align: center
+      width: 80px
+      display: inline-block
+      border-right: solid #adadad 1px  
+    span.price
+      text-align: center
+      width: 120px
+      display: inline-block
+      border-right: solid #adadad 1px  
+    span.summ
+      text-align: center
+      width: 145px
+      display: inline-block

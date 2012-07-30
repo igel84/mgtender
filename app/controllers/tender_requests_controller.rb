@@ -19,7 +19,11 @@ class TenderRequestsController < ApplicationController
 
   def users_interest
     if params[:on] && params[:on] == 'true'
-      @user_interest = Category.find(@tender.category.id).users_by_interest
+      if @tender.category == nil
+        @message = 'сначала необходимо выбрать категорию тендера!'
+      else
+        @user_interest = Category.find(@tender.category.id).users_by_interest
+      end
     end
     render 'index'
   end

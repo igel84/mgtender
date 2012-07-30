@@ -3,10 +3,14 @@ class TendersController < ApplicationController
   before_filter :init_collections, only: [:new, :edit]
   before_filter :current_tender #, except: [:new]
 
+  def new
+    @tender = Tender.new(user_id: current_user.id)
+  end
+
   def create
     if @tender.id
-      @tender = Tender.create(params[:tender])
-      @tender.user = current_user
+      @tender = Tender.new(params[:tender])
+      @tender.user_id = current_user.id
     else
       @tender.attributes = params[:tender]
     end
@@ -46,6 +50,10 @@ class TendersController < ApplicationController
   end  
 
   def index
+  end
+
+  def self
+    @tenders = current_user.tenders
   end
 
   private

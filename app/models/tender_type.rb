@@ -31,6 +31,20 @@ class TenderType < ActiveRecord::Base
     return result
   end
 
+  def short_name_ru
+    result = case self.name
+      when 'tender'
+        "Тендер"
+      when 'auction'
+        "Аукцион"
+      when 'review'
+        "Предварительный сбор предложений"
+      else
+        ""
+    end
+    return result
+  end
+
   def is_name?(sym)
   	case sym
   		when :tender

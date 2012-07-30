@@ -1,0 +1,55 @@
+%h1
+  Вы находитесь:
+  %span Тендеры
+#tender
+  %p.title
+    %span.type-sale= @tender.tender_type.is_selling == true ? 'Продажа' : 'Покупка'
+    %span.start Открыт с:
+    %span.start-date.white= @tender.start_at != nil ? @tender.start_at.strftime("%d.%m.%Y") : ''
+    %span.end Активен до:
+    %span.end-date.white= #
+    %span.info.white Статус:
+    = build_span_tender_status(@tender)          
+    = build_span_tender_name(@tender)          
+  %p.name
+    Название
+    %span.dark-blue.underlink= @tender.name
+  %p.about
+    %strong Описание тендера:
+    = @tender.note
+  .left
+    %p.about.unpadding
+      %strong Приложенные файлы:
+    %ol
+      - @tender.tender_attachments.each do |attach|
+        %li 
+          = attach.attach_file_name
+          |
+          = link_to 'Скачать файл', attach.attach.url
+  .right
+    .info
+      = @tender.tender_type.is_selling == true ? 'Минимальная стоимость' : 'Максимальная стоимость'
+      %span.blue.big= number_to_currency(@tender.summ, :precision=>2, :delimiter=>' ', :separator => ",", :unit=>'руб.', :format=>"%n %u") || '-'
+    .info
+      Тендер проводит:
+      %span.blue.underline= @tender.user
+    .assign
+      = link_to 'Участвовать', '#'   
+      .parts  
+        %span Заявок подано:
+        %span.count= '0'
+  %p
+  %p.about.minimum_offset
+    %strong Список товаров:
+    %ul.tender_items
+      %li
+        %span.name.bold наименование
+        %span.count.bold кол-во
+        %span.price.bold цена
+        %span.summ.bold сумма
+      - @tender.tender_items.each do |item|
+        %li
+          %span.name= item.name
+          %span.count= number_to_currency(item.count, precision:1, delimiter:' ', separator:",", format:"%n")
+          %span.price= number_to_currency(item.price, precision:2, delimiter:' ', separator:",", unit:'руб.', format:"%n %u")
+          %span.summ= number_to_currency(item.price * item.count, precision:2, delimiter:' ', separator:",", unit:'руб.', format:"%n %u")

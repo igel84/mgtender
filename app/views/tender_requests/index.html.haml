@@ -2,6 +2,8 @@
   Вы находитесь:
   %span Объявить тендер
 %p.form-info Выбор пользователей
+- if @message
+  %h1.notice= @message
 %table.tender
   %tr
     %th
@@ -59,3 +61,9 @@
             %td.action
               .submit-btn= form.submit 'Пригласить'
             %td.right-offset &nbsp;
+  %tr
+    %td{colspan: 3} &nbsp;
+  %tr
+    %td{colspan: 3}
+      .btn-step= link_to 'Далее', tender_tender_items_path(tender_id: @tender.id)
+      .btn-step= link_to 'Назад', edit_tender_path(id:@tender)

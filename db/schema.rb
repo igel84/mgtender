@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120723204821) do
+ActiveRecord::Schema.define(:version => 20120726194219) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -73,6 +73,15 @@ ActiveRecord::Schema.define(:version => 20120723204821) do
     t.integer  "attach_file_size"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+  end
+
+  create_table "tender_items", :force => true do |t|
+    t.integer  "tender_id"
+    t.string   "name"
+    t.decimal  "price",      :precision => 10, :scale => 2
+    t.float    "count",                                     :default => 1.0
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
   end
 
   create_table "tender_requests", :force => true do |t|

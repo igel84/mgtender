@@ -1,4 +1,5 @@
 InitialRelease::Application.routes.draw do
+  
   get "tenders/new"
 
   get "tenders/index"
@@ -13,6 +14,7 @@ InitialRelease::Application.routes.draw do
 
     get "profile" => "users#edit", as: 'profile'
     get "company" => "companies#edit", as: 'company'
+    get "self_tenders" => "tenders#self", as: 'self_tenders'
 
     resources :sessions
 
@@ -49,6 +51,7 @@ InitialRelease::Application.routes.draw do
       resources :tender_requests do
         get 'users_interest', on: :collection
       end
+      resources :tender_items
     end
 
     resources :tender_steps

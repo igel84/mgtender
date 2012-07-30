@@ -24,6 +24,9 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :phone, :fname, :nname, :category_ids
   validates :password, presence: { on: :create }, confirmation: true
   
+  def to_s
+    self.fname
+  end
   #def category_ids=(ids)
   #  self.categories = []
   #  self.
