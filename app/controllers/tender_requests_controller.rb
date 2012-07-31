@@ -14,6 +14,7 @@ class TenderRequestsController < ApplicationController
     end  
 
     @tender.save
+    #@tender.tender_requests.last.send_mail
     redirect_to tender_tender_requests_path(tender_id: @tender.id)
   end
 
