@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Tender < ActiveRecord::Base
   require 'net/smtp'
 
@@ -9,6 +10,7 @@ class Tender < ActiveRecord::Base
   has_many :tender_attachments
   has_many :tender_requests
   has_many :tender_items
+  has_many :tender_iterations
 
   scope :visibles, where(:visible => true)
     
@@ -23,14 +25,40 @@ class Tender < ActiveRecord::Base
 
   def start
     self.status = 1
+
+    if self.iteration_count > 1
+      self.tender_type = TenderType.convert_iteration(self.tender_type, 'true')      
+      self.tender_iterations << TenderIteration.new(start_at: Time.now)
+    end
     self.start_at = Time.now
     self.save
 
     self.tender_requests.each do |request|
-      email = request.user.nil? == true ? request.company_email : request.user.email
-      #url = 
-      UserMailer.send_request(email, self, nil)
+      email = (request.user.nil? == true ? request.company_email : request.user.email)
+      UserMailer.send_request(email, self)
     end
+  end
+
+  def next_step
+    #если итерационный завершаем итерацию
+    if self.tender_type.is_iteration == true
+      last_iteration = self.tender_iterations.last
+      last_iteration.end_at = Time.now
+      last_iteration.is_ended = true
+      last_iteration.save
+      #если должна быть еще итерация, создаем новую
+      if self.iteration_count > self.tender_iterations.size
+        self.tender_iterations << TenderIteration.new(start_at: Time.now)
+      #иначе завершаем тендер
+      else
+        self.status = 2
+        self.end_at = Time.now
+      end      
+    else
+      self.status = 2
+      self.end_at = Time.now
+    end
+    self.save
   end
 
 end

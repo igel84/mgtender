@@ -7,7 +7,7 @@
     %span.start Открыт с:
     %span.start-date.white= @tender.start_at != nil ? @tender.start_at.strftime("%d.%m.%Y") : ''
     %span.end Активен до:
-    %span.end-date.white= #
+    %span.end-date.white= @tender.end_at != nil ? @tender.end_at.strftime("%d.%m.%Y") : ''
     %span.info.white Статус:
     = build_span_tender_status(@tender)          
     = build_span_tender_name(@tender)          
@@ -53,3 +53,8 @@
           %span.count= number_to_currency(item.count, precision:1, delimiter:' ', separator:",", format:"%n")
           %span.price= number_to_currency(item.price, precision:2, delimiter:' ', separator:",", unit:'руб.', format:"%n %u")
           %span.summ= number_to_currency(item.price * item.count, precision:2, delimiter:' ', separator:",", unit:'руб.', format:"%n %u")
+  %table
+    %tr
+      %td
+        - if @tender.status == 1 && @tender.tender_type.is_iteration == true && @tender.iteration_count >= @tender.tender_iterations.size
+          .btn-one.offset= link_to 'Закончить итерацию', next_step_tender_path(@tender)

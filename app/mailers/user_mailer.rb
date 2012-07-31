@@ -28,8 +28,8 @@ class UserMailer < ActionMailer::Base
        :subject => "Сброс пароля для входа на сайт www.mgtender.ru")
   end
 
-  def send_request(email, tender, secret)
-    @url = 'sdf' #"http://www.mgtender.ru/tenders/#{tender.id}"
+  def send_request(email, tender, secret = nil)
+    @url = "http://www.mgtender.ru/tenders/#{tender.id}"
     @secret = secret
 
     mail(to: email, subject: 'Вас приглашают участвовать в тендере')  

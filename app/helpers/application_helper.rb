@@ -16,6 +16,8 @@ module ApplicationHelper
         'Черновик'
       when 1
         'Активен'
+      when 2
+        'Завершен'
     end    
     html_classes = []
     html_classes << 'blue'

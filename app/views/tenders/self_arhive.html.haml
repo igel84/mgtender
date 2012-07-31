@@ -4,10 +4,10 @@
 = render partial: 'layouts/navtabs'
 .tab-content
   .tab-content-menu
-    = link_to(image_tag('last_tender_btn.png', style: 'margin-top:5px;'), my_tenders_homes_path)
-    = link_to(image_tag('current_tender_btn.png', style: 'margin-top:5px;'), my_tenders_homes_path, class: 'active')
+    = link_to(image_tag('last_tender_btn_active.png', style: 'margin-top:5px;'), self_arhive_tenders_path, class: 'active')
+    = link_to(image_tag('current_tender_btn.png', style: 'margin-top:5px;'), self_active_tenders_path)
   .tab-content-panel
-    = link_to 'Черновики / Активные', '#', id: 'actual-tender'    
+    = link_to 'Завершенные', '#', id: 'actual-tender'    
     - @tenders.each do |tender|
       .my_tenders
         %p.title

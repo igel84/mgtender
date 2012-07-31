@@ -50,16 +50,26 @@ class TendersController < ApplicationController
   end  
 
   def index
+    @tenders = Tender.where(status: 1, closed: false)
   end
 
-  def self
-    @tenders = current_user.tenders
+  def self_active
+    @tenders = Tender.where(user_id: current_user.id, status: 0..1)
+  end
+
+  def self_arhive
+    @tenders = Tender.where(user_id: current_user.id, status: 2..3)
   end
 
   def start
     @tender.start
     flash[:message] = 'Тендер активен, письма с приглашениями в участии разосланы пользователям'
     redirect_to status_tender_path(@tender)
+  end
+
+  def next_step
+    @tender.next_step
+    redirect_to @tender
   end
 
   private

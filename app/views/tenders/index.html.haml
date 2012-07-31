@@ -9,94 +9,28 @@
 %h1
   Вы находитесь:
   %span Текущие тендеры
-.tenders
-  %p.title
-    %span.type-sale Продажа
-    %span.start Открыт с:
-    %span.start-date.white 21.06.2012
-    %span.end Активен до:
-    %span.end-date.white 14.09.2013
-    %span.info.white Этап 5
-    %span= link_to 'Посмотреть победителей предыдущих этапов', '#'
-    %span.type-tn.blue-bg Тендер
-  %p.main-info
-    %span.name.bold Название:
-    %span.name-content.bold= link_to 'Микрохирургия глаза в Воронеже. 10.10.2011. Здоровье', tender_homes_path
-  %p.info
-    %span.important.bold Минимальная стоимость:
-    %span.important-content.bold 158 000 руб.
-  %p.info
-    %span.person.bold Тендер проводит:
-    %span.person-content.bold Рыжков Николай
-  .assign
-    = link_to 'Участвовать', '#'   
-    .parts  
-      %span Заявок подано:
-      %span.count 45     
-.tenders
-  %p.title
-    %span.type-sale Покупка
-    %span.start Открыт с:
-    %span.start-date.white 21.06.2012
-    %span.end Активен до:
-    %span.end-date.white 14.09.2013
-    %span.info.white 
-    %span.type-tn.blue-bg Тендер
-  %p.main-info
-    %span.name.bold Название:
-    %span.name-content.bold= link_to 'Микрохирургия глаза в Воронеже. 10.10.2011. Здоровье', tender_homes_path
-  %p.info
-    %span.important.bold Минимальная стоимость:
-    %span.important-content.bold 158 000 руб.
-  %p.info
-    %span.person.bold Тендер проводит:
-    %span.person-content.bold Рыжков Николай
-  .assign
-    = link_to 'Участвовать', '#'   
-    .parts  
-      %span Заявок подано:
-      %span.count 45     
-.tenders
-  %p.title
-    %span.type-sale Покупка
-    %span.start Открыт с:
-    %span.start-date.white 21.06.2012
-    %span.end Активен до:
-    %span.end-date.white 14.09.2013
-    %span.info.white Аукцион с фиксированным шагом = 100 руб.
-    %span.type-tn.green-bg Аукцион
-  %p.main-info
-    %span.name.bold Название:
-    %span.name-content.bold= link_to 'Микрохирургия глаза в Воронеже. 10.10.2011. Здоровье', tender_homes_path
-  %p.info
-    %span.important.bold Минимальная стоимость:
-    %span.important-content.bold 158 000 руб.
-  %p.info
-    %span.person.bold Тендер проводит:
-    %span.person-content.bold Рыжков Николай
-  .assign
-    = link_to 'Участвовать', '#'   
-    .parts  
-      %span Заявок подано:
-      %span.count 45     
-.tenders
-  %p.title
-    %span.type-sale Опрос
-    %span.start Открыт с:
-    %span.start-date.white 21.06.2012
-    %span.end Активен до:
-    %span.end-date.white 14.09.2013
-    %span.info.white
-    %span.type-tn.red-bg Предварительного сбора предложений
-  %p.main-info
-    %span.name.bold Название:
-    %span.name-content.bold= link_to 'Микрохирургия глаза в Воронеже. 10.10.2011. Здоровье', tender_homes_path
-  %p.info
-    %span.person.bold Тендер проводит:
-    %span.person-content.bold Рыжков Николай
-  %p.info
-  .assign
-    = link_to 'Участвовать', '#'   
-    .parts  
-      %span Заявок подано:
-      %span.count 45     
+- @tenders.each do |tender|
+  .tenders
+    %p.title
+      %span.type-sale= tender.tender_type.is_selling == true ? 'Продажа' : 'Покупка'
+      %span.start Открыт с:
+      %span.start-date.white= tender.start_at != nil ? tender.start_at.strftime("%d.%m.%Y") : ''
+      %span.end Активен до:
+      %span.end-date.white= tender.end_at != nil ? tender.end_at.strftime("%d.%m.%Y") : ''
+      %span.info.white= tender.tender_type.is_iteration == true ? "Этап: #{tender.tender_iterations.size}" : ''
+      %span &nbsp;
+      = build_span_tender_name(tender)
+    %p.main-info
+      %span.name.bold Название:
+      %span.name-content.bold= link_to tender.name, tender
+    %p.info
+      %span.important.bold= tender.tender_type.is_selling == true ? 'Минимальная стоимость' : 'Максимальная стоимость'
+      %span.important-content.bold= number_to_currency(tender.summ, :precision=>2, :delimiter=>' ', :separator => ",", :unit=>'руб.', :format=>"%n %u") || '-'
+    %p.info
+      %span.person.bold Тендер проводит:
+      %span.person-content.bold= tender.user
+    .assign
+      = link_to 'Участвовать', '#'   
+      .parts  
+        %span Заявок подано:
+        %span.count 0

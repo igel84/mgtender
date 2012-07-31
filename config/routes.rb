@@ -14,7 +14,9 @@ InitialRelease::Application.routes.draw do
 
     get "profile" => "users#edit", as: 'profile'
     get "company" => "companies#edit", as: 'company'
-    get "self_tenders" => "tenders#self", as: 'self_tenders'
+    
+    get "self_active_tenders" => "tenders#self_active", as: 'self_active_tenders'
+    get "self_arhive_tenders" => "tenders#self_arhive", as: 'self_arhive_tenders'
 
     resources :sessions
 
@@ -49,6 +51,7 @@ InitialRelease::Application.routes.draw do
     resources :tenders do
       get 'status', on: :member
       post 'start', on: :member
+      get 'next_step', on: :member
       resources :tender_attachments
       resources :tender_requests do
         get 'users_interest', on: :collection

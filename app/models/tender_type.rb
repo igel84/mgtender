@@ -5,7 +5,7 @@ class TenderType < ActiveRecord::Base
   has_many :tenders
 
   def self.convert_iteration(type, val)
-    TenderType.where(name:'auction').where(is_selling:type.is_selling).where(is_iteration:(val == 'true')).first
+    TenderType.where(name: type.name).where(is_selling:type.is_selling).where(is_iteration:(val == 'true')).first
   end
 
   def near?(type)

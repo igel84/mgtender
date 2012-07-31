@@ -1,0 +1,28 @@
+%h1
+  Вы находитесь:
+  %span Личный кабинет
+= render partial: 'layouts/navtabs'
+.tab-content
+  .tab-content-menu
+    = link_to(image_tag('last_tender_btn.png', style: 'margin-top:5px;'), self_arhive_tenders_path)
+    = link_to(image_tag('current_tender_btn_active.png', style: 'margin-top:5px;'), self_active_tenders_path, class: 'active')
+  .tab-content-panel
+    = link_to 'Черновики / Активные', '#', id: 'actual-tender'    
+    - @tenders.each do |tender|
+      .my_tenders
+        %p.title
+          %span.start Открыт с:
+          %span.start-date.white.bold= tender.start_at != nil ? tender.start_at.strftime("%d.%m.%Y") : ''
+          %span.end Активен до:
+          %span.end-date.white.bold= tender.end_at != nil ? tender.end_at.strftime("%d.%m.%Y") : ''
+          %span.info.white Заявок подано:
+          %span.info-content.white.bold= # 45
+          = build_span_tender_name(tender)          
+        %p.main-info
+          %span.name.bold Название:
+          %span.name-content.bold= link_to tender.name || '', tender_path(tender)
+        %p.info
+          %span.important.bold= tender.tender_type.is_selling == true ? 'Минимальная стоимость' : 'Максимальная стоимость'
+          %span.important-content.bold= number_to_currency(tender.summ, :precision=>2, :delimiter=>' ', :separator => ",", :unit=>'руб.', :format=>"%n %u")
+        .edit
+          = link_to 'Редактировать', edit_tender_path(tender)
