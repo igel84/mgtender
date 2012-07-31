@@ -116,6 +116,27 @@ table.tender
 td
   .check-box
     width: 10px
+  .btn-one a, .btn-one input
+    font-size: 14px !important
+    display: block !important
+    margin: 30px auto 40px !important
+    float: none !important
+    width: 180px !important
+    height: 30px !important
+    border: solid #6488a2 1px !important
+    border-bottom: solid #464e55 1px !important
+    background: #6488a2
+    @include background-image(linear-gradient(#d2dbe0, #6488a2))
+    @include box-shadow(#464e55 0 1px 1px)
+    @include border-radius(7px)
+    text-align: center !important
+    vertical-align: middle !important
+    line-height: 30px !important
+    cursor: pointer !important
+    color: #000 !important
+    &:hover
+      color: #fff !important
+      text-decoration: none
   &.text-label
     width: 150px !important
     font-size: 13px !important
@@ -243,3 +264,14 @@ ul.tender_items
       text-align: center
       width: 145px
       display: inline-block
+ul.tender-error
+  margin: 20px
+  li
+    padding: 5px
+    background: none !important
+    border: none !important
+    color: #fffdd2
+    padding: 5px 21px 5px 1px
+    list-style: disc
+    margin-left: 40px
+    font-size: 14px 

@@ -25,18 +25,22 @@
     %tr
       %td.text-label Дата запуска
       %td
-        .text-field= form.text_field :start_at
+        .text-field= form.text_field :start_at, value: "#{@tender.start_at.nil? == true ? '' : @tender.start_at.strftime("%d.%m.%Y")}", readonly: @tender.status != 0
       %td.text-info << Если указать дату, тендер стартанет автоматически в эту дату
-    /
-      %tr  
-        %td.text-label Дата окончания
-        %td
-          .text-field= form.text_field :end_at
+    %tr  
+      %td.text-label Дата окончания
+      %td
+        .text-field= form.text_field :end_at, value: "#{@tender.end_at.nil? == true ? '' : @tender.end_at.strftime("%d.%m.%Y")}"
+      /
         %td.text-info Если указать дату, тендер остановится автоматически в эту дату
     %tr
       %td.text-label Категория    
       %td
-        .text-field= form.collection_select :category_id, Category.all, :id, :name, {}, html_options = {class: 'chzn-select', :'data-placeholder' => 'выберите категорию', size: 3, style: 'width:244px;height: 19px;'}
+        .text-field
+          - if @tender.status != 0
+            %input{type: 'text', value: @tender.category.name, readonly: true}
+          - else
+            = form.collection_select :category_id, Category.all, :id, :name, {}, html_options = {class: 'chzn-select', :'data-placeholder' => 'выберите категорию', size: 3, style: 'width:244px;height: 19px;'}
       %td.text-info &nbsp;
     - if @tender.tender_type.is_name?(:auction) && @tender.tender_type.is_iteration == true 
       %tr  
@@ -47,18 +51,18 @@
       %tr  
         %td.text-label Количество итераций
         %td
-          .text-field= form.text_field :iteration_count
+          .text-field= form.text_field :iteration_count, readonly: @tender.status != 0
         %td.text-info  << Тендер будет повторяться указанное количество раз
     - elsif !@tender.tender_type.is_name?(:auction)
       %tr  
         %td.text-label Количество итераций
         %td
-          .text-field= form.text_field :iteration_count
+          .text-field= form.text_field :iteration_count, readonly: @tender.status != 0
         %td.text-info << Тендер будет повторяться указанное количество раз
     %tr
       %td.text-label Закрытый
       %td
-        .check-box= form.check_box :closed
+        .check-box= form.check_box :closed, disabled: @tender.status != 0
       %td.text-info << Просматривать и участвовать в тендере можно лишь по приглашению
     %tr 
       %td.text-label
@@ -67,7 +71,7 @@
         = ' стоимость' if @tender.tender_type.is_name? :auction
         = ' стоимость' if @tender.tender_type.is_name? :review
       %td
-        .text-field= form.text_field :summ
+        .text-field= form.text_field :summ, readonly: @tender.status != 0
       %td.text-info &nbsp
     %tr  
       %td.text-label Комментарии

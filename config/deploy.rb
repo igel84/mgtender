@@ -93,7 +93,7 @@ before "deploy:assets:precompile" do
 end
 
 #set :unicorn_start_cmd, "(cd #{deploy_to}/current; rvm use #{rvm_ruby_string} do bundle exec unicorn_rails -Dc #{unicorn_conf})"
-set :unicorn_start_cmd, "(cd #{deploy_to}/current; rvm use #{rvm_ruby_string};bundle install --path ../../shared/gems;bundle exec unicorn_rails -Dc #{unicorn_conf})"
+set :unicorn_start_cmd, "(cd #{deploy_to}/current; rvm use #{rvm_ruby_string};bundle install --path ../../shared/gems;bundle exec rake db:migrate RAILS_ENV=production;bundle exec unicorn_rails -Dc #{unicorn_conf})"
 
 
 # - for unicorn - #

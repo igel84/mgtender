@@ -1,0 +1,25 @@
+%h1
+  Вы находитесь:
+  %span Объявить тендер
+-# if flash
+-#  %h1.notice= @message
+%table
+  %tr
+    %td
+      .btn-one
+        -if @tender.has_error? || @tender.status > 0         
+          = link_to 'Запуск тендера', '#'
+        - else
+          = link_to 'Запуск тендера', start_tender_path(@tender), method: 'post'
+= content_tag(:h1, 'Для запуска тендера необходимо заполнить следующие поля:') if @tender.has_error?
+%ul.tender-error
+  = content_tag(:li, 'Категория') if @tender.category.nil?
+  = content_tag(:li, 'Дата окончания') if @tender.end_at.nil?
+  = content_tag(:li, 'Название') if @tender.name.blank?
+  = content_tag(:li, 'Комментарии') if @tender.note.blank?
+  = content_tag(:li, "#{@tender.tender_type.is_selling == true ? 'Минимальная' : 'Максимальная'} стоимость") if @tender.summ.nil?
+%table
+  %tr
+    %td{colspan: 3}
+      .btn-step= link_to 'Завершить', self_tenders_path
+      .btn-step= link_to 'Назад', tender_tender_items_path(tender_id: @tender.id)

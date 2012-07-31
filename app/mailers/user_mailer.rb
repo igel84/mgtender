@@ -23,8 +23,16 @@ class UserMailer < ActionMailer::Base
 
   def reset_password_email(user)
     @user = user
-    @url  = "http://http://www.mgtender.ru/password_resets/#{user.reset_password_token}/edit"
+    @url  = "http://www.mgtender.ru/password_resets/#{user.reset_password_token}/edit"
     mail(:to => user.email,
        :subject => "Сброс пароля для входа на сайт www.mgtender.ru")
   end
+
+  def send_request(email, tender, secret)
+    @url = "http://www.mgtender.ru/tenders/#{tender.id}"
+    @secret = secret
+
+    mail(to: email, subject: 'Вас приглашают участвовать в тендере')  
+  end
+
 end

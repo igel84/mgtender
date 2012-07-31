@@ -56,6 +56,12 @@ class TendersController < ApplicationController
     @tenders = current_user.tenders
   end
 
+  def start
+    @tender.start
+    flash[:message] = 'Тендер активен, письма с приглашениями в участии разосланы пользователям'
+    redirect_to status_tender_path(@tender)
+  end
+
   private
     def init_collections
       @tender_types = TenderType.all

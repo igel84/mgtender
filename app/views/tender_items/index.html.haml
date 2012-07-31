@@ -40,5 +40,6 @@
     %td{colspan: 3} &nbsp;
   %tr
     %td{colspan: 3}
-      .btn-step= link_to 'Завершить', self_tenders_path
+      -#.btn-step= link_to 'Завершить', self_tenders_path
+      .btn-step= link_to 'Далее', status_tender_path(@tender)
       .btn-step= link_to 'Назад', tender_tender_requests_path(tender_id: @tender.id)

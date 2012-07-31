@@ -47,6 +47,8 @@ InitialRelease::Application.routes.draw do
     end
 
     resources :tenders do
+      get 'status', on: :member
+      post 'start', on: :member
       resources :tender_attachments
       resources :tender_requests do
         get 'users_interest', on: :collection
