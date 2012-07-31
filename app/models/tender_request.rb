@@ -10,7 +10,7 @@ class TenderRequest < ActiveRecord::Base
     def send_mail
       if self.tender.status > 0
         email = (self.user.nil? == true ? self.company_email : self.user.email)
-        UserMailer.send_request(email, self.tender)
+        UserMailer.send_request(email, self.tender).deliver
       end
     end
 end

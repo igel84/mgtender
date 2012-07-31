@@ -35,7 +35,7 @@ class Tender < ActiveRecord::Base
 
     self.tender_requests.each do |request|
       email = (request.user.nil? == true ? request.company_email : request.user.email)
-      UserMailer.send_request(email, self)
+      UserMailer.send_request(email, self).deliver
     end
   end
 
