@@ -29,7 +29,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def send_request(email, tender, secret)
-    @url = "http://www.mgtender.ru/tenders/#{tender.id}"
+    @url = 'sdf' #"http://www.mgtender.ru/tenders/#{tender.id}"
     @secret = secret
 
     mail(to: email, subject: 'Вас приглашают участвовать в тендере')  
