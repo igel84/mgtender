@@ -25,6 +25,6 @@ class Company < ActiveRecord::Base
     #users_return << User.first
     users_return += self.users
     users_return << self.master if self.master
-    return users_return
+    return users_return.uniq
   end
 end
