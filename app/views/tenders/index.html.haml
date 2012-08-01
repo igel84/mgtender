@@ -36,4 +36,4 @@
         = link_to 'Участвовать', new_tender_propose_path(tender) 
       .parts  
         %span Заявок подано:
-        %span.count 0
+        %span.count= tender.proposes.size
