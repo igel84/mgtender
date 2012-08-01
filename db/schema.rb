@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120731195401) do
+ActiveRecord::Schema.define(:version => 20120801014346) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -179,5 +179,12 @@ ActiveRecord::Schema.define(:version => 20120731195401) do
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token"
+
+  create_table "winners", :id => false, :force => true do |t|
+    t.integer  "tender_id"
+    t.integer  "propose_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

@@ -6,6 +6,7 @@ class Propose < ActiveRecord::Base
   belongs_to :tender
 
   has_many :propose_items
+  has_one :winner
 
   #scope :order_by_summ, joins(:propose_items).select('user_id, sum(propose_items.price) as total_prize').order('total_prize desc')
 

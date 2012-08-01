@@ -17,9 +17,9 @@ class ProposesController < ApplicationController
     @propose.user_id = current_user.id
     
     if params[:propose_item_id]
-      if params[:propose_item_id].split(',').size > 0
-        params[:propose_item_id].split(',').each_with_index do |item_id, index|
-          @propose.propose_items << ProposeItem.new(tender_item_id: item_id, price: params[:propose_item_price].split(',')[index])
+      if params[:propose_item_id].size > 0
+        params[:propose_item_id].each_with_index do |item_id, index|
+          @propose.propose_items << ProposeItem.new(tender_item_id: item_id, price: params[:propose_item_price][index])
         end
       else
         @propose.propose_items << ProposeItem.new(tender_item_id: params[:propose_item_id], price: params[:propose_item_price].to_d)
@@ -42,10 +42,10 @@ class ProposesController < ApplicationController
     #@propose.user_id = current_user.id
     
     if params[:propose_item_id]
-      if params[:propose_item_id].split(',').size > 0
-        params[:propose_item_id].split(',').each_with_index do |item_id, index|
+      if params[:propose_item_id].size > 0
+        params[:propose_item_id].each_with_index do |item_id, index|
           item = ProposeItem.where(tender_item_id: item_id, propose_id: @propose.id).first
-          item.price = params[:propose_item_price].split(',')[index]
+          item.price = params[:propose_item_price][index]
           item.save
         end
       else
@@ -72,15 +72,9 @@ class ProposesController < ApplicationController
     @tenders = current_user.request_tenders(2)
   end
 
-  def start
-    @tender.start
-    flash[:message] = 'Тендер активен, письма с приглашениями в участии разосланы пользователям'
-    redirect_to status_tender_path(@tender)
-  end
-
-  def next_step
-    @tender.next_step
-    redirect_to @tender
+  def set_winner
+    #@tender.next_step
+    redirect_to proposes_path(@tender)
   end
 
   private

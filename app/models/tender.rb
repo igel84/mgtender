@@ -12,6 +12,7 @@ class Tender < ActiveRecord::Base
   has_many :tender_items
   has_many :tender_iterations
   has_many :proposes
+  has_one :winner
 
   scope :visibles, where(:visible => true)
     

@@ -61,7 +61,9 @@ InitialRelease::Application.routes.draw do
         get 'accept', on: :member
       end
       resources :tender_items
-      resources :proposes
+      resources :proposes do
+        get 'set_winner', on: :member
+      end
     end
 
     resources :tender_steps

@@ -10,3 +10,4 @@
       %li
         %span.name= propose.user
         %span.summ= number_to_currency(propose.summ, precision:2, delimiter:' ', separator:",", unit:'руб.', format:"%n %u")
+        =# link_to 'победитель', set_winner_tender_tender_propose_path(@tender)

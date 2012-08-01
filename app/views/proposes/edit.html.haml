@@ -47,10 +47,10 @@
             %li.summ.input
               Введите вашу цену:
               - if @tender.tender_type.is_name?(:auction) == true && @tender.tender_type.is_iteration == true
-                = text_field_tag :propose_item_price, number_to_currency(item.price, precision:2, delimiter:' ', separator:",", unit:'руб.', format:"%n %u"), readonly: true              
+                = text_field_tag 'propose_item_price[]', number_to_currency(item.price, precision:2, delimiter:' ', separator:",", unit:'руб.', format:"%n %u"), readonly: true              
               - else
-                = text_field_tag :propose_item_price, item.price
-              = hidden_field_tag :propose_item_id, item.tender_item_id
+                = text_field_tag 'propose_item_price[]', item.price
+              = hidden_field_tag 'propose_item_id[]', item.tender_item_id
     %tr
       %td{colspan: 3} &nbsp;
     %tr
