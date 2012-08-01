@@ -1,0 +1,12 @@
+%h1
+  Вы находитесь:
+  %span Предложения
+#tender
+  %ul.tender_items
+    %li
+      %span.name.bold пользователь
+      %span.summ.bold предложенная сумма
+    - @proposes.each do |propose|
+      %li
+        %span.name= propose.user
+        %span.summ= number_to_currency(propose.summ, precision:2, delimiter:' ', separator:",", unit:'руб.', format:"%n %u")

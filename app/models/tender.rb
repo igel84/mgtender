@@ -42,7 +42,7 @@ class Tender < ActiveRecord::Base
 
   def next_step
     #если итерационный завершаем итерацию
-    if self.tender_type.is_iteration == true
+    if self.tender_type.is_iteration == true && self.tender_type.is_name?(:auction) == false
       last_iteration = self.tender_iterations.last
       last_iteration.end_at = Time.now
       last_iteration.is_ended = true
@@ -75,7 +75,11 @@ class Tender < ActiveRecord::Base
   end
 
   def send_request(current_user)
-    TenderRequest.create(tender_id: self.id, user_id: current_user.id, accepted_p: true)
+    TenderRequest.create(tender_id: self.id, user_id: current_user.id, accepted_p: true, accepted_t: false)
+  end
+
+  def actual_proposes
+    Propose.where('tender_id=?', self.id)
   end
 
 end

@@ -37,6 +37,8 @@
           - if tender_request.user
             %li
               = tender_request.user.fname
+              - if tender_request.accepted_t == false
+                = link_to '[ разрешить ]', accept_tender_tender_request_path(@tender,tender_request)
               = link_to '[ удалить ]', [@tender,tender_request], method: 'delete'
           - else
             %li

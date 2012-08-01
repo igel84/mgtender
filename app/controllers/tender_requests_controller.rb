@@ -29,6 +29,13 @@ class TenderRequestsController < ApplicationController
     render 'index'
   end
 
+  def accept
+    @tender_request = TenderRequest.find(params[:id])
+    @tender_request.accepted_t = true
+    @tender_request.save
+    redirect_to tender_tender_requests_path(tender_id: @tender.id)
+  end
+
   def destroy
     TenderRequest.find(params[:id]).destroy
     redirect_to tender_tender_requests_path(tender_id: @tender.id)

@@ -34,7 +34,10 @@
       Тендер проводит:
       %span.blue.underline= @tender.user
     .assign
-      = link_to 'Участвовать', new_tender_propose_path(@tender)  
+      - if @tender.user == current_user
+        = link_to 'Предложения', tender_proposes_path(@tender)  
+      - else
+        = link_to 'Участвовать', new_tender_propose_path(@tender)  
       .parts  
         %span Заявок подано:
         %span.count= @tender.proposes.size

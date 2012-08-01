@@ -58,6 +58,7 @@ InitialRelease::Application.routes.draw do
       resources :tender_attachments
       resources :tender_requests do
         get 'users_interest', on: :collection
+        get 'accept', on: :member
       end
       resources :tender_items
       resources :proposes

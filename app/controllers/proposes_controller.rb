@@ -3,7 +3,7 @@ class ProposesController < ApplicationController
   before_filter :current_tender, except: [:self_active, :self_arhive]
 
   def new
-    if @tender.can_propose?(current_user)
+    unless @tender.can_propose?(current_user)
       @tender.send_request(current_user)
       flash[:message] = 'Заявка на участие в тендере отправлена'
       redirect_to @tender
@@ -60,7 +60,7 @@ class ProposesController < ApplicationController
   end  
 
   def index
-    @tenders = Tender.where(status: 1, closed: false)
+    @proposes = @tender.actual_proposes #Propose.order_by_summ
   end
 
   def self_active
@@ -69,7 +69,7 @@ class ProposesController < ApplicationController
   end
 
   def self_arhive
-    @tenders = current_user.request_tenders(3)
+    @tenders = current_user.request_tenders(2)
   end
 
   def start

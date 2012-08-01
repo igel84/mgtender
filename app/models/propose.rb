@@ -7,4 +7,14 @@ class Propose < ActiveRecord::Base
 
   has_many :propose_items
 
+  #scope :order_by_summ, joins(:propose_items).select('user_id, sum(propose_items.price) as total_prize').order('total_prize desc')
+
+  def summ
+    result = 0.0
+    self.propose_items.each do |item|
+      result += item.price
+    end
+    return result
+  end
+
 end

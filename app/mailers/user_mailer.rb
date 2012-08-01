@@ -36,7 +36,7 @@ class UserMailer < ActionMailer::Base
   end
 
   def send_response(email, tender)
-    @url = "http://www.mgtender.ru/tenders/#{tender.id}"
+    @url = "http://www.mgtender.ru/tenders/#{tender.id}/tender_requests"
     mail(to: email, subject: 'Разрешение на участие в тендере')  
   end
 

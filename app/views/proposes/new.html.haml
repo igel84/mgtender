@@ -39,14 +39,17 @@
               %span.name= item.name
               %span.count= number_to_currency(item.count, precision:1, delimiter:' ', separator:",", format:"%n")
               %span.price= number_to_currency(item.price, precision:2, delimiter:' ', separator:",", unit:'руб.', format:"%n %u")
-              %span.summ= number_to_currency(item.price * item.count, precision:2, delimiter:' ', separator:",", unit:'руб.', format:"%n %u")
+              %span.summ= number_to_currency(item.summ, precision:2, delimiter:' ', separator:",", unit:'руб.', format:"%n %u")
       %td
         %ul.company.first
           %li.summ.bold &nbsp;
           - @tender.tender_items.each do |item|
             %li.summ.input
               Введите вашу цену:
-              = text_field_tag :propose_item_price
+              - if @tender.tender_type.is_name?(:auction) == true && @tender.tender_type.is_iteration == true
+                = text_field_tag :propose_item_price, number_to_currency(item.summ + (item.propose_items.size + 1) * @tender.step, precision:2, delimiter:' ', separator:",", unit:'руб.', format:"%n %u"), readonly: true
+              - else
+                = text_field_tag :propose_item_price
               = hidden_field_tag :propose_item_id, item.id
     %tr
       %td{colspan: 3} &nbsp;
