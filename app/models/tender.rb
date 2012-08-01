@@ -11,6 +11,7 @@ class Tender < ActiveRecord::Base
   has_many :tender_requests
   has_many :tender_items
   has_many :tender_iterations
+  has_many :proposes
 
   scope :visibles, where(:visible => true)
     
@@ -59,6 +60,22 @@ class Tender < ActiveRecord::Base
       self.end_at = Time.now
     end
     self.save
+  end
+
+  def has_user_proposes?(user)
+    self.last_propose(user) != nil
+  end
+
+  def last_propose(user)
+    Propose.where('user_id=? AND tender_id=?', user.id, self.id).last
+  end
+
+  def can_propose?(user)
+    TenderRequest.where('user_id=? AND tender_id=? AND accepted_t=?', user.id, self.id, true).first != nil
+  end
+
+  def send_request(current_user)
+    TenderRequest.create(tender_id: self.id, user_id: current_user.id, accepted_p: true)
   end
 
 end

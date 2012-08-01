@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  propose_id: 1
+  tender_item_id: 1
+  price: 9.99
+
+two:
+  propose_id: 1
+  tender_item_id: 1
+  price: 9.99

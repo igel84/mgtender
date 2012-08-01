@@ -1,0 +1,57 @@
+%h1
+  Вы находитесь:
+  %span Объявить тендер
+%p.form-info
+  = @tender.tender_type.is_selling == true ? 'Минимальная стоимость' : 'Максимальная стоимость'
+  = number_to_currency(@tender.summ, :precision=>2, :delimiter=>' ', :separator => ",", :unit=>'руб.', :format=>"%n %u") || '-'
+%h1 Пожалуйста, заполните поля
+= form_for [@tender, Propose.new], html: {multipart:true} do |form|
+  %table.form-edit
+    %tr  
+      %td.text-label Комментарии
+      %td{colspan:2}
+        .text-field= form.text_area :note
+    %tr  
+      %td.text-label Отсрочка (в днях)
+      %td{colspan:2}
+        .text-field= form.text_field :delay
+    %tr  
+      %td.text-label Кол-во платежей в рассрочке
+      %td{colspan:2}
+        .text-field= form.text_field :num_of_trans
+  %table.tender
+    %tr    
+      %th
+        .head Список товаров
+      %th.separate{rowspan: 2} &nbsp;
+      %th
+        .head Предложения к тендеру
+    %tr
+      %td
+        %ul.company.first
+          %li
+            %span.name.bold наименование
+            %span.count.bold кол-во
+            %span.price.bold цена
+            %span.summ.bold сумма
+          - @tender.tender_items.each do |item|
+            %li
+              %span.name= item.name
+              %span.count= number_to_currency(item.count, precision:1, delimiter:' ', separator:",", format:"%n")
+              %span.price= number_to_currency(item.price, precision:2, delimiter:' ', separator:",", unit:'руб.', format:"%n %u")
+              %span.summ= number_to_currency(item.price * item.count, precision:2, delimiter:' ', separator:",", unit:'руб.', format:"%n %u")
+      %td
+        %ul.company.first
+          %li.summ.bold &nbsp;
+          - @tender.tender_items.each do |item|
+            %li.summ.input
+              Введите вашу цену:
+              = text_field_tag :propose_item_price
+              = hidden_field_tag :propose_item_id, item.id
+    %tr
+      %td{colspan: 3} &nbsp;
+    %tr
+      %td{colspan: 3}
+        .btn-step= form.submit "Сохранить"
+        -#.btn-step= link_to 'Далее', status_tender_path(@tender)
+        -#.btn-step= link_to 'Назад', tender_tender_requests_path(tender_id: @tender.id)

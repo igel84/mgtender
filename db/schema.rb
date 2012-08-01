@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120731161016) do
+ActiveRecord::Schema.define(:version => 20120731195401) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -53,6 +53,25 @@ ActiveRecord::Schema.define(:version => 20120731161016) do
     t.boolean  "is_nds",     :default => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "propose_items", :force => true do |t|
+    t.integer  "propose_id"
+    t.integer  "tender_item_id"
+    t.decimal  "price",          :precision => 10, :scale => 2
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
+  end
+
+  create_table "proposes", :force => true do |t|
+    t.integer  "tender_id"
+    t.integer  "tender_iteration_id"
+    t.integer  "user_id"
+    t.text     "note"
+    t.integer  "delay",               :default => 0
+    t.integer  "num_of_trans"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   create_table "spheres", :force => true do |t|

@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   has_many :tenders
   has_many :tender_requests
+  has_many :proposes
   belongs_to :company #, :inverse_of => :users #, class_name: 'Company', foreign_key: "company_id"  
   #attr_accessible  #:company, :company_attributes, 
   #attr_writer :company, :company_id
@@ -26,6 +27,10 @@ class User < ActiveRecord::Base
   
   def to_s
     self.fname
+  end
+
+  def request_tenders(status)
+    Tender.joins(:tender_requests).where('tender_requests.user_id=? AND status=?', self.id, status)
   end
   #def category_ids=(ids)
   #  self.categories = []

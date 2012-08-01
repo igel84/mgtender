@@ -16,7 +16,7 @@
           %span.end Активен до:
           %span.end-date.white.bold= tender.end_at != nil ? tender.end_at.strftime("%d.%m.%Y") : ''
           %span.info.white Заявок подано:
-          %span.info-content.white.bold= # 45
+          %span.info-content.white.bold= tender.proposes.size
           = build_span_tender_name(tender)          
         %p.main-info
           %span.name.bold Название:

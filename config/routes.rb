@@ -18,6 +18,9 @@ InitialRelease::Application.routes.draw do
     get "self_active_tenders" => "tenders#self_active", as: 'self_active_tenders'
     get "self_arhive_tenders" => "tenders#self_arhive", as: 'self_arhive_tenders'
 
+    get "self_active_proposes" => "proposes#self_active", as: 'self_active_proposes'
+    get "self_arhive_proposes" => "proposes#self_arhive", as: 'self_arhive_proposes'
+
     resources :sessions
 
     get "secret" => "home#secret", :as => "secret"
@@ -57,6 +60,7 @@ InitialRelease::Application.routes.draw do
         get 'users_interest', on: :collection
       end
       resources :tender_items
+      resources :proposes
     end
 
     resources :tender_steps
