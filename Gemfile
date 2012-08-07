@@ -14,10 +14,11 @@ gem 'friendly_id', "~> 4.0.1"
 gem 'awesome_nested_set'
 gem 'russian', '~> 0.6.0'
 gem 'json'
-#gem 'rails_admin'
+gem 'rails_admin'
 #gem 'devise'
 
 gem 'sorcery'
+gem 'cancan'
 gem 'wicked', git: 'git://github.com/schneems/wicked.git'		
 
 gem 'yaml_db', git: 'git://github.com/lostapathy/yaml_db.git'

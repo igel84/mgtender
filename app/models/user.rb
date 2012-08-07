@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   has_attached_file :photo, :styles => { :thumb=> ["100x100", :jpg] }
 
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :fname, :nname, :phone, :photo, :company_id
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :fname, :nname, :phone, :photo, :company_id, :admin, :activation_state
   
   #validates_presence_of :company_id, message: "необходимо выбрать компанию, либо зарегистрировать новую"  
   #validates_associated :company
@@ -27,6 +27,15 @@ class User < ActiveRecord::Base
   
   def to_s
     self.fname
+  end
+
+  def role? (str)
+    case str
+      when :admin
+        self.admin == true
+      else
+        false
+      end
   end
 
   def request_tenders(status)

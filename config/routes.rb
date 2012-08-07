@@ -1,4 +1,5 @@
 InitialRelease::Application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   
   get "tenders/new"
 

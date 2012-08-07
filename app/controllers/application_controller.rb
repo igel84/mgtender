@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
 
   private
   	def not_authenticated
-    	redirect_to login_url, :alert => "Сначала необходимо войти в систему!"
+    	redirect_to main_app.login_url, :alert => "Сначала необходимо войти в систему!"
   	end
 end
