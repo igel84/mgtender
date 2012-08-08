@@ -10,4 +10,7 @@
       %li
         %span.name= propose.user
         %span.summ= number_to_currency(propose.summ, precision:2, delimiter:' ', separator:",", unit:'руб.', format:"%n %u")
-        =# link_to 'победитель', set_winner_tender_tender_propose_path(@tender)
+        - if @tender.winner && @tender.winner.propose == propose
+          %span [победитель]
+        - elsif @tender.user == current_user && @tender.status < 3 && @tender.tender_type.is_name?(:review) == false
+          = link_to 'победитель', set_winner_tender_propose_path([@tender], propose)

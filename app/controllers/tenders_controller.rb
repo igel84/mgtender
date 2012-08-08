@@ -27,12 +27,19 @@ class TendersController < ApplicationController
     end
   end  
 
-  def edit
+  def edit   
   end
 
   def update
+    @tender.start_body
+        
     if params[:attach]
-      @tender.tender_attachments << TenderAttachment.new(attach:params[:attach])
+      attach = TenderAttachment.new(attach:params[:attach])
+      if attach.valid?          
+        @tender.tender_attachments << attach
+      else
+        flash.now[:attach_error] = attach.errors[:attach].join(", ") if attach.errors[:attach].any?
+      end
     end
     @tender.attributes = params[:tender]
     @tender.save
@@ -41,7 +48,14 @@ class TendersController < ApplicationController
       redirect_to tender_steps_path
     else
       if params[:next_button]
-        redirect_to tender_tender_requests_path(tender_id: @tender.id)
+        if @tender.valid?          
+          redirect_to tender_tender_requests_path(tender_id: @tender.id)
+        else
+          flash.now[:presence_error] = @tender.errors[:presence].join(", ") if @tender.errors[:presence].any?
+          flash.now[:date_error] = @tender.errors[:date].join(", ") if @tender.errors[:date].any?
+          flash.now[:summ_error] = @tender.errors[:summ].join(", ") if @tender.errors[:summ].any?
+          render :edit
+        end
       else
         render :edit
       end
@@ -69,7 +83,16 @@ class TendersController < ApplicationController
 
   def next_step
     @tender.next_step
-    redirect_to @tender
+    #if @tender.status == 2
+    #  redirect_to tender_proposes_path(@tender)
+    #else
+      redirect_to @tender
+    #end
+  end
+
+  def destroy
+    Tender.find(params[:id]).destroy
+    redirect_to tenders_path
   end
 
   private

@@ -9,6 +9,8 @@
 %h1
   Вы находитесь:
   %span Текущие тендеры
+- if @tenders == []
+  .content-text Тендеры отсутствуют
 - @tenders.each do |tender|
   .tenders
     %p.title

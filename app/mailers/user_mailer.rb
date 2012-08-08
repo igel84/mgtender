@@ -40,4 +40,11 @@ class UserMailer < ActionMailer::Base
     mail(to: email, subject: 'Разрешение на участие в тендере')  
   end
 
+  def send_finish_tender(email, tender, winner = nil)
+    #@url = "http://www.mgtender.ru/tenders/#{tender.id}/tender_requests"
+    @tender = tender
+    @winner = winner if winner
+    mail(to: email, subject: 'Тендер окончен')  
+  end
+
 end

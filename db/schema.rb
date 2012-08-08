@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120808111625) do
+ActiveRecord::Schema.define(:version => 20120808222313) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -61,6 +61,13 @@ ActiveRecord::Schema.define(:version => 20120808111625) do
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
     t.string   "title",        :default => ""
+  end
+
+  create_table "number_values", :force => true do |t|
+    t.string   "name"
+    t.integer  "count"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "owner_forms", :force => true do |t|
@@ -167,8 +174,9 @@ ActiveRecord::Schema.define(:version => 20120808111625) do
     t.decimal  "step",            :precision => 10, :scale => 2
     t.boolean  "closed",                                         :default => false
     t.decimal  "summ",            :precision => 10, :scale => 2
-    t.datetime "created_at",                                                        :null => false
-    t.datetime "updated_at",                                                        :null => false
+    t.datetime "created_at",                                                          :null => false
+    t.datetime "updated_at",                                                          :null => false
+    t.string   "wicked",                                         :default => "start"
   end
 
   create_table "users", :force => true do |t|

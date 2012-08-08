@@ -1,0 +1,4 @@
+Тендер <%= @tender.name %> окончен.
+<%- if @winner %>
+Победитель тендера: <%= @winner.propose.user %>
+<% end %>

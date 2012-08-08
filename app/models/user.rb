@@ -1,7 +1,5 @@
 #encoding: utf-8
 class User < ActiveRecord::Base
-  authenticates_with_sorcery!
-
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :fname, :nname, :phone, :photo, :company_id, :admin, :activation_state, :username
   
   has_many :tenders
@@ -62,6 +60,8 @@ class User < ActiveRecord::Base
   #  self.
   #  self.category_ids = ids.split(",")
   #end
+
+  authenticates_with_sorcery!
 
   protected
     def check_photo

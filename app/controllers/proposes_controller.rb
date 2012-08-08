@@ -15,6 +15,8 @@ class ProposesController < ApplicationController
     @propose.tender_id = @tender.id
     @propose.tender_iteration_id = @tender.tender_iterations.size
     @propose.user_id = current_user.id
+
+    #flash[:message] = TenderRequest.joins('user').where('user.company_id=? AND tender_id=?', current_user.company.id, @tender.id)
     
     if params[:propose_item_id]
       if params[:propose_item_id].size > 0
@@ -73,8 +75,13 @@ class ProposesController < ApplicationController
   end
 
   def set_winner
-    #@tender.next_step
-    redirect_to proposes_path(@tender)
+    @tender.next_step(Propose.find(params[:id]))   
+    
+    @tender.members.each do |user|
+      UserMailer.send_finish_tender(user.email, @tender).deliver 
+    end
+
+    redirect_to tender_proposes_path(@tender)
   end
 
   private

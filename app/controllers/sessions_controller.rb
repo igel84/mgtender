@@ -15,7 +15,13 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    logout
+    #logout
+    if logged_in?
+          before_logout!(current_user)
+          reset_session
+          @current_user = nil
+          after_logout! if current_user
+        end
     redirect_to root_url, :notice => "Вы успешно покинули систему"
   end
 end

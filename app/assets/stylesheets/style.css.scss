@@ -601,6 +601,9 @@ $color-link-hover: darken(#c8e8ff, 60%);
 			}
 		}
 		.tab-content-panel {
+			.content-text {
+				margin: 20px;
+			}
 			#save-btn {
 				margin-left: 290px;
 				margin-top: 100px;

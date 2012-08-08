@@ -8,6 +8,8 @@
     = link_to(image_tag('current_tender_btn.png', style: 'margin-top:5px;'), self_active_tenders_path)
   .tab-content-panel
     = link_to 'Завершенные', '#', id: 'actual-tender'    
+    - if @tenders == []
+      .content-text Тендеры отсутствуют
     - @tenders.each do |tender|
       .my_tenders
         %p.title

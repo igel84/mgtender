@@ -7,7 +7,9 @@
     = link_to(image_tag('last_tender_btn.png', style: 'margin-top:5px;'), self_arhive_tenders_path)
     = link_to(image_tag('current_tender_btn_active.png', style: 'margin-top:5px;'), self_active_tenders_path, class: 'active')
   .tab-content-panel
-    = link_to 'Черновики / Активные', '#', id: 'actual-tender'    
+    = link_to 'Черновики / Активные', '#', id: 'actual-tender'
+    - if @tenders == []
+      .content-text Тендеры отсутствуют    
     - @tenders.each do |tender|
       .my_tenders
         %p.title

@@ -18,6 +18,8 @@ module ApplicationHelper
         'Активен'
       when 2
         'Завершен'
+      when 3
+        'Завершен (итоги утверждены)'
     end    
     html_classes = []
     html_classes << 'blue'

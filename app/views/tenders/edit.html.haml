@@ -1,3 +1,5 @@
+= stylesheet_link_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/redmond/jquery-ui.css"
+= javascript_include_tag "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.1/jquery-ui.min.js"
 :javascript
   function getFile(){ document.getElementById("upfile").click(); }
 
@@ -5,6 +7,16 @@
 
     $('#upfile').change(function() { 
       $('.image-name').text($(this).val()); 
+    });
+
+    $('.date-select input').datepicker({
+      dateFormat: 'dd.mm.yy',
+      autoSize: true,
+      monthNames:['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'],
+      dayNamesMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
+      firstDay: 1
+      //,onSelect: function(dateText, inst) { $('body').calendSend(dateText); }
+      //,onChangeMonthYear: function(year, month, inst) { $('body').setCalend(month, year); }
     });
 
     //$('.scrollspy-text').scrollspy();
@@ -25,12 +37,12 @@
     %tr
       %td.text-label Дата запуска
       %td
-        .text-field= form.text_field :start_at, value: "#{@tender.start_at.nil? == true ? '' : @tender.start_at.strftime("%d.%m.%Y")}", readonly: @tender.status != 0
+        .text-field{class: "#{@tender.status == 0 ? 'date-select' : ''}"}= form.text_field :start_at, value: "#{@tender.start_at.nil? == true ? '' : @tender.start_at.strftime("%d.%m.%Y")}", readonly: @tender.status != 0
       %td.text-info << Если указать дату, тендер стартанет автоматически в эту дату
     %tr  
       %td.text-label Дата окончания
       %td
-        .text-field= form.text_field :end_at, value: "#{@tender.end_at.nil? == true ? '' : @tender.end_at.strftime("%d.%m.%Y")}"
+        .text-field.date-select= form.text_field :end_at, value: "#{@tender.end_at.nil? == true ? '' : @tender.end_at.strftime("%d.%m.%Y")}"
       /
         %td.text-info Если указать дату, тендер остановится автоматически в эту дату
     %tr
@@ -89,7 +101,7 @@
             .image-info
               Условия загрузки: Принимаются только форматы rar zip doc xls pdf
               %br/
-              Максимальный размер файла: 10 Мб.
+              = "Максимальный размер файла: #{NumberValue.find_by_name('attach').count} Мб."
             .hidden-value= file_field_tag 'attach', id: "upfile"
       %td.tender_attachments
         %ul

@@ -61,3 +61,7 @@
       %td
         - if @tender.user == current_user && @tender.status == 1 && @tender.tender_type.is_iteration == true && @tender.iteration_count >= @tender.tender_iterations.size
           .btn-one.offset= link_to 'Закончить итерацию', next_step_tender_path(@tender)
+        - elsif @tender.user == current_user && @tender.status == 1
+          .btn-one.offset= link_to 'Завершить тендер', next_step_tender_path(@tender)
+        - if @tender.user == current_user
+          .btn-one.offset= link_to('Удалить тендер', @tender, method: 'delete', confirm: 'Вы уверены?')
