@@ -1,5 +1,6 @@
 InitialRelease::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
+  mount Ckeditor::Engine => '/ckeditor'
   
   get "tenders/new"
 
@@ -69,7 +70,7 @@ InitialRelease::Application.routes.draw do
 
     resources :tender_steps
 
-    root :to => "homes#index"
+    root :to => "news#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

@@ -19,6 +19,7 @@ class CompaniesController < ApplicationController
     if @company.update_attributes(params[:company])
       redirect_to company_path, notice: "Изменения успешно сохранены!"
     else
+      flash.now[:file_error] = @company.errors[:logo].join(", ") if @company.errors[:logo].any?
       render :edit
     end
   end

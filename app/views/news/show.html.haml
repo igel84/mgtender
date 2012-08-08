@@ -1,0 +1,7 @@
+%h1
+  Вы находитесь:
+  %span
+    Новость от 
+    = @new.created_at.strftime("%d.%m.%Y г.")
+.content-text
+  != @new.html_content

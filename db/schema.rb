@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120807110016) do
+ActiveRecord::Schema.define(:version => 20120808111625) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -87,6 +87,13 @@ ActiveRecord::Schema.define(:version => 20120807110016) do
     t.integer  "num_of_trans"
     t.datetime "created_at",                         :null => false
     t.datetime "updated_at",                         :null => false
+  end
+
+  create_table "settings", :force => true do |t|
+    t.string   "name"
+    t.text     "body"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "spheres", :force => true do |t|
@@ -189,6 +196,7 @@ ActiveRecord::Schema.define(:version => 20120807110016) do
     t.string   "reset_password_token"
     t.datetime "reset_password_token_expires_at"
     t.datetime "reset_password_email_sent_at"
+    t.string   "username"
   end
 
   add_index "users", ["activation_token"], :name => "index_users_on_activation_token"

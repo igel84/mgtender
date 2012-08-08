@@ -1,1 +1,6 @@
-= '111'
+- @news.each do |n|
+  .news
+    %h2
+      = n.created_at.strftime("%d.%m.%Y")      
+    %p= truncate(sanitize(strip_tags(n.html_content)).gsub('&nbsp;', ' '), length: 200, ommission: '...')
+    = link_to 'подробнее', n

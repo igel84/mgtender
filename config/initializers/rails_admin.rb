@@ -22,7 +22,7 @@ RailsAdmin.config do |config|
   #config.audit_with :history, User
   config.main_app_name = ['a1', 'Admin']
   config.default_items_per_page = 50
-  config.excluded_models = [Ckeditor::Asset, Ckeditor::AttachmentFile, Ckeditor::Picture, GritterNotice]
+  config.excluded_models = [Ckeditor::Asset, Ckeditor::AttachmentFile, Ckeditor::Picture, GritterNotice, Category, Company, OwnerForm, Propose, ProposeItem, Sphere, Tender, TenderAttachment, TenderItem, TenderIteration, TenderRequest, TenderType, User, Winner]
   config.label_methods << [:id, :name, :title]
   config.model News do
     # Found associations:
@@ -50,4 +50,32 @@ RailsAdmin.config do |config|
     create do; end
     update do; end
   end
+
+  config.model Setting do
+    # Found associations:
+      configure :id, :integer       
+      configure :body, :text       
+      #configure :created_at, :datetime 
+      #configure :updated_at, :datetime 
+      #configure :special_offer, :boolean 
+      #configure :meta_title, :string 
+      #configure :help_info, :boolean   #   # Sections:
+    list do; end
+    export do; end
+    show do; end
+    edit do
+      #field :parent_id, :integer do
+      #  visible false
+      #end
+      #field :parent, :belongs_to_association
+      field :body, :text do
+        ckeditor do 
+          true
+        end
+      end
+    end
+    create do; end
+    update do; end
+  end
+
 end

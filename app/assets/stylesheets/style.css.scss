@@ -342,6 +342,8 @@ $color-link-hover: darken(#c8e8ff, 60%);
 			p { 
 				font-size: 14px; 
 				line-height: 20px;
+
+				strong {font-weight:bold;}
 			}
 		}
 		
@@ -638,6 +640,15 @@ $color-link-hover: darken(#c8e8ff, 60%);
 					vertical-align: top;
 					font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
 
+					&.gray-bg { 
+						background-color: #57616a !important; 
+						color: #fff !important;
+					}
+
+					&.bottom-space {
+						padding-bottom: 7px;
+					}
+
 					#del-photo-btn {
 						display: block;
 						font-size: 12px;
@@ -668,6 +679,10 @@ $color-link-hover: darken(#c8e8ff, 60%);
 				td.input-text { 
 					width: 200px;	
 					border-width: #fff;
+				}
+
+				td.info-text {
+					vertical-align: middle;
 				}
 				.chzn-container-multi .chzn-choices {
 					input {

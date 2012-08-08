@@ -24,8 +24,8 @@
         %tr
           %td.label-text Имя Отчество:
           %td.input-text= f.text_field :nname
-          %td.space-center{rowspan: 9} &nbsp;
-          %td.photo-text{rowspan: 9}
+          %td.space-center{rowspan: 8} &nbsp;
+          %td.photo-text{rowspan: 6}
             = image_tag(@user.photo? == true ? @user.photo(:thumb) : "user_photo_blank.png")
             %br/
             МОЙ АВАТАР
@@ -47,7 +47,7 @@
         %tr
           %td.label-text Телефон:
           %td.input-text= f.text_field :phone
-          %td{rowspan: 6, colspan: 2}= link_to 'Удалить аватар', photo_delete_user_path(@user), id: 'del-photo-btn'
+          %td{rowspan: 3, colspan: 2}= link_to 'Удалить аватар', photo_delete_user_path(@user), id: 'del-photo-btn'
         %tr
           %td.label-text Название компании:
           %td.input-text= text_field_tag 'company', @user.company.try(:name) || '', readonly: true         
@@ -55,10 +55,11 @@
           %td.label-text Интересы:
           %td.input-text= f.collection_select :category_ids, Category.all, :id, :name, {}, {multiple: true, class: 'chzn-select', :'data-placeholder' => 'выберите интересы', size: 3, style: 'width:202px;height: 21px;'}
         %tr
-          %td.label-text Введите пароль:
-          %td.input-text= f.password_field :password
+          %td.label-text.gray-bg Введите пароль:
+          %td.input-text.gray-bg= f.password_field :password
+          %td.info-text{rowspan: 2, colspan: 3} <<< Смена пароля
         %tr
-          %td.label-text Повторите пароль:
-          %td.input-text= f.password_field :password_confirmation
+          %td.label-text.gray-bg.bottom-space Повторите пароль:
+          %td.input-text.gray-bg.bottom-space= f.password_field :password_confirmation
         %tr
           %td.save-info{colspan:6}= f.submit 'Сохранить изменения'

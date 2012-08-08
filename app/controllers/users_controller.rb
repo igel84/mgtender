@@ -49,6 +49,8 @@ class UsersController < ApplicationController
       end
       redirect_to root_url, :notice => "Пользователь успешно зарегистрирован! Для активации учетной записи перейдите по ссылке в письме, отправленном на ваш email"        
     else
+      flash.now[:pass_error] = @user.errors[:password].join(", ") if @user.errors[:password].any?
+      flash.now[:file_error] = @user.errors[:photo].join(", ") if @user.errors[:photo].any?
       flash.now[:company_inn_error] = @company.errors[:inn].join(",") if @company.errors[:inn].any?
 
       @user.company_id = params[:user][:company_id] if params[:user][:company_id]
@@ -64,6 +66,9 @@ class UsersController < ApplicationController
     params[:user].delete :company if params[:user][:company]
     params[:user].delete :company_id if params[:user][:company_id]
 
+    #params[:user].delete :password if params[:user][:password].blank?
+    #params[:user].delete :password_confirmation if params[:user][:password_confirmation].blank?
+
     @user = User.find(params[:id])
     params[:user][:company_id] = @user.company_id
 
@@ -71,6 +76,8 @@ class UsersController < ApplicationController
       redirect_to profile_path, notice: "Изменения успешно сохранены!"
     else
       flash.now[:user_error] = 'Необходимо корректно заполнить все поля, необязательные поля: "аватар", "пароль и его подтврерждение"' unless @user.valid?
+      flash.now[:pass_error] = @user.errors[:password].join(", ") if @user.errors[:password].any?
+      flash.now[:file_error] = @user.errors[:photo].join(", ") if @user.errors[:photo].any?
       render :edit
     end
   end
