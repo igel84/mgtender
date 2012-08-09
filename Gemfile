@@ -16,6 +16,8 @@ gem 'russian', '~> 0.6.0'
 gem 'json'
 gem 'rails_admin'
 gem 'kaminari'
+gem 'roo'
+#gem 'spreadsheet'
 #gem 'devise'
 
 gem 'sorcery'

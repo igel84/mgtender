@@ -2,6 +2,7 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :fname, :nname, :phone, :photo, :company_id, :admin, :activation_state, :username
   
+  has_many :excels
   has_many :tenders
   has_many :tender_requests
   has_many :proposes

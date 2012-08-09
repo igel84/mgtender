@@ -1,3 +1,25 @@
+:css
+  table.form-edit.first tr td#uploaded-file { 
+    text-align: center;     
+    padding: 10px 0 35px;
+  }
+  table.form-edit.first tr td#uploaded-file a {
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  table.form-edit.first tr td#uploaded-file a:hover {
+    font-size: 16px;
+    text-decoration: none;
+  }
+:javascript
+  function getFile(){ document.getElementById("upfile").click(); }
+  $(document).ready(function() { 
+
+    $('#upfile').change(function() { 
+      $('.image-name').text($(this).val()); 
+    });
+  });
 %h1
   Вы находитесь:
   %span Объявить тендер
@@ -11,23 +33,36 @@
       .head Список товаров
   %tr
     %td
-      = form_for [@tender, TenderItem.new] do |form|    
+      = form_for [@tender, TenderItem.new], html: {multipart: true} do |form|    
         %table.form-edit.first
+          /
+            %tr
+              %td.text-label.small Название товара
+              %td
+                .text-field= form.text_field :name
+            %tr
+              %td.text-label Цена
+              %td
+                .text-field= form.text_field :price
+            %tr
+              %td.text-label Количество
+              %td
+                .text-field= form.text_field :count
           %tr
-            %td.text-label.small Название товара
-            %td
-              .text-field= form.text_field :name
+            %td#uploaded-file= link_to '- -  скачать файл для заполнения  - -', '/shablon.xls'
           %tr
-            %td.text-label Цена
-            %td
-              .text-field= form.text_field :price
-          %tr
-            %td.text-label Количество
-            %td
-              .text-field= form.text_field :count
-          %tr
-            %td.add_btn_only{colspan: 2}
-              .submit-btn= form.submit 'Добавить'
+            %td.image-cell
+              .image-input
+                .image-text Заполненный файл
+                .image-action
+                  .image-name
+                  .image-btn{onclick:"getFile()"} Обзор
+                  .image-btn= form.submit 'Добавить'
+                .hidden-value= file_field_tag 'excel[uploaded_file]', id: "upfile"
+          /
+            %tr
+              %td.add_btn_only{colspan: 2}
+                .submit-btn= form.submit 'Добавить'
       %td
         %ul.company.first
           - @tender.tender_items.each do |item|
