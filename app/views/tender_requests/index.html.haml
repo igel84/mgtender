@@ -22,7 +22,7 @@
               = link_to '[ добавить ]', tender_tender_requests_path(user_id: user.id), method: 'post'
       - else
         %ul.company
-          - Company.all.each do |company|
+          - @companies.each do |company|
             %li
               = company.name
               = link_to '[ добавить ]', tender_tender_requests_path(company_id: company.id), method: 'post'

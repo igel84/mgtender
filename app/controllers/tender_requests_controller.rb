@@ -4,10 +4,10 @@ class TenderRequestsController < ApplicationController
 
   def create
     if params[:user_id]
-      @tender.tender_requests << TenderRequest.new(user_id: params[:user_id], accepted_t: true)
+      @tender.tender_requests << TenderRequest.new(user_id: params[:user_id], accepted_t: true) unless @tender.tender_requests.include?(TenderRequest.find_by_user_id(params[:user_id]))
     elsif params[:company_id]
       Company.find(params[:company_id]).personal.each do |user|
-        @tender.tender_requests << TenderRequest.new(user_id: user.id, accepted_t: true)
+        @tender.tender_requests << TenderRequest.new(user_id: user.id, accepted_t: true) unless @tender.tender_requests.include?(TenderRequest.find_by_user_id(user.id))
       end
     elsif params[:tender_request]
       @tender.tender_requests << TenderRequest.new(company_name: params[:tender_request][:company_name], company_email: params[:tender_request][:company_email], accepted_t: true)
@@ -23,7 +23,7 @@ class TenderRequestsController < ApplicationController
       if @tender.category == nil
         @message = 'сначала необходимо выбрать категорию тендера!'
       else
-        @user_interest = Category.find(@tender.category.id).users_by_interest
+        @user_interest = Category.find(@tender.category.id).users_by_interest.delete_if {|user| user.id == current_user.id || user.company = current_user.company }
       end
     end
     render 'index'
@@ -43,6 +43,7 @@ class TenderRequestsController < ApplicationController
 
   private
     def current_tender
-      @tender = Tender.find(params[:tender_id])         
+      @tender = Tender.find(params[:tender_id])   
+      @companies = Company.all.delete_if {|comp| comp.users.include?(current_user)}      
     end
 end

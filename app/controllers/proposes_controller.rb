@@ -66,12 +66,12 @@ class ProposesController < ApplicationController
   end
 
   def self_active
-    @tenders = current_user.request_tenders(1)
+    @tenders = current_user.request_tenders(1).page params[:page]
     #@tenders = Tender.where(user_id: current_user.id, status: 0..1)
   end
 
   def self_arhive
-    @tenders = current_user.request_tenders(2)
+    @tenders = current_user.request_tenders(2).page params[:page]
   end
 
   def set_winner

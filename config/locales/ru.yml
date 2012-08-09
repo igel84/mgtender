@@ -1,7 +1,11 @@
 ru:
   views:
     pagination:
-      first: 'Первая'
+      first: '<<'
+      last: '>>'
+      next: '>'
+      previous: '<'
+      truncate: '...'
   date:
     abbr_day_names:
     - Вс

@@ -64,15 +64,15 @@ class TendersController < ApplicationController
   end  
 
   def index
-    @tenders = Tender.where(status: 1, closed: false)
+    @tenders = Tender.where(status: 1, closed: false).page params[:page]
   end
 
   def self_active
-    @tenders = Tender.where(user_id: current_user.id, status: 0..1)
+    @tenders = Tender.where(user_id: current_user.id, status: 0..1).page params[:page]
   end
 
   def self_arhive
-    @tenders = Tender.where(user_id: current_user.id, status: 2..3)
+    @tenders = Tender.where(user_id: current_user.id, status: 2..3).page params[:page]
   end
 
   def start

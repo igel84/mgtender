@@ -29,3 +29,4 @@
         .edit
           - if tender.has_user_proposes?(current_user)
             = link_to 'Редактировать', edit_tender_propose_path([tender], tender.last_propose(current_user).id)
+    = render partial: 'layouts/tender_pagination'

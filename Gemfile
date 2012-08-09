@@ -15,6 +15,7 @@ gem 'awesome_nested_set'
 gem 'russian', '~> 0.6.0'
 gem 'json'
 gem 'rails_admin'
+gem 'kaminari'
 #gem 'devise'
 
 gem 'sorcery'

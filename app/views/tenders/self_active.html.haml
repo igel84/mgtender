@@ -28,3 +28,4 @@
           %span.important-content.bold= number_to_currency(tender.summ, :precision=>2, :delimiter=>' ', :separator => ",", :unit=>'руб.', :format=>"%n %u")
         .edit
           = link_to 'Редактировать', edit_tender_path(tender)
+    = render partial: 'layouts/tender_pagination'

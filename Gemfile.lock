@@ -243,6 +243,7 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   json
+  kaminari
   magic_encoding
   mysql2
   paperclip!
