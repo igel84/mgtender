@@ -106,6 +106,9 @@ namespace :deploy do
   desc "Stop application"
   task :stop, :roles => :app do
     run "[ -f #{unicorn_pid} ] && kill -QUIT `cat #{unicorn_pid}`"
+    #[ -f /var/run/unicorn/mgtender.igel84.pid ] && kill -QUIT `cat /var/run/unicorn/mgtender.igel84.pid`
+    #start
+    #bundle exec unicorn_rails -Dc /etc/unicorn/mgtender.igel84.rb
   end
 
   desc "Restart Application"
