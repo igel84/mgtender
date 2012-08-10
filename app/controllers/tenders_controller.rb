@@ -1,5 +1,6 @@
 #encoding: utf-8
 class TendersController < ApplicationController
+  skip_before_filter :require_login, :only => [:index, :show]
   before_filter :init_collections, only: [:new, :edit]
   before_filter :current_tender #, except: [:new]
 

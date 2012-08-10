@@ -34,7 +34,7 @@
         %span.blue.big= number_to_currency(@tender.summ, :precision=>2, :delimiter=>' ', :separator => ",", :unit=>'руб.', :format=>"%n %u") || '-'
       .info
         Тендер проводит:
-        %span.blue.underline= @tender.user
+        %span.blue= @tender.user
       .assign
         - if @tender.user == current_user
           = link_to 'Предложения', tender_proposes_path(@tender)  
